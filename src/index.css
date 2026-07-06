@@ -1,1 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+
+@theme {
+    --color-green-50: #002114;
+    --color-green-150: #0E3727;
+    --color-green-250: #274E3D;
+    --color-green-350: #3F6653;
+    --color-green-450: #57806B;
+    --color-green-550: #709A84;
+    --color-green-650: #8AB49E;
+    --color-green-750: #A5D0B9;
+    --color-green-850: #C1ECD4;
+    --color-green-950: #CFFBE2;
+
+    --color-mint-50: #002113;
+    --color-mint-150: #003824;
+    --color-mint-250: #0C5136;
+    --color-mint-350: #2B694D;
+    --color-mint-450: #458365;
+    --color-mint-550: #5F9D7D;
+    --color-mint-650: #79B897;
+    --color-mint-750: #94D4B1;
+    --color-mint-850: #B0F1CC;
+    --color-mint-950: #BEFFDA;
+
+    --color-yellow-50: #1A1D07;
+    --color-yellow-150: #2E321A;
+    --color-yellow-250: #45492F;
+    --color-yellow-350: #5C6145;
+    --color-yellow-450: #757A5C;
+    --color-yellow-550: #8F9374;
+    --color-yellow-650: #AAAE8D;
+    --color-yellow-750: #C5C9A7;
+    --color-yellow-850: #E1E6C2;
+    --color-yellow-950: #F0F4D0;
+
+    --color-white-50: #F8F9FA;
+    --color-white-150: #F3F4F5;
+}
+
+@utility font-montserrat-700 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+}
