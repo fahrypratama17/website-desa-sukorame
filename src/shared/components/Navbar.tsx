@@ -13,7 +13,7 @@ export const navLink = [
   },
   {
     name: "Layanan",
-    link: "/Perangkat",
+    link: "/perangkat",
   },
   {
     name: "Struktur Organisasi",

@@ -1,12 +1,8 @@
-import MainLayout from "./layout/MainLayout.tsx";
-import HomeContainer from "./feature/home/container/HomeContainer.tsx";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router";
 
 const App = () => {
-  return (
-    <MainLayout>
-      <HomeContainer />
-    </MainLayout>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
