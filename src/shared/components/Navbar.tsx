@@ -12,10 +12,6 @@ export const navLink = [
     link: "/potensi",
   },
   {
-    name: "Layanan",
-    link: "/perangkat",
-  },
-  {
     name: "Struktur Organisasi",
     link: "/perangkat",
   },
