@@ -1,4 +1,5 @@
 import Navbar from "../shared/components/Navbar.tsx";
+import Footer from "../shared/components/Footer.tsx";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       <div className="flex-1">
         <main>{children}</main>
       </div>
+      <Footer />
     </div>
   );
 };

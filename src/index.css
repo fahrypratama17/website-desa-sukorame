@@ -63,3 +63,8 @@
     font-family: "Inter", sans-serif;
     font-weight: 600;
 }
+
+@utility font-inter-700 {
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+}
