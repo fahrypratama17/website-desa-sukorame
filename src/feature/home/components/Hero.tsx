@@ -26,7 +26,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="absolute -bottom-25 left-1/2 flex w-[80%] -translate-x-1/2 items-center justify-around rounded-xl bg-white p-8">
+      <div className="absolute -bottom-25 left-1/2 flex w-[80%] -translate-x-1/2 items-center justify-around rounded-xl bg-white p-8 shadow-2xl">
         <div className="flex flex-col items-center gap-2">
           <div className="bg-mint-850 flex size-16 items-center justify-center rounded-full">
             <img

@@ -1,10 +1,12 @@
 import Hero from "../components/Hero.tsx";
+import Tentang from "../components/Tentang.tsx";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen">
+    <>
       <Hero />
-    </div>
+      <Tentang />
+    </>
   );
 };
 
