@@ -18,11 +18,11 @@ export const router = createBrowserRouter([
         element: <HomeContainer />,
       },
       {
-        path: "/profil",
+        path: "/profil/profil-desa",
         element: <ProfilContainer />,
       },
       {
-        path: "/visi-misi",
+        path: "/profil/visi-misi",
         element: <VisiMisiContainer />,
       },
       {

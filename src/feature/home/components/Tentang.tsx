@@ -25,7 +25,7 @@ const Tentang = () => {
         <img
           src="/src/assets/images/tentang-placeholder.png"
           alt="desa"
-          className="rounded-2xl"
+          className="rounded-2xl duration-200 hover:scale-105"
         />
       </div>
     </section>
