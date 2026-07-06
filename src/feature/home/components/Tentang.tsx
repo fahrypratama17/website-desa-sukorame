@@ -14,8 +14,12 @@ const Tentang = () => {
             dalam pelayanan publik dan pengembangan ekonomi kerakyatan.
           </p>
           <div className="text-mint-350 font-inter-500 flex items-center gap-2 text-[14px]">
-            <a href="/">Baca Sejarah Desa</a>
-            <img src="/src/assets/icons/arrow.svg" alt="arrow" className="" />
+            <a href="/">Baca Profil Desa</a>
+            <img
+              src="/src/assets/icons/arrow.svg"
+              alt="arrow"
+              className="size-3"
+            />
           </div>
         </div>
         <img
