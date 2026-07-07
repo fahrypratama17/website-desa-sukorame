@@ -3,7 +3,7 @@ const Hero = () => {
     <section className="relative">
       <div className="relative flex items-center justify-center">
         <img
-          src="/src/assets/images/hero-placeholder.png"
+          src="/assets/images/hero-placeholder.png"
           alt="image"
           className="h-[80%] w-[120%]"
         />
@@ -30,7 +30,7 @@ const Hero = () => {
         <div className="flex flex-col items-center gap-2">
           <div className="bg-mint-850 flex size-16 items-center justify-center rounded-full">
             <img
-              src="/src/assets/icons/person.svg"
+              src="/assets/icons/person.svg"
               alt="penduduk"
               className="size-8"
             />
@@ -41,7 +41,7 @@ const Hero = () => {
         <div className="flex flex-col items-center gap-2">
           <div className="bg-mint-850 flex size-16 items-center justify-center rounded-full">
             <img
-              src="/src/assets/icons/home.svg"
+              src="/assets/icons/home.svg"
               alt="penduduk"
               className="size-8"
             />
@@ -52,7 +52,7 @@ const Hero = () => {
         <div className="flex flex-col items-center gap-2">
           <div className="bg-mint-850 flex size-16 items-center justify-center rounded-full">
             <img
-              src="/src/assets/icons/map.svg"
+              src="/assets/icons/map.svg"
               alt="penduduk"
               className="size-8"
             />
@@ -63,7 +63,7 @@ const Hero = () => {
         <div className="flex flex-col items-center gap-2">
           <div className="bg-mint-850 flex size-16 items-center justify-center rounded-full">
             <img
-              src="/src/assets/icons/star.svg"
+              src="/assets/icons/star.svg"
               alt="penduduk"
               className="size-8"
             />

@@ -1,6 +1,6 @@
-import Breadcrumb from "../components/Breadcrumb.tsx";
-import GambaranUmum from "../components/GambaranUmum.tsx";
-import { profilHero } from "../data/data.ts";
+import Breadcrumb from "../components/Breadcrumb";
+import GambaranUmum from "../components/GambaranUmum";
+import { profilHero } from "../data/data";
 
 const ProfilPage = () => {
   return (

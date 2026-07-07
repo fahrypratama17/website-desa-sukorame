@@ -1,4 +1,4 @@
-import { gambaranUmum } from "../data/data.ts";
+import { gambaranUmum } from "../data/data";
 
 const GambaranUmum = () => {
   return (
@@ -7,7 +7,7 @@ const GambaranUmum = () => {
         {/* Foto Sawah */}
         <div className="w-1/2 min-h-[400px]">
           <img
-            src="/src/assets/images/profile-placeholder.png"
+            src="/assets/images/profile-placeholder.png"
             alt="Pemandangan Desa Sukorame"
             className="h-full w-full object-cover"
           />

@@ -1,6 +1,6 @@
-import Hero from "../components/Hero.tsx";
-import Tentang from "../components/Tentang.tsx";
-import Potensi from "../components/Potensi.tsx";
+import Hero from "../components/Hero";
+import Tentang from "../components/Tentang";
+import Potensi from "../components/Potensi";
 
 const HomePage = () => {
   return (

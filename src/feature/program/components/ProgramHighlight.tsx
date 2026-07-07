@@ -1,4 +1,4 @@
-import { programHighlightData } from "../data/data.ts";
+import { programHighlightData } from "../data/data";
 
 const ProgramHighlight = () => {
   return (
@@ -27,9 +27,10 @@ const ProgramHighlight = () => {
           {/* Button */}
           <a
             href={programHighlightData.buttonLink}
-            className="font-inter-600 rounded-lg bg-[#0A2615] px-6 py-3.5 text-sm text-white transition-colors hover:bg-[#1C3F2D]"
+            className="font-inter-600 flex w-fit items-center gap-2 rounded-lg bg-[#0A2615] px-6 py-3.5 text-sm text-white transition-colors hover:bg-[#1C3F2D]"
           >
             {programHighlightData.buttonText}
+            <img src="/assets/icons/arrow.svg" alt="arrow" className="h-4 w-4" style={{ filter: "brightness(0) invert(1)" }} />
           </a>
         </div>
 

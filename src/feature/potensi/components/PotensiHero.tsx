@@ -1,4 +1,4 @@
-import { potensiHeroData } from "../data/data.ts";
+import { potensiHeroData } from "../data/data";
 
 const PotensiHero = () => {
   return (
@@ -12,7 +12,7 @@ const PotensiHero = () => {
           {/* Badge */}
           <div className="flex items-center gap-2 rounded-full bg-[#E5F2EC] px-4 py-2">
             <img
-              src="/src/assets/icons/star-circle.svg"
+              src="/assets/icons/star-circle.svg"
               alt="Leaf"
               className="h-4 w-4"
             />

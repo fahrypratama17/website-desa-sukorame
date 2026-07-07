@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const shortcutData = [
   {
     name: "Beranda",
@@ -31,15 +33,15 @@ export const shortcutData = [
 
 export const contactData = [
   {
-    icon: "/src/assets/icons/loc-white.svg",
+    icon: "/assets/icons/loc-white.svg",
     name: "Jl. Raya Sukorame No. 1",
   },
   {
-    icon: "/src/assets/icons/mail.svg",
+    icon: "/assets/icons/mail.svg",
     name: "info@sukorame.desa.id",
   },
   {
-    icon: "/src/assets/icons/phone.svg",
+    icon: "/assets/icons/phone.svg",
     name: "(0355) 123456",
   },
 ];
@@ -70,13 +72,13 @@ const Footer = () => {
 
             <div className="flex flex-col gap-4">
               {shortcutData.map(({ name, link }) => (
-                <a
+                <Link
                   className="font-inter-600 w-fit text-base text-[#FCF9F2CC] transition-transform duration-200 hover:scale-105"
                   href={link}
                   key={name}
                 >
                   {name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -85,7 +87,7 @@ const Footer = () => {
 
             <div className="flex flex-col gap-4">
               {contactData.map(({ icon, name }) => (
-                <div className="font-inter-600 flex w-fit cursor-pointer items-center gap-4 text-base text-[#FCF9F2CC] transition-transform duration-200 hover:scale-105">
+                <div key={name} className="font-inter-600 flex w-fit cursor-pointer items-center gap-4 text-base text-[#FCF9F2CC] transition-transform duration-200 hover:scale-105">
                   <img src={icon} alt="desa" className="h-4 w-4" />
                   <p>{name}</p>
                 </div>

@@ -1,4 +1,7 @@
-import { Link, useLocation } from "react-router-dom";
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLink = [
   {
@@ -37,25 +40,25 @@ const navLink = [
 ];
 
 const Navbar = () => {
-  const location = useLocation();
+  const pathname = usePathname();
 
   const isLinkActive = (link: string) => {
     if (link === "/") {
-      return location.pathname === "/";
+      return pathname === "/";
     }
-    return location.pathname.startsWith(link);
+    return pathname.startsWith(link);
   };
 
   const isDropdownActive = (children: { link: string }[]) => {
-    return children.some((child) => location.pathname === child.link);
+    return children.some((child) => pathname === child.link);
   };
 
   return (
     <nav className="z-100 py-8 bg-white shadow-sm">
       <div className="mx-auto flex w-[90%] items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 text-green-50">
+        <Link href="/" className="flex items-center gap-2 text-green-50">
           <img
-            src="/src/assets/icons/desa.svg"
+            src="/assets/icons/desa.svg"
             alt="desa"
             className="h-6 w-6"
           />
@@ -74,7 +77,7 @@ const Navbar = () => {
                 >
                   {item.name}
                   <img
-                    src="/src/assets/icons/chevron-down.svg"
+                    src="/assets/icons/chevron-down.svg"
                     alt="down"
                     className="size-2"
                   />
@@ -84,9 +87,9 @@ const Navbar = () => {
                   {item.children.map((child) => (
                     <Link
                       key={child.name}
-                      to={child.link}
+                      href={child.link}
                       className={`font-inter-500 block px-4 py-2 transition-colors hover:bg-green-100 hover:text-green-700 ${
-                        location.pathname === child.link
+                        pathname === child.link
                           ? "text-green-700 font-inter-700 bg-green-50/5"
                           : "text-green-50"
                       }`}
@@ -99,7 +102,7 @@ const Navbar = () => {
             ) : (
               <Link
                 key={item.name}
-                to={item.link}
+                href={item.link}
                 className={`text-base transition-all duration-200 hover:scale-105 ${
                   isLinkActive(item.link)
                     ? "font-inter-700 text-green-50 border-b-2 border-green-50 pb-1"
@@ -112,7 +115,7 @@ const Navbar = () => {
           )}
         </div>
         <button className="font-inter-500 bg-mint-850 flex cursor-pointer items-center gap-2 rounded-full px-4 py-2 text-base transition-transform duration-300 hover:scale-105 text-green-50">
-          <img src="/src/assets/icons/loc.svg" alt="desa" className="h-6 w-6" />
+          <img src="/assets/icons/loc.svg" alt="desa" className="h-6 w-6" />
           <p>Kec. Binangun, Blitar</p>
         </button>
       </div>

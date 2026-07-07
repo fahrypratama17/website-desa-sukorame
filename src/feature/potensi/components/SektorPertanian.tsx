@@ -1,4 +1,4 @@
-import { sektorPertanianData } from "../data/data.ts";
+import { sektorPertanianData } from "../data/data";
 
 const SektorPertanian = () => {
   return (
@@ -82,9 +82,10 @@ const SektorPertanian = () => {
 
           <a
             href={sektorPertanianData.buttonLink}
-            className="font-inter-600 rounded-lg bg-[#285A43] px-6 py-3 text-sm text-white transition-colors hover:bg-[#1C3F2D]"
+            className="font-inter-600 flex w-fit items-center gap-2 rounded-lg bg-[#285A43] px-6 py-3 text-sm text-white transition-colors hover:bg-[#1C3F2D]"
           >
             {sektorPertanianData.buttonText}
+            <img src="/assets/icons/arrow.svg" alt="arrow" className="h-4 w-4" style={{ filter: "brightness(0) invert(1)" }} />
           </a>
         </div>
         

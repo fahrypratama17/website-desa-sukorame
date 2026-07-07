@@ -1,6 +1,6 @@
-import ProgramHeader from "../components/ProgramHeader.tsx";
-import KategoriProgram from "../components/KategoriProgram.tsx";
-import ProgramHighlight from "../components/ProgramHighlight.tsx";
+import ProgramHeader from "../components/ProgramHeader";
+import KategoriProgram from "../components/KategoriProgram";
+import ProgramHighlight from "../components/ProgramHighlight";
 
 const ProgramPage = () => {
   return (

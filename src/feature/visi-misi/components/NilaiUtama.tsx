@@ -1,24 +1,24 @@
-import { nilaiUtamaHeader } from "../data/data.ts";
-import type { NilaiUtamaItem } from "../data/data.ts";
+import { nilaiUtamaHeader } from "../data/data";
+import type { NilaiUtamaItem } from "../data/data";
 
 const nilaiItems: NilaiUtamaItem[] = [
   {
-    icon: "/src/assets/icons/three-people.svg",
+    icon: "/assets/icons/three-people.svg",
     title: "Gotong Royong",
     description: "Bersama membangun desa dengan kebersamaan dan kepedulian.",
   },
   {
-    icon: "/src/assets/icons/eye.svg",
+    icon: "/assets/icons/eye.svg",
     title: "Transparansi",
     description: "Terbuka, jujur, dan akuntabel dalam setiap keputusan dan pengelolaan.",
   },
   {
-    icon: "/src/assets/icons/agriculture.svg",
+    icon: "/assets/icons/agriculture.svg",
     title: "Inovasi Agrikultur",
     description: "Mengembangkan pertanian modern untuk masa depan yang berkelanjutan.",
   },
   {
-    icon: "/src/assets/icons/hand-care.svg",
+    icon: "/assets/icons/hand-care.svg",
     title: "Pelayanan Prima",
     description: "Melayani masyarakat dengan cepat, ramah, dan sepenuh hati.",
   },
@@ -60,14 +60,14 @@ const NilaiUtama = () => {
       <div className="bg-green-950 relative overflow-hidden rounded-[40px] px-10 py-16">
         {/* Top-Left Accent */}
         <img
-          src="/src/assets/icons/potted_plant.svg"
+          src="/assets/icons/potted_plant.svg"
           alt=""
           className="absolute -top-2 -left-2 z-0 h-28 w-28 opacity-30"
         />
 
         {/* Bottom-Right Accent (flipped) */}
         <img
-          src="/src/assets/icons/potted_plant.svg"
+          src="/assets/icons/potted_plant.svg"
           alt=""
           className="absolute -right-2 -bottom-2 z-0 h-28 w-28 rotate-180 opacity-30"
         />
@@ -80,7 +80,7 @@ const NilaiUtama = () => {
         {/* Ornament */}
         <div className="relative z-10 mb-4 flex justify-center">
           <img
-            src="/src/assets/icons/leaf-green.svg"
+            src="/assets/icons/leaf-green.svg"
             alt="ornament"
             className="size-5"
           />

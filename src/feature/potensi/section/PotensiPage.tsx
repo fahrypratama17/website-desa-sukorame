@@ -1,7 +1,7 @@
-import PotensiHero from "../components/PotensiHero.tsx";
-import PilarEkonomi from "../components/PilarEkonomi.tsx";
-import SektorPertanian from "../components/SektorPertanian.tsx";
-import ProdukUMKM from "../components/ProdukUMKM.tsx";
+import PotensiHero from "../components/PotensiHero";
+import PilarEkonomi from "../components/PilarEkonomi";
+import SektorPertanian from "../components/SektorPertanian";
+import ProdukUMKM from "../components/ProdukUMKM";
 
 const PotensiPage = () => {
   return (

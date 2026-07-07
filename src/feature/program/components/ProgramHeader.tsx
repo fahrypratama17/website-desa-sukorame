@@ -1,4 +1,4 @@
-import { programHeaderData } from "../data/data.ts";
+import { programHeaderData } from "../data/data";
 
 const ProgramHeader = () => {
   return (

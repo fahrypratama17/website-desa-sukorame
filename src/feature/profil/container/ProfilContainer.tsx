@@ -1,4 +1,4 @@
-import ProfilPage from "../section/ProfilPage.tsx";
+import ProfilPage from "../section/ProfilPage";
 
 const ProfilContainer = () => {
   return <ProfilPage />;

@@ -1,4 +1,4 @@
-import HomePage from "../section/HomePage.tsx";
+import HomePage from "../section/HomePage";
 
 const HomeContainer = () => {
   return (

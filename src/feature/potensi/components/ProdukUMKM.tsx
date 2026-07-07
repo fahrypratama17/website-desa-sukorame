@@ -1,4 +1,4 @@
-import { produkUMKMData } from "../data/data.ts";
+import { produkUMKMData } from "../data/data";
 
 const ProdukUMKM = () => {
   return (

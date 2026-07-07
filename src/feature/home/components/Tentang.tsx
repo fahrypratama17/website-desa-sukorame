@@ -16,14 +16,14 @@ const Tentang = () => {
           <div className="text-mint-350 font-inter-500 flex items-center gap-2 text-[14px]">
             <a href="/">Baca Profil Desa</a>
             <img
-              src="/src/assets/icons/arrow.svg"
+              src="/assets/icons/arrow.svg"
               alt="arrow"
               className="size-3"
             />
           </div>
         </div>
         <img
-          src="/src/assets/images/tentang-placeholder.png"
+          src="/assets/images/tentang-placeholder.png"
           alt="desa"
           className="rounded-2xl duration-200 hover:scale-105"
         />

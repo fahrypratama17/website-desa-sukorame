@@ -1,36 +1,36 @@
-import VisiSection from "../components/VisiSection.tsx";
-import MisiCard from "../components/MisiCard.tsx";
-import NilaiUtama from "../components/NilaiUtama.tsx";
-import { visiMisiHeader } from "../data/data.ts";
-import type { MisiItem } from "../data/data.ts";
+import VisiSection from "../components/VisiSection";
+import MisiCard from "../components/MisiCard";
+import NilaiUtama from "../components/NilaiUtama";
+import { visiMisiHeader } from "../data/data";
+import type { MisiItem } from "../data/data";
 
 const misiItems: MisiItem[] = [
   {
-    icon: "/src/assets/icons/leaf.svg",
+    icon: "/assets/icons/leaf.svg",
     title: "Pemberdayaan Ekonomi",
     description:
       "Meningkatkan perekonomian masyarakat melalui pemberdayaan UMKM, kelompok tani, dan pemanfaatan potensi agrikultur lokal secara berkelanjutan.",
   },
   {
-    icon: "/src/assets/icons/grad.svg",
+    icon: "/assets/icons/grad.svg",
     title: "Peningkatan SDM",
     description:
       "Meningkatkan kualitas Sumber Daya Manusia melalui fasilitasi pendidikan yang inklusif, pelatihan keterampilan, dan pembinaan karakter generasi muda.",
   },
   {
-    icon: "/src/assets/icons/shield.svg",
+    icon: "/assets/icons/shield.svg",
     title: "Kesehatan & Kesejahteraan",
     description:
       "Mewujudkan lingkungan desa yang sehat dan sejahtera melalui optimalisasi pelayanan posyandu, sanitasi lingkungan, dan program kesehatan masyarakat.",
   },
   {
-    icon: "/src/assets/icons/transparancy.svg",
+    icon: "/assets/icons/transparancy.svg",
     title: "Tata Kelola Transparan",
     description:
       "Menyelenggarakan tata kelola pemerintahan desa yang bersih, transparan, dan akuntabel berbasis digitalisasi pelayanan publik.",
   },
   {
-    icon: "/src/assets/icons/people-tree.svg",
+    icon: "/assets/icons/people-tree.svg",
     title: "Pelestarian Budaya",
     description:
       "Melestarikan nilai-nilai gotong royong, kearifan lokal, dan tradisi budaya masyarakat desa sebagai identitas dan pemersatu warga.",

@@ -1,4 +1,4 @@
-import VisiMisiPage from "../section/VisiMisiPage.tsx";
+import VisiMisiPage from "../section/VisiMisiPage";
 
 const VisiMisiContainer = () => {
   return <VisiMisiPage />;

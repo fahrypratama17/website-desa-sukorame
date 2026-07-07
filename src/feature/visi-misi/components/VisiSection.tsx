@@ -1,4 +1,4 @@
-import { visiData } from "../data/data.ts";
+import { visiData } from "../data/data";
 
 const VisiSection = () => {
   return (

@@ -1,4 +1,4 @@
-import PerangkatPage from "../section/PerangkatPage.tsx";
+import PerangkatPage from "../section/PerangkatPage";
 
 const PerangkatContainer = () => {
   return <PerangkatPage />;

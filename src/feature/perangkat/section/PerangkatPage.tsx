@@ -1,5 +1,7 @@
+"use client";
+
 import { useState } from "react";
-import { kepalaDesa, perangkatList } from "../data/perangkatData.ts";
+import { kepalaDesa, perangkatList } from "../data/perangkatData";
 
 // Komponen foto dengan fallback ke avatar inisial jika gambar gagal dimuat
 const MemberPhoto = ({
@@ -56,7 +58,7 @@ const PerangkatPage = () => {
     <div className="min-h-screen bg-white-250 py-16">
       <div className="mx-auto w-[90%] flex flex-col gap-16">
 
-        {/* Header Section — lebar sama dengan jajaran perangkat (w-full di dalam 90%) */}
+        {/* Header Section Ã¢â‚¬” lebar sama dengan jajaran perangkat (w-full di dalam 90%) */}
         <section className="text-center w-full flex flex-col gap-4">
           <h1 className="font-montserrat-700 text-green-50 text-[40px] leading-tight">
             Perangkat Desa Sukorame
@@ -67,7 +69,7 @@ const PerangkatPage = () => {
           </p>
         </section>
 
-        {/* Highlight Kepala Desa — lebar penuh (w-full) */}
+        {/* Highlight Kepala Desa Ã¢â‚¬” lebar penuh (w-full) */}
         <section className="w-full">
           <div className="bg-white rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 shadow-md border border-green-850/10">
             {/* Foto Kepala Desa */}
@@ -101,7 +103,7 @@ const PerangkatPage = () => {
               {/* Kontak Email */}
               <div className="flex items-center gap-2 mt-2">
                 <img
-                  src="/src/assets/icons/mail.svg"
+                  src="/assets/icons/mail.svg"
                   alt="Email Icon"
                   className="h-4 w-4"
                   style={{ filter: "invert(23%) sepia(40%) saturate(700%) hue-rotate(103deg)" }}
@@ -117,7 +119,7 @@ const PerangkatPage = () => {
           </div>
         </section>
 
-        {/* Struktur Organisasi (Bagan Pohon) — lebar penuh (w-full) */}
+        {/* Struktur Organisasi (Bagan Pohon) Ã¢â‚¬” lebar penuh (w-full) */}
         <section className="w-full flex flex-col gap-8">
           <h2 className="font-montserrat-700 text-green-50 text-2xl md:text-3xl text-center">
             Struktur Organisasi
@@ -245,7 +247,7 @@ const PerangkatPage = () => {
                       className="flex items-center gap-1.5 text-[11px] text-green-350 hover:text-green-250 transition-colors mt-auto pt-2 border-t border-green-850/10 break-all"
                     >
                       <img
-                        src="/src/assets/icons/mail.svg"
+                        src="/assets/icons/mail.svg"
                         alt="Email Icon"
                         className="h-3 w-3 flex-shrink-0"
                         style={{ filter: "invert(60%) sepia(20%) saturate(400%) hue-rotate(103deg)" }}

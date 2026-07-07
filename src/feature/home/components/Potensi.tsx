@@ -1,4 +1,4 @@
-import { potensiData } from "../data/data.ts";
+import { potensiData } from "../data/data";
 
 const Potensi = () => {
   return (
@@ -14,7 +14,7 @@ const Potensi = () => {
           <div className="text-mint-350 font-inter-500 flex items-center gap-2 text-[14px]">
             <a href="/potensi">Lihat Semua</a>
             <img
-              src="/src/assets/icons/arrow.svg"
+              src="/assets/icons/arrow.svg"
               alt="arrow"
               className="size-3"
             />

@@ -1,4 +1,4 @@
-import { pilarEkonomiData } from "../data/data.ts";
+import { pilarEkonomiData } from "../data/data";
 
 const PilarEkonomi = () => {
   return (

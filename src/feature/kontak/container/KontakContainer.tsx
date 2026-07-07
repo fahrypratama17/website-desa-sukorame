@@ -1,4 +1,4 @@
-import KontakPage from "../section/KontakPage.tsx";
+import KontakPage from "../section/KontakPage";
 
 const KontakContainer = () => {
   return <KontakPage />;

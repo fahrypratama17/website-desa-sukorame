@@ -1,4 +1,4 @@
-import LembagaPage from "../section/LembagaPage.tsx";
+import LembagaPage from "../section/LembagaPage";
 
 const LembagaContainer = () => {
   return <LembagaPage />;

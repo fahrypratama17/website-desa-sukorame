@@ -1,4 +1,4 @@
-import { kategoriProgramData } from "../data/data.ts";
+import { kategoriProgramData } from "../data/data";
 
 const KategoriProgram = () => {
   return (
