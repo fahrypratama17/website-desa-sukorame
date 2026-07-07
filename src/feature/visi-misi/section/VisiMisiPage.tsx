@@ -1,5 +1,11 @@
+import Header from "../components/Header.tsx";
+
 const VisiMisiPage = () => {
-  return <div className="min-h-screen"></div>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 };
 
 export default VisiMisiPage;

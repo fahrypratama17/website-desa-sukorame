@@ -36,7 +36,7 @@ export const navLink = [
 
 const Navbar = () => {
   return (
-    <nav className="py-8 shadow-2xl">
+    <nav className="z-100 py-8 shadow-2xl">
       <div className="mx-auto flex w-[90%] items-center justify-between">
         <div className="flex items-center gap-2 text-green-50">
           <img
