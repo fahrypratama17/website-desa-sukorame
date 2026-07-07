@@ -1,5 +1,3 @@
-import type { ReactNode } from "react";
-
 export const visiMisiHeader = {
   title: "Visi & Misi",
   subtitle:
@@ -15,13 +13,13 @@ export const visiData = {
 };
 
 export interface MisiItem {
-  icon: ReactNode;
+  icon: string;
   title: string;
   description: string;
 }
 
 export interface NilaiUtamaItem {
-  icon: ReactNode;
+  icon: string;
   title: string;
   description: string;
 }
@@ -31,4 +29,3 @@ export const nilaiUtamaHeader = {
   subtitle:
     "Landasan nilai yang menuntun setiap langkah kami untuk Sukorame yang maju, mandiri, dan sejahtera.",
 };
-
