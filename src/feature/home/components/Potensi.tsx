@@ -12,7 +12,7 @@ const Potensi = () => {
             Kekayaan lokal yang menjadi pilar ekonomi Sukorame.
           </p>
           <div className="text-mint-350 font-inter-500 flex items-center gap-2 text-[14px]">
-            <a href="/">Lihat Semua</a>
+            <a href="/potensi">Lihat Semua</a>
             <img
               src="/src/assets/icons/arrow.svg"
               alt="arrow"
