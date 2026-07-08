@@ -1,6 +1,5 @@
 import "../index.css";
-import Navbar from "../shared/components/Navbar";
-import Footer from "../shared/components/Footer";
+import PublicLayoutWrapper from "../shared/components/PublicLayoutWrapper";
 
 export const metadata = {
   title: "Website Desa Sukorame",
@@ -21,11 +20,9 @@ export default function RootLayout({
       </head>
       <body className="font-inter bg-[#FAF9F6] antialiased">
         <div className="relative flex flex-col min-h-screen">
-          <Navbar />
-          <main className="flex-1">
+          <PublicLayoutWrapper>
             {children}
-          </main>
-          <Footer />
+          </PublicLayoutWrapper>
         </div>
       </body>
     </html>

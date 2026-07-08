@@ -27,7 +27,16 @@ const navLink = [
   },
   {
     name: "Struktur Organisasi",
-    link: "/perangkat",
+    children: [
+      {
+        name: "Perangkat Desa",
+        link: "/perangkat",
+      },
+      {
+        name: "Lembaga Desa",
+        link: "/lembaga",
+      },
+    ],
   },
   {
     name: "Program",
