@@ -18,9 +18,9 @@ export default function ToastForm({
       await action(formData);
       setToast({ message: "Pengaturan berhasil disimpan!", type: 'success' });
       setTimeout(() => setToast(null), 3000);
-    } catch (error) {
-      setToast({ message: "Gagal menyimpan pengaturan.", type: 'error' });
-      setTimeout(() => setToast(null), 3000);
+    } catch (error: any) {
+      setToast({ message: error?.message || "Gagal menyimpan pengaturan.", type: 'error' });
+      setTimeout(() => setToast(null), 5000);
     }
   };
 

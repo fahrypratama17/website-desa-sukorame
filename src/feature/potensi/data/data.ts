@@ -34,9 +34,9 @@ export const pilarEkonomiData = {
     {
       id: "wisata",
       title: "Wisata & Budaya",
-      description: "Situs sejarah & tradisi",
+      description: "Situs sejarah, tradisi lokal, dan pemandangan asri yang terus dikembangkan menjadi destinasi wisata unggulan.",
       icon: "/assets/icons/people-tree.svg",
-      image: "",
+      image: "/assets/images/potensi-3.png",
       span: "row-span-1 col-span-1",
     },
     {

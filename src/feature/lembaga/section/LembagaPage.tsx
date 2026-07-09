@@ -1,9 +1,14 @@
 import LembagaCard from "../components/LembagaCard";
 import KolaborasiCard from "../components/KolaborasiCard";
-import { lembagaData, kolaborasiData } from "../data/data";
+import { kolaborasiData } from "../data/data";
 import Link from "next/link";
+import { Lembaga } from "@prisma/client";
 
-const LembagaPage = () => {
+interface LembagaPageProps {
+  lembagaData: Lembaga[];
+}
+
+const LembagaPage = ({ lembagaData }: LembagaPageProps) => {
   return (
     <div className="min-h-screen bg-[#F9F7F3] pt-12 pb-24">
       {/* Header Section */}
@@ -19,13 +24,13 @@ const LembagaPage = () => {
 
       {/* Lembaga Grid */}
       <section className="mx-auto w-[90%] mb-24">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4">
           {lembagaData.map((item) => (
             <LembagaCard 
               key={item.name}
               name={item.name}
               description={item.description}
-              logo={item.logo}
+              logo={item.logo || ""}
             />
           ))}
         </div>
@@ -43,7 +48,7 @@ const LembagaPage = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-3">
           {kolaborasiData.map((item) => (
             <KolaborasiCard 
               key={item.title}

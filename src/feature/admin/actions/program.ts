@@ -1,38 +1,46 @@
 'use server';
 
-import { PrismaClient } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-
-const prisma = new PrismaClient();
+import prisma from '@/lib/prisma';
+import { requireAuth } from '@/lib/auth-guard';
+import { ProgramSchema } from '@/lib/validations';
 
 export async function deleteProgram(id: number) {
+  await requireAuth();
+
   try {
-    await prisma.program.delete({ where: { id } });
+    await prisma.program.update({ where: { id }, data: { deletedAt: new Date() } });
     revalidatePath('/admin/program');
     revalidatePath('/program');
   } catch (error) {
-    console.error("Failed to delete program:", error);
-    throw new Error("Gagal menghapus program");
+    console.error('Failed to delete program:', error);
+    throw new Error('Gagal menghapus program');
   }
 }
 
 export async function createProgram(formData: FormData) {
-  const title = formData.get('title') as string;
-  const kategori = formData.get('kategori') as string;
-  const description = formData.get('description') as string;
-  const image = formData.get('image') as string;
+  await requireAuth();
 
-  if (!title || !kategori || !description) {
-    throw new Error("Semua field wajib diisi");
+  const parsed = ProgramSchema.safeParse({
+    title: formData.get('title'),
+    kategori: formData.get('kategori'),
+    description: formData.get('description'),
+    image: formData.get('image') || null,
+  });
+
+  if (!parsed.success) {
+    const errors = parsed.error.flatten().fieldErrors;
+    const firstError = Object.values(errors).flat()[0];
+    throw new Error(firstError || 'Validasi gagal');
   }
 
   await prisma.program.create({
     data: {
-      title,
-      kategori,
-      description,
-      image: image || null,
+      title: parsed.data.title,
+      kategori: parsed.data.kategori,
+      description: parsed.data.description,
+      image: parsed.data.image || null,
     },
   });
 
@@ -42,22 +50,28 @@ export async function createProgram(formData: FormData) {
 }
 
 export async function updateProgram(id: number, formData: FormData) {
-  const title = formData.get('title') as string;
-  const kategori = formData.get('kategori') as string;
-  const description = formData.get('description') as string;
-  const image = formData.get('image') as string;
+  await requireAuth();
 
-  if (!title || !kategori || !description) {
-    throw new Error("Semua field wajib diisi");
+  const parsed = ProgramSchema.safeParse({
+    title: formData.get('title'),
+    kategori: formData.get('kategori'),
+    description: formData.get('description'),
+    image: formData.get('image') || null,
+  });
+
+  if (!parsed.success) {
+    const errors = parsed.error.flatten().fieldErrors;
+    const firstError = Object.values(errors).flat()[0];
+    throw new Error(firstError || 'Validasi gagal');
   }
 
   await prisma.program.update({
     where: { id },
     data: {
-      title,
-      kategori,
-      description,
-      image: image || null,
+      title: parsed.data.title,
+      kategori: parsed.data.kategori,
+      description: parsed.data.description,
+      image: parsed.data.image || null,
     },
   });
 

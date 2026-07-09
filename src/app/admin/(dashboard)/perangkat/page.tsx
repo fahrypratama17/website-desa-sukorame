@@ -1,17 +1,16 @@
-import { PrismaClient } from '@prisma/client';
-import PerangkatClient from '../../../../feature/admin/components/PerangkatClient';
-import { savePerangkat, deletePerangkat } from '../../../../feature/admin/actions/perangkat';
-
-const prisma = new PrismaClient();
+import { savePerangkat, deletePerangkat } from '@/feature/admin/actions/perangkat';
+import PerangkatClient from '@/feature/admin/components/PerangkatClient';
+import prisma from '@/lib/prisma';
 
 export default async function PerangkatPage() {
   const perangkatData = await prisma.perangkat.findMany({
-    orderBy: { id: 'asc' }
+    where: { deletedAt: null },
+    orderBy: { order: 'asc' },
   });
 
   return (
-    <PerangkatClient 
-      initialData={perangkatData} 
+    <PerangkatClient
+      initialData={perangkatData}
       saveAction={savePerangkat}
       deleteAction={deletePerangkat}
     />

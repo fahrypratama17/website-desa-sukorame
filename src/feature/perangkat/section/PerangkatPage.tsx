@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { kepalaDesa, perangkatList } from "../data/perangkatData";
+import { Perangkat } from "@prisma/client";
 
-// Komponen foto dengan fallback ke avatar inisial jika gambar gagal dimuat
 const MemberPhoto = ({
   src,
   name,
@@ -19,7 +18,7 @@ const MemberPhoto = ({
 }) => {
   const [imgError, setImgError] = useState(false);
 
-  if (!src || imgError) {
+  if (!src || imgError || src === "") {
     return (
       <div
         className={`flex items-center justify-center w-full h-full ${className}`}
@@ -45,8 +44,30 @@ const MemberPhoto = ({
   );
 };
 
-const PerangkatPage = () => {
+const getInitials = (name: string) => {
+  const words = name.trim().split(" ");
+  if (words.length === 1) return words[0].substring(0, 2).toUpperCase();
+  return (words[0][0] + words[1][0]).toUpperCase();
+};
+
+const colors = ["#2B694D", "#1A452F", "#3B8C66", "#4A9E7A", "#1C3F2D"];
+const getColor = (id: number) => colors[id % colors.length];
+
+interface PerangkatPageProps {
+  perangkatData: Perangkat[];
+}
+
+const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
   const [searchQuery, setSearchQuery] = useState("");
+
+  const formattedData = perangkatData.map((p) => ({
+    ...p,
+    initials: getInitials(p.name),
+    avatarColor: getColor(p.id),
+  }));
+
+  const kepalaDesa = formattedData.find(p => p.role.toLowerCase().includes('kepala desa')) || formattedData[0];
+  const perangkatList = formattedData.filter(p => p.id !== kepalaDesa?.id);
 
   const filteredList = perangkatList.filter(
     (member) =>
@@ -75,7 +96,7 @@ const PerangkatPage = () => {
             {/* Foto Kepala Desa */}
             <div className="w-full md:w-[300px] h-[340px] rounded-2xl overflow-hidden flex-shrink-0">
               <MemberPhoto
-                src={kepalaDesa.image}
+                src={kepalaDesa.image || ""}
                 name={kepalaDesa.name}
                 initials={kepalaDesa.initials}
                 avatarColor={kepalaDesa.avatarColor}
@@ -225,7 +246,7 @@ const PerangkatPage = () => {
                   {/* Foto Perangkat */}
                   <div className="relative h-56 overflow-hidden flex-shrink-0">
                     <MemberPhoto
-                      src={member.image}
+                      src={member.image || ""}
                       name={member.name}
                       initials={member.initials}
                       avatarColor={member.avatarColor}

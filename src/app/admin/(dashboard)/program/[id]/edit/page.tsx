@@ -1,9 +1,7 @@
 import Link from 'next/link';
-import { PrismaClient } from '@prisma/client';
-import { updateProgram } from '../../../../../../feature/admin/actions/program';
+import prisma from '@/lib/prisma';
+import { updateProgram } from '@/feature/admin/actions/program';
 import { notFound } from 'next/navigation';
-
-const prisma = new PrismaClient();
 
 export default async function EditProgramPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
@@ -56,8 +54,8 @@ export default async function EditProgramPage({ params }: { params: Promise<{ id
             </div>
 
             <div>
-              <label htmlFor="image" className="block text-sm font-inter-600 text-gray-700 mb-2">URL Gambar (Opsional)</label>
-              <input type="url" id="image" name="image" defaultValue={program.image || ''} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" />
+              <label htmlFor="image" className="block text-sm font-inter-600 text-gray-700 mb-2">URL/Path Gambar (Opsional)</label>
+              <input type="text" id="image" name="image" defaultValue={program.image || ''} placeholder="/assets/program/gambar.jpg" className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" />
             </div>
 
             <div>

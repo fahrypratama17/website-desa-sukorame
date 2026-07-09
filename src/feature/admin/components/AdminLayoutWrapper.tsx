@@ -25,9 +25,9 @@ export default function AdminLayoutWrapper({
       <AdminSidebar isOpen={isSidebarOpen} />
       
       {/* Main Content */}
-      <div className="flex-1 flex flex-col md:ml-64 min-h-screen relative transition-all duration-300 w-full overflow-x-hidden">
+      <div className="flex-1 flex flex-col md:pl-64 min-h-screen relative transition-all duration-300 w-full">
         <AdminHeader userName={userName} onMenuClick={() => setIsSidebarOpen(true)} />
-        <main className="p-4 md:p-8 flex-1">
+        <main className="p-4 md:p-8 flex-1 overflow-x-hidden w-full">
           {children}
         </main>
       </div>

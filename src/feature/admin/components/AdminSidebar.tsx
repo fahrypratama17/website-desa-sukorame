@@ -19,6 +19,13 @@ export default function AdminSidebar({ isOpen }: { isOpen?: boolean }) {
           <svg className="w-5 h-5 text-gray-400 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
           Dashboard
         </Link>
+        <Link href="/admin/berita" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition group">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-gray-400 group-hover:text-white transition">
+            <path fillRule="evenodd" d="M4.125 3C3.089 3 2.25 3.84 2.25 4.875V18a3 3 0 003 3h15a3 3 0 01-3-3V4.875C17.25 3.839 16.41 3 15.375 3H4.125zM12 9.75a.75.75 0 000 1.5h1.5a.75.75 0 000-1.5H12zm-.75-2.25a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5H12a.75.75 0 01-.75-.75zM6 12.75a.75.75 0 000 1.5h7.5a.75.75 0 000-1.5H6zm0 2.25a.75.75 0 000 1.5h7.5a.75.75 0 000-1.5H6zM6 8.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H6zm0 2.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H6z" clipRule="evenodd" />
+            <path d="M18.75 15a.75.75 0 00-1.5 0v2.25c0 .414.336.75.75.75h1.5a.75.75 0 000-1.5h-.75V15z" />
+          </svg>
+          Kelola Berita
+        </Link>
         <Link href="/admin/program" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition group">
           <svg className="w-5 h-5 text-gray-400 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
           Kelola Program

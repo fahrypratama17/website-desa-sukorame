@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { createProgram } from '../../../../../feature/admin/actions/program';
+import { createProgram } from '@/feature/admin/actions/program';
 
 export default function TambahProgramPage() {
   return (
@@ -35,8 +35,8 @@ export default function TambahProgramPage() {
             </div>
 
             <div>
-              <label htmlFor="image" className="block text-sm font-inter-600 text-gray-700 mb-2">URL Gambar (Opsional)</label>
-              <input type="url" id="image" name="image" className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" placeholder="https://contoh.com/gambar.jpg" />
+              <label htmlFor="image" className="block text-sm font-inter-600 text-gray-700 mb-2">URL/Path Gambar (Opsional)</label>
+              <input type="text" id="image" name="image" className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" placeholder="/assets/program/gambar.jpg" />
               <p className="text-xs text-gray-500 mt-2">Untuk sementara, gunakan tautan gambar (URL) dari internet atau Google Drive.</p>
             </div>
 

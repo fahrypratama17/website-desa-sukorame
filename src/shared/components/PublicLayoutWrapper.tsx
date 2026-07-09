@@ -6,8 +6,10 @@ import Footer from "./Footer";
 
 export default function PublicLayoutWrapper({
   children,
+  settings,
 }: {
   children: React.ReactNode;
+  settings: Record<string, string>;
 }) {
   const pathname = usePathname();
   // Jika rute diawali dengan /admin, sembunyikan Navbar dan Footer
@@ -19,9 +21,9 @@ export default function PublicLayoutWrapper({
 
   return (
     <>
-      <Navbar />
+      <Navbar settings={settings} />
       <main className="flex-1">{children}</main>
-      <Footer />
+      <Footer settings={settings} />
     </>
   );
 }

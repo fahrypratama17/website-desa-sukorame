@@ -1,13 +1,12 @@
 import Link from 'next/link';
-import { PrismaClient } from '@prisma/client';
-import { deleteProgram } from '../../../../feature/admin/actions/program';
-import DeleteButton from '../../../../feature/admin/components/DeleteButton';
-
-const prisma = new PrismaClient();
+import { deleteProgram } from '@/feature/admin/actions/program';
+import prisma from '@/lib/prisma';
+import DeleteButton from '@/feature/admin/components/DeleteButton';
 
 export default async function ProgramPage() {
   const programs = await prisma.program.findMany({
-    orderBy: { createdAt: 'desc' }
+    where: { deletedAt: null },
+    orderBy: { createdAt: 'desc' },
   });
 
   return (
@@ -17,11 +16,11 @@ export default async function ProgramPage() {
           <h2 className="text-2xl font-montserrat-700 text-[#1C3F2D]">Kelola Program Desa</h2>
           <p className="text-[#414844] mt-1 font-inter-400">Daftar semua program kerja yang berjalan di Desa Sukorame.</p>
         </div>
-        <Link 
-          href="/admin/program/tambah" 
+        <Link
+          href="/admin/program/tambah"
           className="px-5 py-2.5 bg-[#0A2615] text-white rounded-lg font-inter-600 hover:bg-[#1C3F2D] transition flex items-center gap-2 shadow-sm"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
           Tambah Program
         </Link>
       </div>
@@ -47,9 +46,7 @@ export default async function ProgramPage() {
               ) : (
                 programs.map((program, index) => (
                   <tr key={program.id} className="hover:bg-gray-50/50 transition">
-                    <td className="px-6 py-4 text-sm text-gray-500 font-inter-400">
-                      {index + 1}
-                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-500 font-inter-400">{index + 1}</td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-4">
                         {program.image ? (
@@ -72,7 +69,7 @@ export default async function ProgramPage() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-end gap-2">
-                        <Link 
+                        <Link
                           href={`/admin/program/${program.id}/edit`}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition"
                           title="Edit"

@@ -1,26 +1,24 @@
-import "../index.css";
-import PublicLayoutWrapper from "../shared/components/PublicLayoutWrapper";
+import "@/index.css";
+import PublicLayoutWrapper from "@/shared/components/PublicLayoutWrapper";
+import { getGlobalSettings } from "@/lib/settings";
 
 export const metadata = {
   title: "Website Desa Sukorame",
   description: "Pusat informasi dan pelayanan digital terpadu untuk masyarakat Desa Sukorame.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const settings = await getGlobalSettings();
+
   return (
     <html lang="id">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-      </head>
       <body className="font-inter bg-[#FAF9F6] antialiased">
         <div className="relative flex flex-col min-h-screen">
-          <PublicLayoutWrapper>
+          <PublicLayoutWrapper settings={settings}>
             {children}
           </PublicLayoutWrapper>
         </div>

@@ -136,8 +136,8 @@ export default function LembagaClient({ initialData, saveAction, deleteAction }:
               </div>
 
               <div>
-                <label htmlFor="logo" className="block text-sm font-inter-600 text-gray-700 mb-2">URL Logo (Opsional)</label>
-                <input type="url" id="logo" name="logo" defaultValue={editingItem?.logo || ''} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" />
+                <label htmlFor="logo" className="block text-sm font-inter-600 text-gray-700 mb-2">URL/Path Logo (Opsional)</label>
+                <input type="text" id="logo" name="logo" defaultValue={editingItem?.logo || ''} placeholder="/assets/lembaga/logo.png" className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" />
               </div>
 
               <div>

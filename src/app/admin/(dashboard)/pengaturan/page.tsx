@@ -1,29 +1,32 @@
-import { PrismaClient } from '@prisma/client';
-import { saveSettings } from '../../../../feature/admin/actions/pengaturan';
-import SubmitButton from '../../../../feature/admin/components/SubmitButton';
-import DynamicMisiForm from '../../../../feature/admin/components/DynamicMisiForm';
-import DynamicNilaiUtamaForm from '../../../../feature/admin/components/DynamicNilaiUtamaForm';
-import ToastForm from '../../../../feature/admin/components/ToastForm';
-
-const prisma = new PrismaClient();
+import { saveSettings } from '@/feature/admin/actions/pengaturan';
+import { createMisi, updateMisi, deleteMisi } from '@/feature/admin/actions/misi';
+import { createNilaiUtama, updateNilaiUtama, deleteNilaiUtama } from '@/feature/admin/actions/nilai-utama';
+import SubmitButton from '@/feature/admin/components/SubmitButton';
+import DynamicMisiForm from '@/feature/admin/components/DynamicMisiForm';
+import DynamicNilaiUtamaForm from '@/feature/admin/components/DynamicNilaiUtamaForm';
+import ToastForm from '@/feature/admin/components/ToastForm';
+import prisma from '@/lib/prisma';
 
 export default async function PengaturanPage() {
   const rawSettings = await prisma.setting.findMany();
-  
-  const settings = rawSettings.reduce((acc, curr) => {
+  const settings = rawSettings.reduce((acc: Record<string, string>, curr) => {
     acc[curr.key] = curr.value;
     return acc;
   }, {} as Record<string, string>);
 
+  // Query Misi dan Nilai Utama dari tabel terpisah
+  const misiData = await prisma.misi.findMany({ orderBy: { order: 'asc' } });
+  const nilaiUtamaData = await prisma.nilaiUtama.findMany({ orderBy: { order: 'asc' } });
+
   return (
-    <div className="space-y-6 max-w-4xl">
+    <div className="space-y-6 w-full">
       <div>
         <h2 className="text-2xl font-montserrat-700 text-[#1C3F2D]">Pengaturan Global</h2>
         <p className="text-[#414844] mt-1 font-inter-400">Atur seluruh teks, statistik, visi misi, dan kontak untuk Halaman Publik Desa Sukorame.</p>
       </div>
 
       <ToastForm action={saveSettings} className="space-y-8">
-        
+
         {/* 1. Identitas Utama */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="bg-gray-50/50 px-6 py-4 border-b border-gray-100">
@@ -53,7 +56,7 @@ export default async function PengaturanPage() {
           <div className="bg-gray-50/50 px-6 py-4 border-b border-gray-100">
             <h3 className="font-montserrat-700 text-[#1C3F2D] flex items-center gap-2">
               <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-              2. Visi & Misi Pembangunan
+              2. Visi &amp; Misi Pembangunan
             </h3>
           </div>
           <div className="p-6 space-y-6">
@@ -65,36 +68,20 @@ export default async function PengaturanPage() {
               <label htmlFor="desa_visi_subtitle" className="block text-sm font-inter-600 text-gray-700 mb-2">Sub-Teks Visi Desa (Penjelasan)</label>
               <textarea id="desa_visi_subtitle" name="desa_visi_subtitle" defaultValue={settings.desa_visi_subtitle || ''} rows={2} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] resize-y"></textarea>
             </div>
-            <div className="border-t border-gray-100 pt-6">
-              <DynamicMisiForm initialData={settings.desa_misi} saveAction={saveSettings} />
-            </div>
           </div>
         </div>
 
-        {/* 3. Nilai Utama */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-          <div className="bg-gray-50/50 px-6 py-4 border-b border-gray-100">
-            <h3 className="font-montserrat-700 text-[#1C3F2D] flex items-center gap-2">
-              <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg>
-              3. Nilai-Nilai Utama
-            </h3>
-          </div>
-          <div className="p-6">
-            <DynamicNilaiUtamaForm initialData={settings.desa_nilai_utama} saveAction={saveSettings} />
-          </div>
-        </div>
-
-        {/* 4. Profil & Gambaran Umum */}
+        {/* 3. Profil & Gambaran Umum */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="bg-gray-50/50 px-6 py-4 border-b border-gray-100">
             <h3 className="font-montserrat-700 text-[#1C3F2D] flex items-center gap-2">
               <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" /></svg>
-              4. Teks Profil & Deskripsi Desa
+              3. Teks Profil &amp; Deskripsi Desa
             </h3>
           </div>
           <div className="p-6 space-y-4">
             <div>
-              <label htmlFor="tentang_desa_deskripsi" className="block text-sm font-inter-600 text-gray-700 mb-2">Teks "Tentang Desa" (Muncul di Beranda)</label>
+              <label htmlFor="tentang_desa_deskripsi" className="block text-sm font-inter-600 text-gray-700 mb-2">Teks &quot;Tentang Desa&quot; (Muncul di Beranda)</label>
               <textarea id="tentang_desa_deskripsi" name="tentang_desa_deskripsi" defaultValue={settings.tentang_desa_deskripsi || ''} rows={4} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] resize-y"></textarea>
             </div>
             <div>
@@ -102,18 +89,18 @@ export default async function PengaturanPage() {
               <textarea id="profil_hero_subtitle" name="profil_hero_subtitle" defaultValue={settings.profil_hero_subtitle || ''} rows={2} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] resize-y"></textarea>
             </div>
             <div>
-              <label htmlFor="gambaran_umum_deskripsi" className="block text-sm font-inter-600 text-gray-700 mb-2">Teks "Gambaran Umum" (Halaman Profil)</label>
+              <label htmlFor="gambaran_umum_deskripsi" className="block text-sm font-inter-600 text-gray-700 mb-2">Teks &quot;Gambaran Umum&quot; (Halaman Profil)</label>
               <textarea id="gambaran_umum_deskripsi" name="gambaran_umum_deskripsi" defaultValue={settings.gambaran_umum_deskripsi || ''} rows={4} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] resize-y"></textarea>
             </div>
           </div>
         </div>
 
-        {/* 5. Statistik Desa */}
+        {/* 4. Statistik Desa */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="bg-gray-50/50 px-6 py-4 border-b border-gray-100">
             <h3 className="font-montserrat-700 text-[#1C3F2D] flex items-center gap-2">
               <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-              5. Angka Statistik Desa
+              4. Angka Statistik Desa
             </h3>
           </div>
           <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -144,12 +131,12 @@ export default async function PengaturanPage() {
           </div>
         </div>
 
-        {/* 6. Kontak & Sosial Media */}
+        {/* 5. Kontak & Sosial Media */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="bg-gray-50/50 px-6 py-4 border-b border-gray-100">
             <h3 className="font-montserrat-700 text-[#1C3F2D] flex items-center gap-2">
               <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-              6. Kontak & Sosial Media
+              5. Kontak &amp; Sosial Media
             </h3>
           </div>
           <div className="p-6 space-y-4">
@@ -166,6 +153,10 @@ export default async function PengaturanPage() {
             <div>
               <label htmlFor="kontak_alamat" className="block text-sm font-inter-600 text-gray-700 mb-2">Alamat Lengkap Balai Desa</label>
               <textarea id="kontak_alamat" name="kontak_alamat" defaultValue={settings.kontak_alamat || ''} rows={2} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] resize-y"></textarea>
+            </div>
+            <div>
+              <label htmlFor="kontak_lokasi" className="block text-sm font-inter-600 text-gray-700 mb-2">Lokasi Kecamatan (Tampil di Navbar)</label>
+              <input type="text" id="kontak_lokasi" name="kontak_lokasi" defaultValue={settings.kontak_lokasi || ''} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" placeholder="Kec. Binangun, Blitar" />
             </div>
             <div className="border-t border-gray-100 pt-4 mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
@@ -184,12 +175,12 @@ export default async function PengaturanPage() {
           </div>
         </div>
 
-        {/* 7. Footer */}
+        {/* 6. Footer */}
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="bg-gray-50/50 px-6 py-4 border-b border-gray-100">
             <h3 className="font-montserrat-700 text-[#1C3F2D] flex items-center gap-2">
               <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" /></svg>
-              7. Pengaturan Footer
+              6. Pengaturan Footer
             </h3>
           </div>
           <div className="p-6">
@@ -198,11 +189,47 @@ export default async function PengaturanPage() {
           </div>
         </div>
 
-        <div className="flex justify-end pt-4 pb-12 sticky bottom-0">
+        <div className="flex justify-end pt-4 pb-4 sticky bottom-0">
           <SubmitButton text="Simpan Semua Pengaturan" loadingText="Menyimpan..." />
         </div>
 
       </ToastForm>
+
+      {/* 7. Manajemen Misi (CRUD langsung ke database) */}
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="bg-gray-50/50 px-6 py-4 border-b border-gray-100">
+          <h3 className="font-montserrat-700 text-[#1C3F2D] flex items-center gap-2">
+            <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            7. Manajemen Misi Desa
+          </h3>
+        </div>
+        <div className="p-6">
+          <DynamicMisiForm
+            initialData={misiData}
+            createAction={createMisi}
+            updateAction={updateMisi}
+            deleteAction={deleteMisi}
+          />
+        </div>
+      </div>
+
+      {/* 8. Manajemen Nilai Utama (CRUD langsung ke database) */}
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="bg-gray-50/50 px-6 py-4 border-b border-gray-100">
+          <h3 className="font-montserrat-700 text-[#1C3F2D] flex items-center gap-2">
+            <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" /></svg>
+            8. Manajemen Nilai-Nilai Utama
+          </h3>
+        </div>
+        <div className="p-6">
+          <DynamicNilaiUtamaForm
+            initialData={nilaiUtamaData}
+            createAction={createNilaiUtama}
+            updateAction={updateNilaiUtama}
+            deleteAction={deleteNilaiUtama}
+          />
+        </div>
+      </div>
     </div>
   );
 }

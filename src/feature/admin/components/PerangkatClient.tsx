@@ -146,8 +146,8 @@ export default function PerangkatClient({ initialData, saveAction, deleteAction 
               </div>
 
               <div>
-                <label htmlFor="image" className="block text-sm font-inter-600 text-gray-700 mb-2">URL Foto (Opsional)</label>
-                <input type="url" id="image" name="image" defaultValue={editingItem?.image || ''} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" />
+                <label htmlFor="image" className="block text-sm font-inter-600 text-gray-700 mb-2">URL/Path Foto (Opsional)</label>
+                <input type="text" id="image" name="image" defaultValue={editingItem?.image || ''} placeholder="/assets/perangkat/foto.jpg" className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" />
               </div>
 
               <div>

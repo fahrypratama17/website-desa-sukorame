@@ -1,28 +1,5 @@
 import { nilaiUtamaHeader } from "../data/data";
-import type { NilaiUtamaItem } from "../data/data";
-
-const nilaiItems: NilaiUtamaItem[] = [
-  {
-    icon: "/assets/icons/three-people.svg",
-    title: "Gotong Royong",
-    description: "Bersama membangun desa dengan kebersamaan dan kepedulian.",
-  },
-  {
-    icon: "/assets/icons/eye.svg",
-    title: "Transparansi",
-    description: "Terbuka, jujur, dan akuntabel dalam setiap keputusan dan pengelolaan.",
-  },
-  {
-    icon: "/assets/icons/agriculture.svg",
-    title: "Inovasi Agrikultur",
-    description: "Mengembangkan pertanian modern untuk masa depan yang berkelanjutan.",
-  },
-  {
-    icon: "/assets/icons/hand-care.svg",
-    title: "Pelayanan Prima",
-    description: "Melayani masyarakat dengan cepat, ramah, dan sepenuh hati.",
-  },
-];
+import type { NilaiUtama } from "@prisma/client";
 
 interface NilaiCardProps {
   icon: string;
@@ -44,7 +21,7 @@ const NilaiCard = ({ icon, title, description }: NilaiCardProps) => {
       </h4>
 
       {/* Description */}
-      <p className="font-inter-400 mb-6 text-xs leading-relaxed text-green-450">
+      <p className="font-inter-400 mb-6 text-xs leading-relaxed text-green-450 flex-1">
         {description}
       </p>
 
@@ -54,7 +31,13 @@ const NilaiCard = ({ icon, title, description }: NilaiCardProps) => {
   );
 };
 
-const NilaiUtama = () => {
+interface NilaiUtamaSectionProps {
+  nilaiItems: NilaiUtama[];
+}
+
+const NilaiUtamaSection = ({ nilaiItems }: NilaiUtamaSectionProps) => {
+  if (nilaiItems.length === 0) return null;
+
   return (
     <section className="mb-16">
       <div className="bg-green-950 relative overflow-hidden rounded-[40px] px-10 py-16">
@@ -92,11 +75,11 @@ const NilaiUtama = () => {
         </p>
 
         {/* Cards Grid */}
-        <div className="relative z-10 grid grid-cols-4 gap-6">
+        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {nilaiItems.map((item) => (
             <NilaiCard
-              key={item.title}
-              icon={item.icon}
+              key={item.id}
+              icon={item.icon || "/assets/icons/leaf.svg"}
               title={item.title}
               description={item.description}
             />
@@ -107,4 +90,4 @@ const NilaiUtama = () => {
   );
 };
 
-export default NilaiUtama;
+export default NilaiUtamaSection;

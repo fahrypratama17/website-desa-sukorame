@@ -9,7 +9,7 @@ interface KolaborasiCardProps {
 const KolaborasiCard = ({ title, description, image }: KolaborasiCardProps) => {
   return (
     <div className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-lg transition-transform duration-300 hover:-translate-y-2">
-      <div className="h-48 w-full bg-gray-200">
+      <div className="h-32 md:h-48 w-full bg-gray-200">
         <img 
           src={image} 
           alt={title} 
@@ -20,11 +20,11 @@ const KolaborasiCard = ({ title, description, image }: KolaborasiCardProps) => {
           }}
         />
       </div>
-      <div className="flex flex-col p-6">
-        <h3 className="font-montserrat-700 text-green-50 mb-2 text-lg">
+      <div className="flex flex-col p-4 md:p-6">
+        <h3 className="font-montserrat-700 text-green-50 mb-2 text-sm md:text-lg">
           {title}
         </h3>
-        <p className="font-inter-400 text-sm leading-relaxed text-[#5F6561]">
+        <p className="font-inter-400 text-xs md:text-sm line-clamp-3 md:line-clamp-none leading-relaxed text-[#5F6561]">
           {description}
         </p>
       </div>

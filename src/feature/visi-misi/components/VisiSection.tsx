@@ -1,24 +1,24 @@
-import { visiData } from "../data/data";
+interface VisiSectionProps {
+  data: {
+    quote: string;
+    description: string;
+  }
+}
 
-const VisiSection = () => {
+const VisiSection = ({ data }: VisiSectionProps) => {
   return (
     <section className="mb-16">
-      <div className="from-green-50 to-green-150 rounded-2xl bg-gradient-to-br px-10 py-12 md:px-16 md:py-16">
-        {/* Badge */}
-        <div className="mb-8 flex justify-start">
-          <span className="font-inter-600 rounded-full border border-green-650/40 bg-green-250/50 px-5 py-1.5 text-xs tracking-widest text-green-850">
-            {visiData.badge}
-          </span>
+      <div className="bg-green-150 overflow-hidden rounded-[32px] p-12 text-left flex flex-col items-start w-full">
+        <div className="bg-green-250 mb-6 w-fit rounded-full px-4 py-1.5">
+          <p className="font-inter-600 text-white text-xs tracking-wide">
+            VISI DESA
+          </p>
         </div>
-
-        {/* Quote */}
-        <blockquote className="font-montserrat-700 mb-8 text-left text-2xl leading-snug text-white md:text-3xl lg:text-4xl">
-          {visiData.quote}
-        </blockquote>
-
-        {/* Penjelasan */}
-        <p className="font-inter-400 text-left text-base leading-relaxed text-green-750/80">
-          {visiData.description}
+        <h2 className="font-montserrat-700 text-white mb-4 text-2xl md:text-3xl leading-[1.4] max-w-4xl">
+          {data.quote}
+        </h2>
+        <p className="font-inter-400 text-white/80 text-sm md:text-base leading-relaxed max-w-3xl">
+          {data.description}
         </p>
       </div>
     </section>
