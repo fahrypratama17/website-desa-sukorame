@@ -1,49 +1,48 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, KategoriBerita } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 Seeding database...\n');
+  console.log('🌱 Seeding database dengan data RPJM Desa Sukorame...\n');
 
   // ---------------------------------------------------------
   // 1. SEED SETTINGS (Pengaturan Global)
-  //    Menggunakan upsert agar idempotent
   // ---------------------------------------------------------
   const settings = [
     // Identitas Utama
     { key: 'desa_nama', value: 'Desa Sukorame' },
     { key: 'hero_title', value: 'Selamat Datang di Desa Sukorame' },
-    { key: 'hero_subtitle', value: 'Mewujudkan masyarakat yang mandiri, sejahtera, dan berbudaya melalui pengelolaan potensi lokal yang berkelanjutan.' },
+    { key: 'hero_subtitle', value: 'Mewujudkan Masyarakat Desa Sukorame Yang Adil, Makmur, Guyub Rukun, Aman Dan Sejahtera.' },
 
     // Visi & Misi
-    { key: 'desa_visi', value: '"Terwujudnya Desa Sukorame yang Mandiri, Sejahtera, dan Berbudaya melalui Peningkatan Ekonomi Berbasis Agrikultur dan Tata Kelola Pemerintahan yang Transparan."' },
-    { key: 'desa_visi_subtitle', value: 'Visi ini menjadi bintang penunjuk arah dalam setiap kebijakan dan program yang kami jalankan, memastikan bahwa pembangunan desa selalu berpusat pada kesejahteraan warga dan pelestarian lingkungan.' },
+    { key: 'desa_visi', value: '"Terselenggaranya Pemerintah Desa Yang Bersih Dipercaya Dan Bertanggung Jawab, Mengutamakan Pelayanan Kepentingan Masyarakat Sehingga Terwujud Masyarakat Desa Sukorame Yang Adil, Makmur, Guyub Rukun, Aman Dan Sejahtera."' },
+    { key: 'desa_visi_subtitle', value: 'Visi ini menjadi bintang penunjuk arah dalam setiap kebijakan dan program yang kami jalankan, memastikan bahwa pembangunan desa selalu berpusat pada kesejahteraan warga.' },
 
     // Profil & Gambaran Umum
-    { key: 'profil_hero_subtitle', value: 'Mengenal lebih dekat sejarah, identitas, dan karakter unggul yang membentuk Desa Sukorame menjadi komunitas yang tangguh dan harmonis.' },
-    { key: 'tentang_desa_deskripsi', value: 'Desa Sukorame adalah sebuah desa agraris yang terletak di jantung kabupaten. Dengan luas wilayah yang didominasi oleh lahan pertanian produktif, desa ini menjadi salah satu lumbung pangan daerah. Kami berkomitmen untuk memadukan kearifan lokal dengan inovasi modern dalam pelayanan publik dan pengembangan ekonomi kerakyatan.' },
-    { key: 'gambaran_umum_deskripsi', value: 'Desa Sukorame adalah perwujudan harmoni antara tradisi dan kemajuan. Terletak di jantung lanskap yang subur, desa kami dikenal dengan masyarakatnya yang ramah, semangat gotong royong yang kuat, dan komitmen terhadap pembangunan berkelanjutan.' },
+    { key: 'profil_hero_subtitle', value: 'Mengenal lebih dekat sejarah, identitas, dan karakter unggul yang membentuk Desa Sukorame di Kecamatan Binangun.' },
+    { key: 'tentang_desa_deskripsi', value: 'Desa Sukorame adalah desa agraris dan sentra industri permebelan yang terletak di Kecamatan Binangun, Kabupaten Blitar. Nama desa ini berasal dari sebuah sumber air dan pohon suko peninggalan masa lalu. Kami berkomitmen memadukan kearifan lokal dengan inovasi modern dalam pelayanan publik dan pengembangan ekonomi kerakyatan.' },
+    { key: 'gambaran_umum_deskripsi', value: 'Desa Sukorame adalah perwujudan harmoni antara tradisi dan kemajuan. Desa kami dikenal dengan masyarakatnya yang ramah, semangat gotong royong yang kuat, dan komitmen terhadap pelestarian budaya melalui tradisi tahunan Bersih Desa di Petilasan Mbah Irojoyo.' },
 
     // Statistik Desa
-    { key: 'statistik_penduduk', value: '3.245' },
+    { key: 'statistik_penduduk', value: '1.837' },
     { key: 'statistik_dusun', value: '2' },
-    { key: 'statistik_rtrw', value: '24/6' },
-    { key: 'statistik_potensi', value: '12' },
+    { key: 'statistik_rtrw', value: '14/4' },
+    { key: 'statistik_potensi', value: '8' },
     { key: 'statistik_luas', value: '450 Ha' },
-    { key: 'statistik_ketinggian', value: '350 mdpl' },
+    { key: 'statistik_ketinggian', value: '250 mdpl' },
 
     // Kontak & Sosial Media
     { key: 'kontak_telepon', value: '(0355) 123456' },
     { key: 'kontak_email', value: 'info@sukorame.desa.id' },
-    { key: 'kontak_alamat', value: 'Jl. Raya Sukorame No. 1' },
-    { key: 'kontak_lokasi', value: 'Kec. Binangun, Blitar' },
+    { key: 'kontak_alamat', value: 'Kantor Kepala Desa Sukorame' },
+    { key: 'kontak_lokasi', value: 'Kec. Binangun, Kab. Blitar' },
     { key: 'sosmed_facebook', value: '' },
     { key: 'sosmed_instagram', value: '' },
     { key: 'sosmed_youtube', value: '' },
 
     // Footer
-    { key: 'footer_deskripsi', value: 'Pusat informasi dan pelayanan publik Pemerintah Desa Sukorame untuk mewujudkan desa yang mandiri dan inovatif.' },
+    { key: 'footer_deskripsi', value: 'Pusat informasi dan pelayanan publik Pemerintah Desa Sukorame untuk mewujudkan desa yang mandiri dan sejahtera.' },
   ];
 
   for (const setting of settings) {
@@ -61,32 +60,32 @@ async function main() {
   const misiData = [
     {
       icon: '/assets/icons/leaf.svg',
-      title: 'Pemberdayaan Ekonomi',
-      description: 'Meningkatkan perekonomian masyarakat melalui pemberdayaan UMKM, kelompok tani, dan pemanfaatan potensi agrikultur lokal secara berkelanjutan.',
+      title: 'Kerukunan Beragama',
+      description: 'Membina kerukunan umat beragama & mengembangkan kegiatan keagamaan untuk menambah keimanan kepada Tuhan YME.',
       order: 1,
     },
     {
-      icon: '/assets/icons/grad.svg',
-      title: 'Peningkatan SDM',
-      description: 'Meningkatkan kualitas Sumber Daya Manusia melalui fasilitasi pendidikan yang inklusif, pelatihan keterampilan, dan pembinaan karakter generasi muda.',
+      icon: '/assets/icons/eye.svg',
+      title: 'Pemerintahan Bertanggung Jawab',
+      description: 'Menata tata kelola pemerintahan yang bertanggung jawab dan melayani seluruh masyarakat tanpa membedakan.',
       order: 2,
     },
     {
-      icon: '/assets/icons/shield.svg',
-      title: 'Kesehatan & Kesejahteraan',
-      description: 'Mewujudkan lingkungan desa yang sehat dan sejahtera melalui optimalisasi pelayanan posyandu, sanitasi lingkungan, dan program kesehatan masyarakat.',
+      icon: '/assets/icons/three-people.svg',
+      title: 'Musyawarah Mufakat',
+      description: 'Mengutamakan prinsip musyawarah untuk mencapai mufakat dalam setiap pengambilan kebijakan desa.',
       order: 3,
     },
     {
-      icon: '/assets/icons/transparancy.svg',
-      title: 'Tata Kelola Transparan',
-      description: 'Menyelenggarakan tata kelola pemerintahan desa yang bersih, transparan, dan akuntabel berbasis digitalisasi pelayanan publik.',
+      icon: '/assets/icons/agriculture.svg',
+      title: 'Pengembangan Pertanian & Peternakan',
+      description: 'Mengembangkan potensi mayoritas warga di sektor pertanian dan peternakan dengan memberikan pelatihan yang berkesinambungan.',
       order: 4,
     },
     {
-      icon: '/assets/icons/people-tree.svg',
-      title: 'Pelestarian Budaya',
-      description: 'Melestarikan nilai-nilai gotong royong, kearifan lokal, dan tradisi budaya masyarakat desa sebagai identitas dan pemersatu warga.',
+      icon: '/assets/icons/hand-care.svg',
+      title: 'Kesehatan & Kesejahteraan Sosial',
+      description: 'Meningkatkan layanan kesehatan masyarakat, fasilitas olahraga, dan bantuan sosial seperti Bedah Rumah (RTLH) bagi warga miskin.',
       order: 5,
     },
   ];
@@ -103,26 +102,26 @@ async function main() {
   const nilaiUtamaData = [
     {
       icon: '/assets/icons/three-people.svg',
-      title: 'Gotong Royong',
-      description: 'Bersama membangun desa dengan kebersamaan dan kepedulian.',
+      title: 'Guyub Rukun & Gotong Royong',
+      description: 'Menjunjung tinggi kerukunan dan kerja bakti bersama (kearifan lokal) dalam setiap aspek pembangunan desa.',
       order: 1,
     },
     {
       icon: '/assets/icons/eye.svg',
-      title: 'Transparansi',
-      description: 'Terbuka, jujur, dan akuntabel dalam setiap keputusan dan pengelolaan.',
+      title: 'Adil & Setara',
+      description: 'Memberikan perlindungan hukum dan pelayanan yang sama bagi seluruh lapisan masyarakat.',
       order: 2,
     },
     {
       icon: '/assets/icons/agriculture.svg',
-      title: 'Inovasi Agrikultur',
-      description: 'Mengembangkan pertanian modern untuk masa depan yang berkelanjutan.',
+      title: 'Kemandirian Ekonomi',
+      description: 'Mendorong kemandirian warga melalui pemberdayaan BUMDes, UMKM, dan industri permebelan lokal.',
       order: 3,
     },
     {
       icon: '/assets/icons/hand-care.svg',
-      title: 'Pelayanan Prima',
-      description: 'Melayani masyarakat dengan cepat, ramah, dan sepenuh hati.',
+      title: 'Aman & Sejahtera',
+      description: 'Menjaga ketertiban desa dan mewujudkan kesejahteraan bagi keluarga kurang mampu.',
       order: 4,
     },
   ];
@@ -134,14 +133,26 @@ async function main() {
   console.log('✅ Nilai Utama seeded');
 
   // ---------------------------------------------------------
-  // 4. SEED PROGRAM DESA (upsert pattern)
+  // 4. SEED PROGRAM DESA
   // ---------------------------------------------------------
   const programs = [
     {
-      kategori: 'Pelayanan Publik',
-      title: 'Digitalisasi Pelayanan Desa',
-      description: 'Transformasi layanan administrasi desa ke sistem digital terpadu untuk memudahkan warga mengakses surat pengantar, informasi desa, dan pelaporan secara real-time.',
-      image: '/assets/images/program-placeholder.png',
+      kategori: 'Pemberdayaan Ekonomi',
+      title: 'Pengembangan BUMDes "Cash and Carry"',
+      description: 'Optimalisasi Badan Usaha Milik Desa untuk menampung tenaga kerja dan pemasaran produk kerajinan/pertanian secara langsung demi pertumbuhan ekonomi.',
+      image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800',
+    },
+    {
+      kategori: 'Kesejahteraan Sosial',
+      title: 'Program Bedah Rumah (RTLH)',
+      description: 'Bantuan Rumah Tidak Layak Huni yang didanai melalui APBDes, dengan target minimal 2 keluarga per tahun untuk mengentaskan kemiskinan ekstrim.',
+      image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=800',
+    },
+    {
+      kategori: 'Kesehatan Masyarakat',
+      title: 'Pengadaan & Operasional Mobil Siaga',
+      description: 'Meningkatkan layanan kesehatan darurat bagi masyarakat melalui penyediaan mobil siaga yang dapat diakses 24 jam.',
+      image: 'https://images.unsplash.com/photo-1587556200676-e17f651ef8a0?auto=format&fit=crop&q=80&w=800',
     },
   ];
 
@@ -156,48 +167,83 @@ async function main() {
   // ---------------------------------------------------------
   const perangkat = [
     {
-      name: 'Kusnadi',
+      name: 'Yadi',
       role: 'Kepala Desa',
       email: 'kades@sukorame.desa.id',
-      image: 'https://picsum.photos/seed/kades50/400/500',
-      quote: 'Berkomitmen untuk mewujudkan Desa Sukorame yang mandiri, sejahtera, dan berbudaya melalui tata kelola pemerintahan yang bersih dan pelayanan publik yang prima.',
+      image: 'https://picsum.photos/seed/yadi/400/500',
+      quote: 'Saya berkomitmen memimpin Desa Sukorame menuju masa depan yang adil, makmur, dan guyub rukun.',
       order: 1,
     },
     {
-      name: 'Ahmad Yani, S.E.',
+      name: 'Mu\'alim',
       role: 'Sekretaris Desa',
       email: 'sekdes@sukorame.desa.id',
-      image: 'https://picsum.photos/seed/sekdes35/400/500',
+      image: 'https://picsum.photos/seed/mualim/400/500',
       order: 2,
     },
     {
-      name: 'Siti Aminah, S.Ak.',
-      role: 'Kaur Keuangan',
-      email: 'keuangan@sukorame.desa.id',
-      image: 'https://picsum.photos/seed/kaur30/400/500',
+      name: 'Mujito',
+      role: 'Kasi Pemerintahan',
+      email: 'pemerintahan@sukorame.desa.id',
+      image: 'https://picsum.photos/seed/mujito/400/500',
       order: 3,
     },
     {
-      name: 'Budi Santoso',
-      role: 'Kasi Pelayanan',
-      email: 'pelayanan@sukorame.desa.id',
-      image: 'https://picsum.photos/seed/kasi45/400/500',
+      name: 'Suko Widodo',
+      role: 'Kasi Kesra',
+      email: 'kesra@sukorame.desa.id',
+      image: 'https://picsum.photos/seed/sukowidodo/400/500',
       order: 4,
     },
     {
-      name: 'Dewi Lestari, S.Sos.',
-      role: 'Kasi Kesejahteraan',
-      email: 'kesejahteraan@sukorame.desa.id',
-      image: 'https://picsum.photos/seed/kasikes40/400/500',
+      name: 'Aris Yuli Nurcahyono',
+      role: 'Kasi Pelayanan',
+      email: 'pelayanan@sukorame.desa.id',
+      image: 'https://picsum.photos/seed/aris/400/500',
       order: 5,
     },
     {
-      name: 'Eko Prasetyo',
-      role: 'Kepala Dusun Krajan',
-      email: 'krajan@sukorame.desa.id',
-      image: 'https://picsum.photos/seed/kadus28/400/500',
+      name: 'Sahono Edi Siswanto',
+      role: 'Kaur Perencanaan',
+      email: 'perencanaan@sukorame.desa.id',
+      image: 'https://picsum.photos/seed/sahono/400/500',
       order: 6,
     },
+    {
+      name: 'Ema Kristiawati',
+      role: 'Kaur Umum dan TU',
+      email: 'umum@sukorame.desa.id',
+      image: 'https://picsum.photos/seed/ema/400/500',
+      order: 7,
+    },
+    {
+      name: 'Rosidatul Amm',
+      role: 'Kaur Keuangan',
+      email: 'keuangan@sukorame.desa.id',
+      image: 'https://picsum.photos/seed/rosidatul/400/500',
+      order: 8,
+    },
+    {
+      name: 'Marlin',
+      role: 'Kasun Sukomulyo',
+      email: 'sukomulyo@sukorame.desa.id',
+      image: 'https://picsum.photos/seed/marlin/400/500',
+      order: 9,
+    },
+    {
+      name: 'Santoso',
+      role: 'Kasun Sukodadi',
+      email: 'sukodadi@sukorame.desa.id',
+      image: 'https://picsum.photos/seed/santoso/400/500',
+      order: 10,
+    },
+    {
+      name: 'Fendi Setiawan',
+      role: 'Staf Desa',
+      email: 'fendi@sukorame.desa.id',
+      image: 'https://picsum.photos/seed/fendi/400/500',
+      order: 11,
+    }
   ];
 
   await prisma.perangkat.deleteMany({});
@@ -210,14 +256,12 @@ async function main() {
   // 6. SEED LEMBAGA DESA
   // ---------------------------------------------------------
   const lembaga = [
-    { name: 'BPD', description: 'Badan Permusyawaratan Desa. Mitra pemerintah desa dalam merancang peraturan desa.', logo: '/assets/icons/handshake.svg' },
-    { name: 'LPMD', description: 'Lembaga Pemberdayaan Masyarakat Desa. Menggerakkan partisipasi swadaya.', logo: '/assets/icons/people-tree.svg' },
-    { name: 'PKK', description: 'Pemberdayaan Kesejahteraan Keluarga. Mewujudkan keluarga mandiri.', logo: '/assets/icons/home.svg' },
-    { name: 'Karang Taruna', description: 'Wadah pengembangan generasi muda desa dalam bidang sosial, olahraga, dan seni.', logo: '/assets/icons/grad.svg' },
-    { name: 'RT / RW', description: 'Rukun Tetangga & Rukun Warga. Ujung tombak pelayanan administrasi masyarakat.', logo: '/assets/icons/hand-care.svg' },
-    { name: 'Linmas', description: 'Perlindungan Masyarakat. Menjaga keamanan, ketertiban, dan ketenteraman desa.', logo: '/assets/icons/shield.svg' },
-    { name: 'Posyandu', description: 'Pos Pelayanan Terpadu. Menjamin akses kesehatan dasar bagi ibu dan anak.', logo: '/assets/icons/leaf.svg' },
-    { name: 'BUMDes', description: 'Badan Usaha Milik Desa. Mengelola potensi ekonomi desa untuk kesejahteraan.', logo: '/assets/icons/market.svg' },
+    { name: 'BPD (Badan Permusyawaratan Desa)', description: 'BPD diketuai oleh Budi Ariesta dan menjadi mitra pemerintah desa dalam merancang peraturan dan pengawasan.', logo: '/assets/icons/handshake.svg' },
+    { name: 'LPMD', description: 'Lembaga Pemberdayaan Masyarakat Desa diketuai oleh Yatemin YP untuk menggerakkan partisipasi pembangunan.', logo: '/assets/icons/people-tree.svg' },
+    { name: 'PKK', description: 'Pemberdayaan Kesejahteraan Keluarga diketuai oleh Sustiani, bertujuan mewujudkan keluarga yang tangguh dan mandiri.', logo: '/assets/icons/home.svg' },
+    { name: 'Karang Taruna', description: 'Diketuai oleh Ribut Wahyudi, menjadi wadah pemuda dalam olahraga, seni budaya, dan kegiatan sosial.', logo: '/assets/icons/grad.svg' },
+    { name: 'Kelompok Tani', description: 'Desa Sukorame memiliki 5 kelompok tani aktif dengan total sekitar 200 anggota, fokus pada peningkatan hasil padi, jagung, dan tebu.', logo: '/assets/icons/agriculture.svg' },
+    { name: 'Kelompok Kesenian', description: 'Menampung warga pegiat seni dalam melestarikan budaya lokal, termasuk ritual Bersih Desa tahunan.', logo: '/assets/icons/leaf.svg' },
   ];
 
   await prisma.lembaga.deleteMany({});
@@ -227,18 +271,18 @@ async function main() {
   console.log('✅ Lembaga seeded');
 
   // ---------------------------------------------------------
-  // 7. SEED ADMIN USER
+  // 7. SEED ADMIN USER & BERITA
   // ---------------------------------------------------------
   const adminEmail = 'admin@sukorame.desa.id';
   const adminPassword = 'Admin@Sukorame2026!';
 
-  const existingAdmin = await prisma.user.findUnique({
+  let adminUser = await prisma.user.findUnique({
     where: { email: adminEmail },
   });
 
-  if (!existingAdmin) {
+  if (!adminUser) {
     const hashedPassword = await bcrypt.hash(adminPassword, 12);
-    await prisma.user.create({
+    adminUser = await prisma.user.create({
       data: {
         name: 'Administrator',
         email: adminEmail,
@@ -247,11 +291,39 @@ async function main() {
       },
     });
     console.log('✅ Admin User seeded');
-    console.log(`   - Email: ${adminEmail}`);
-    console.log(`   - Pass : ${adminPassword}`);
-  } else {
-    console.log('⏭️ Admin User already exists, skipping');
   }
+
+  // Seed sample berita
+  const sampleBerita = [
+    {
+      title: 'Persiapan Tradisi Tahunan Bersih Desa di Petilasan Mbah Irojoyo',
+      slug: 'persiapan-tradisi-tahunan-bersih-desa-di-petilasan-mbah-irojoyo',
+      content: '<p>Pemerintah Desa Sukorame bersama tokoh masyarakat dan sesepuh desa kembali mengadakan rapat persiapan untuk tradisi "Bersih Desa" yang rutin diadakan setiap tahun. Kegiatan spiritual dan budaya ini berpusat di Punden Mbah Eko dan Petilasan Mbah Irojoyo, yang dipercaya sebagai sosok babat alas (pembuka lahan) Desa Sukorame.</p><p>Tradisi ini bukan sekadar melestarikan adat istiadat peninggalan nenek moyang, namun juga menjadi wadah mempererat kerukunan dan tali silaturahmi seluruh warga. Acara puncak rencananya akan dimeriahkan dengan doa bersama dan pertunjukan seni budaya lokal dari Kelompok Kesenian Sukorame.</p>',
+      thumbnail: 'https://images.unsplash.com/photo-1596484552834-6a58f850d0fa?auto=format&fit=crop&q=80&w=800',
+      kategori: KategoriBerita.Kegiatan,
+      authorName: 'Yadi (Kepala Desa)',
+      authorId: adminUser.id,
+      status: 'PUBLISHED',
+      publishedAt: new Date(),
+    },
+    {
+      title: 'Peningkatan Hasil Panen Tebu dan Jagung di Masa Tanam 2025',
+      slug: 'peningkatan-hasil-panen-tebu-dan-jagung',
+      content: '<p>Tahun ini, Kelompok Tani Desa Sukorame berhasil mencatatkan peningkatan produksi yang signifikan, khususnya pada komoditas tebu dan jagung. Berdasarkan laporan, panen tebu rata-rata mencapai 80 Ton per hektar, sedangkan jagung mencapai 5 Ton per hektar.</p><p>Capaian ini tak lepas dari bantuan pembinaan pertanian berkelanjutan dari dinas terkait dan efektivitas penggunaan pupuk organik dari pemanfaatan kotoran hewan ternak (sapi dan kambing) warga desa. Ke depan, Pemerintah Desa berharap ada teknologi pengolahan pasca panen yang lebih modern untuk meningkatkan nilai jual.</p>',
+      thumbnail: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800',
+      kategori: KategoriBerita.Pemberdayaan,
+      authorName: 'Admin Desa',
+      authorId: adminUser.id,
+      status: 'PUBLISHED',
+      publishedAt: new Date(Date.now() - 86400000 * 2), // 2 days ago
+    },
+  ];
+
+  await prisma.berita.deleteMany({});
+  for (const b of sampleBerita) {
+    await prisma.berita.create({ data: b });
+  }
+  console.log('✅ Berita seeded');
 
   console.log('\n🎉 Seeding completed successfully!');
 }

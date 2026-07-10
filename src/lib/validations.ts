@@ -8,6 +8,7 @@ export const BeritaSchema = z.object({
     message: 'Kategori tidak valid',
   }),
   thumbnail: z.string().optional().nullable(),
+  status: z.enum(['PUBLISHED', 'DRAFT']).default('PUBLISHED'),
 });
 
 // ─── Program ────────────────────────────────────────────

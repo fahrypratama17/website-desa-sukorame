@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useTransition } from 'react';
+import { useState, useMemo, useTransition, useEffect } from 'react';
 import Link from 'next/link';
 import { updateBerita } from '@/feature/admin/actions/berita';
 import dynamic from 'next/dynamic';
@@ -13,8 +13,14 @@ export default function BeritaEditClient({ berita }: { berita: Berita }) {
   const [content, setContent] = useState(berita.content || '');
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [submitAction, setSubmitAction] = useState<string | null>(null);
 
   const [thumbnailUrl, setThumbnailUrl] = useState(berita.thumbnail || '');
+  const [imageError, setImageError] = useState(false);
+
+  useEffect(() => {
+    setImageError(false);
+  }, [thumbnailUrl]);
 
   const mdeOptions = useMemo(() => ({
     spellChecker: false,
@@ -33,7 +39,11 @@ export default function BeritaEditClient({ berita }: { berita: Berita }) {
           setError(result.error);
         }
       } catch (err) {
-        setError("Terjadi kesalahan sistem saat menyimpan perubahan.");
+        const isRedirect = err && typeof err === 'object' && 'digest' in err && typeof (err as any).digest === 'string' && (err as any).digest.startsWith('NEXT_REDIRECT');
+        if (isRedirect) {
+          throw err;
+        }
+        setError("Gagal menyimpan perubahan. Silakan periksa koneksi internet Anda atau coba beberapa saat lagi.");
       }
     });
   };
@@ -86,11 +96,15 @@ export default function BeritaEditClient({ berita }: { berita: Berita }) {
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
             <h3 className="text-sm font-montserrat-700 text-[#1C3F2D] mb-4 uppercase tracking-wider border-b border-gray-100 pb-3">Aksi Perubahan</h3>
             <div className="flex flex-col gap-3">
-              <button type="submit" disabled={isPending} className="w-full px-5 py-2.5 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition shadow-sm disabled:opacity-70 flex items-center justify-center gap-2">
-                {isPending && <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>}
-                Simpan Perubahan
+              <button type="submit" name="status" value="PUBLISHED" onClick={() => setSubmitAction('PUBLISHED')} disabled={isPending} className="w-full px-5 py-2.5 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition shadow-sm disabled:opacity-70 flex items-center justify-center gap-2">
+                {isPending && submitAction === 'PUBLISHED' && <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>}
+                {berita.status === 'PUBLISHED' ? 'Simpan Perubahan' : 'Publikasikan Sekarang'}
               </button>
-              <Link href="/admin/berita" className="w-full text-center px-5 py-2.5 text-gray-600 font-inter-600 hover:bg-gray-100 rounded-xl transition border border-transparent">
+              <button type="submit" name="status" value="DRAFT" onClick={() => setSubmitAction('DRAFT')} disabled={isPending} className="w-full px-5 py-2.5 bg-gray-100 text-gray-700 font-inter-600 hover:bg-gray-200 rounded-xl transition shadow-sm disabled:opacity-70 flex items-center justify-center gap-2 border border-gray-200">
+                {isPending && submitAction === 'DRAFT' && <svg className="w-4 h-4 animate-spin text-gray-500" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>}
+                Simpan sebagai Draf
+              </button>
+              <Link href="/admin/berita" className="w-full text-center px-5 py-2.5 text-gray-500 font-inter-500 hover:text-gray-700 rounded-xl transition">
                 Batal
               </Link>
             </div>
@@ -125,8 +139,13 @@ export default function BeritaEditClient({ berita }: { berita: Berita }) {
                 
                 {thumbnailUrl && (
                   <div className="mt-4 rounded-xl overflow-hidden border border-gray-200 bg-gray-50 relative aspect-video flex items-center justify-center">
-                    <img key={thumbnailUrl} src={thumbnailUrl} alt="Preview" className="w-full h-full object-cover relative z-10" onError={(e) => e.currentTarget.style.display = 'none'} />
-                    <span className="text-xs text-gray-400 absolute z-0 text-center px-4">Preview Tidak Tersedia<br/>(URL Tidak Valid)</span>
+                    <img 
+                      src={thumbnailUrl} 
+                      alt="Preview" 
+                      className={`w-full h-full object-cover relative z-10 ${imageError ? 'hidden' : 'block'}`} 
+                      onError={() => setImageError(true)} 
+                    />
+                    {imageError && <span className="text-xs text-gray-400 absolute z-0 text-center px-4">Gambar tidak dapat dimuat.<br/>Pastikan URL valid dan dapat diakses publik.</span>}
                   </div>
                 )}
                 <p className="text-xs text-gray-500 mt-2 leading-relaxed">Rekomendasi rasio gambar 16:9 agar proporsional.</p>

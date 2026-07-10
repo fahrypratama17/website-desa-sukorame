@@ -47,8 +47,29 @@ const BeritaDetailSection = ({ berita }: BeritaDetailSectionProps) => {
         )}
 
         {/* Content (Markdown) */}
-        <article className="prose prose-lg prose-green max-w-none prose-headings:font-montserrat-700 prose-p:font-inter-400 prose-p:text-[#414844] prose-a:text-[#285A43] prose-a:no-underline hover:prose-a:underline">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        <article className="max-w-none w-full">
+          <ReactMarkdown 
+            remarkPlugins={[remarkGfm]}
+            components={{
+              h1: ({node, ...props}) => <h1 className="text-3xl md:text-4xl font-montserrat-700 text-[#1C3F2D] mt-10 mb-6 leading-tight" {...props} />,
+              h2: ({node, ...props}) => <h2 className="text-2xl md:text-3xl font-montserrat-700 text-[#1C3F2D] mt-10 mb-6 leading-tight" {...props} />,
+              h3: ({node, ...props}) => <h3 className="text-xl md:text-2xl font-montserrat-700 text-[#1C3F2D] mt-8 mb-4 leading-tight" {...props} />,
+              h4: ({node, ...props}) => <h4 className="text-lg md:text-xl font-montserrat-700 text-[#1C3F2D] mt-6 mb-4" {...props} />,
+              h5: ({node, ...props}) => <h5 className="text-base md:text-lg font-montserrat-700 text-[#1C3F2D] mt-5 mb-3" {...props} />,
+              h6: ({node, ...props}) => <h6 className="text-sm md:text-base font-montserrat-700 text-[#1C3F2D] mt-5 mb-3 uppercase tracking-wider" {...props} />,
+              p: ({node, ...props}) => <p className="font-inter-400 text-[#414844] text-lg leading-relaxed mb-6" {...props} />,
+              a: ({node, ...props}) => <a className="text-[#285A43] font-inter-500 hover:underline hover:text-[#1C3F2D] transition-colors" {...props} />,
+              ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-6 font-inter-400 text-[#414844] text-lg space-y-3" {...props} />,
+              ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-6 font-inter-400 text-[#414844] text-lg space-y-3" {...props} />,
+              li: ({node, ...props}) => <li className="leading-relaxed" {...props} />,
+              strong: ({node, ...props}) => <strong className="font-inter-700 text-[#1C3F2D]" {...props} />,
+              blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-[#285A43] pl-6 italic my-8 text-gray-600 bg-gray-50 py-4 pr-6 rounded-r-xl" {...props} />,
+              code: ({node, ...props}) => <code className="bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded text-sm font-mono" {...props} />,
+              pre: ({node, ...props}) => <pre className="bg-gray-900 text-gray-100 p-6 rounded-xl overflow-x-auto mb-6 text-sm" {...props} />,
+              img: ({node, ...props}) => <img className="rounded-xl w-full h-auto my-8 shadow-sm border border-gray-100" {...props} />,
+              hr: ({node, ...props}) => <hr className="my-10 border-gray-200" {...props} />,
+            }}
+          >
             {berita.content}
           </ReactMarkdown>
         </article>

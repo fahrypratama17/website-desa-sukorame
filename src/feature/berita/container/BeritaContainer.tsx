@@ -3,12 +3,13 @@ import { Berita } from "@prisma/client";
 
 interface BeritaContainerProps {
   beritaData: Berita[];
+  totalPages: number;
 }
 
-const BeritaContainer = ({ beritaData }: BeritaContainerProps) => {
+const BeritaContainer = ({ beritaData, totalPages }: BeritaContainerProps) => {
   return (
     <>
-      <BeritaPageSection beritaData={beritaData} />
+      <BeritaPageSection beritaData={beritaData} totalPages={totalPages} />
     </>
   );
 };

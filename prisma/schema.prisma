@@ -188,3 +188,17 @@ model Berita {
 
   @@map("berita")
 }
+
+// ─── 9. Rekam Jejak (Audit Log) ─────────────────────────
+
+model AuditLog {
+  id         Int      @id @default(autoincrement())
+  userId     String?
+  userName   String   @default("Sistem")
+  action     String   // e.g. "CREATE", "UPDATE", "SOFT_DELETE", "RESTORE", "HARD_DELETE"
+  entity     String   // e.g. "Berita", "Program", "Perangkat", "Setting"
+  entityName String   // e.g. "Kegiatan Kerja Bakti..."
+  createdAt  DateTime @default(now())
+
+  @@map("audit_logs")
+}

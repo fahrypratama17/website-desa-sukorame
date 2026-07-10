@@ -147,7 +147,7 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
           </h2>
 
           <div className="bg-white/60 backdrop-blur-sm p-8 md:p-12 rounded-3xl border border-green-850/10 shadow-sm flex flex-col items-center overflow-x-auto">
-            <div className="min-w-[640px] flex flex-col items-center w-full">
+            <div className="min-w-[900px] flex flex-col items-center w-full">
 
               {/* Level 1: Kepala Desa */}
               <div className="bg-green-50 text-white font-inter-600 px-6 py-3 rounded-lg text-sm shadow-md transition-all duration-300 hover:scale-105 inline-block text-center w-52">
@@ -165,34 +165,32 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
               {/* Line Level 2 ke branch horizontal */}
               <div className="w-[2px] h-8 bg-[#2B694D]/35"></div>
 
-              {/* Level 3: Kaur & Kasi Branches */}
-              <div className="relative flex justify-between w-full max-w-3xl">
-                {/* Horizontal Connection Bar */}
-                <div className="absolute top-0 left-[16.6%] right-[16.6%] h-[2px] bg-[#2B694D]/35"></div>
-
-                {/* Column 1: Kaur Keuangan */}
-                <div className="flex flex-col items-center w-1/3">
-                  <div className="w-[2px] h-8 bg-[#2B694D]/35"></div>
-                  <div className="bg-white border border-[#2B694D]/20 text-green-50 font-inter-600 px-4 py-2.5 rounded-lg text-xs shadow-sm transition-all duration-300 hover:scale-105 text-center w-44">
-                    Kaur Keuangan
+              {/* Level 3: Kaur, Kasi, dan Kadus Branches */}
+              <div className="flex w-full max-w-[1200px] mt-0">
+                {[
+                  "Kasi Pemerintahan",
+                  "Kasi Kesra",
+                  "Kasi Pelayanan",
+                  "Kaur Perencanaan",
+                  "Kaur Umum & TU",
+                  "Kaur Keuangan",
+                  "Kasun Sukomulyo",
+                  "Kasun Sukodadi"
+                ].map((role, idx, arr) => (
+                  <div key={idx} className="relative flex flex-col items-center flex-1 px-1">
+                    {/* Horizontal Connection Bar Left */}
+                    {idx !== 0 && <div className="absolute top-0 left-0 w-1/2 h-[2px] bg-[#2B694D]/35"></div>}
+                    {/* Horizontal Connection Bar Right */}
+                    {idx !== arr.length - 1 && <div className="absolute top-0 right-0 w-1/2 h-[2px] bg-[#2B694D]/35"></div>}
+                    
+                    {/* Vertical Connection Line */}
+                    <div className="w-[2px] h-8 bg-[#2B694D]/35"></div>
+                    
+                    <div className="bg-white border border-[#2B694D]/20 text-green-50 font-inter-600 px-2 py-2.5 rounded-lg text-[11px] shadow-sm transition-all duration-300 hover:scale-105 text-center w-full min-h-[48px] flex items-center justify-center relative z-10">
+                      {role}
+                    </div>
                   </div>
-                </div>
-
-                {/* Column 2: Kasi Pelayanan */}
-                <div className="flex flex-col items-center w-1/3">
-                  <div className="w-[2px] h-8 bg-[#2B694D]/35"></div>
-                  <div className="bg-white border border-[#2B694D]/20 text-green-50 font-inter-600 px-4 py-2.5 rounded-lg text-xs shadow-sm transition-all duration-300 hover:scale-105 text-center w-44">
-                    Kasi Pelayanan
-                  </div>
-                </div>
-
-                {/* Column 3: Kasi Kesejahteraan */}
-                <div className="flex flex-col items-center w-1/3">
-                  <div className="w-[2px] h-8 bg-[#2B694D]/35"></div>
-                  <div className="bg-white border border-[#2B694D]/20 text-green-50 font-inter-600 px-4 py-2.5 rounded-lg text-xs shadow-sm transition-all duration-300 hover:scale-105 text-center w-44">
-                    Kasi Kesejahteraan
-                  </div>
-                </div>
+                ))}
               </div>
 
             </div>

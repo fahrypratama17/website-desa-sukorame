@@ -13,6 +13,7 @@ interface DashboardDataProps {
     title: string;
     createdAt: Date;
     link: string;
+    author?: string;
   }[];
 }
 
@@ -88,7 +89,10 @@ export default function DashboardOverview({ stats, recentActivities }: Dashboard
                     <span className="font-inter-600 text-[#1C3F2D] text-sm">{activity.title}</span>
                     <div className="flex items-center gap-2 mt-1">
                       <span className="text-xs font-inter-500 px-2 py-0.5 bg-white border border-gray-200 rounded-md text-gray-600">{activity.type}</span>
-                      <span className="text-xs text-gray-500 font-inter-400">{new Date(activity.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
+                      <span className="text-xs text-gray-500 font-inter-400">
+                        {activity.author && <span className="font-inter-500">{activity.author} &bull; </span>}
+                        {new Date(activity.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                      </span>
                     </div>
                   </div>
                   <Link href={activity.link} className="text-[#1C3F2D] hover:text-green-700 bg-white p-2 rounded-lg border border-gray-200 shadow-sm transition">

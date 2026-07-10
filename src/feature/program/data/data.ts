@@ -1,36 +1,36 @@
 export const programHeaderData = {
-  title: "Program Desa",
+  title: "Program Prioritas Desa",
   description:
-    "Inisiatif dan rencana kerja strategis Pemerintah Desa Sukorame untuk meningkatkan kesejahteraan masyarakat dan pembangunan infrastruktur berkelanjutan.",
+    "Inisiatif dan rencana kerja strategis Pemerintah Desa Sukorame untuk mewujudkan masyarakat yang Adil, Makmur, Guyub Rukun, Aman, dan Sejahtera.",
 };
 
 export const kategoriProgramData = [
   {
-    id: "pertanian",
-    icon: "/assets/icons/leaf-filled.svg", // Using leaf for Pertanian & Lingkungan
-    title: "Pertanian & Lingkungan",
-    description: "Program peningkatan hasil tani dan pelestarian alam desa.",
+    id: "ekonomi",
+    icon: "/assets/icons/market-filled.svg",
+    title: "Pemberdayaan Ekonomi",
+    description: "Optimalisasi BUMDes dengan sistem 'Cash and Carry' serta pembinaan UMKM mebel kayu.",
   },
   {
-    id: "pendidikan",
-    icon: "/assets/icons/grad-filled.svg", // Using grad cap for Pendidikan
-    title: "Pendidikan & SDM",
-    description: "Pengembangan kapasitas masyarakat dan fasilitas pendidikan lokal.",
+    id: "kesejahteraan",
+    icon: "/assets/icons/hand-care-filled.svg",
+    title: "Kesehatan & Kesejahteraan",
+    description: "Program Bedah Rumah (RTLH) dan pengadaan Mobil Siaga untuk layanan kesehatan 24 jam.",
   },
   {
     id: "infrastruktur",
-    icon: "/assets/icons/infrastructure-filled.svg", // Using building for Infrastruktur
-    title: "Infrastruktur",
-    description: "Pembangunan jalan, fasilitas umum, dan sanitasi desa.",
+    icon: "/assets/icons/infrastructure-filled.svg",
+    title: "Infrastruktur & Lingkungan",
+    description: "Pembangunan Jalan Usaha Tani (JUT) dan pemeliharaan Bendungan Kering (Dry Dam) penahan banjir.",
   },
 ];
 
 export const programHighlightData = {
-  badge: "2024",
-  title: "Digitalisasi Pelayanan Desa",
+  badge: "Prioritas",
+  title: "Optimalisasi BUMDes 'Cash and Carry'",
   description:
-    "Transformasi layanan administrasi desa ke sistem digital terpadu untuk memudahkan warga mengakses surat pengantar, informasi desa, dan pelaporan secara real-time.",
+    "Badan Usaha Milik Desa difokuskan untuk menjadi penggerak utama ekonomi warga dengan memfasilitasi penjualan langsung produk-produk hasil pertanian dan mebel kayu. Tujuannya adalah menampung tenaga kerja lokal secara maksimal.",
   buttonText: "Lihat Detail Program",
   buttonLink: "#",
-  image: "/assets/images/program-placeholder.png", // Placeholder image
+  image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800",
 };

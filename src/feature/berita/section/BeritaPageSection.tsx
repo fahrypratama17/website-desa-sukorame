@@ -2,12 +2,14 @@
 
 import { Berita } from "@prisma/client";
 import Link from "next/link";
+import Pagination from "@/shared/components/Pagination";
 
 interface BeritaPageSectionProps {
   beritaData: Berita[];
+  totalPages: number;
 }
 
-const BeritaPageSection = ({ beritaData }: BeritaPageSectionProps) => {
+const BeritaPageSection = ({ beritaData, totalPages }: BeritaPageSectionProps) => {
   return (
     <section className="bg-white min-h-screen pt-32 pb-16">
       <div className="mx-auto w-[90%]">
@@ -53,6 +55,8 @@ const BeritaPageSection = ({ beritaData }: BeritaPageSectionProps) => {
             ))}
           </div>
         )}
+        
+        <Pagination totalPages={totalPages} />
       </div>
     </section>
   );

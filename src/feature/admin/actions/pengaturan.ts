@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache';
 import prisma from '@/lib/prisma';
 import { requireAuth } from '@/lib/auth-guard';
+import { logActivity } from '@/lib/audit';
 
 const SETTING_KEYS = [
   'desa_nama', 'hero_title', 'hero_subtitle',
@@ -32,6 +33,8 @@ export async function saveSettings(formData: FormData) {
     }).filter(Boolean);
 
     await Promise.all(promises);
+
+    await logActivity('UPDATE', 'Setting', 'Pengaturan Website (Global)');
 
     // Revalidate semua rute karena pengaturan global berdampak ke seluruh halaman
     revalidatePath('/', 'layout');
