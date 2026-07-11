@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Perangkat } from "@prisma/client";
+import Image from "next/image";
 
 const MemberPhoto = ({
   src,
@@ -35,9 +36,11 @@ const MemberPhoto = ({
   }
 
   return (
-    <img
+    <Image
       src={src}
       alt={name}
+      width={400}
+      height={400}
       className={`w-full h-full object-cover transition-transform duration-500 hover:scale-105 ${className}`}
       onError={() => setImgError(true)}
     />
@@ -123,9 +126,11 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
 
               {/* Kontak Email */}
               <div className="flex items-center gap-2 mt-2">
-                <img
+                <Image
                   src="/assets/icons/mail.svg"
                   alt="Email Icon"
+                  width={16}
+                  height={16}
                   className="h-4 w-4"
                   style={{ filter: "invert(23%) sepia(40%) saturate(700%) hue-rotate(103deg)" }}
                 />
@@ -265,9 +270,11 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
                       href={`mailto:${member.email}`}
                       className="flex items-center gap-1.5 text-[11px] text-green-350 hover:text-green-250 transition-colors mt-auto pt-2 border-t border-green-850/10 break-all"
                     >
-                      <img
+                      <Image
                         src="/assets/icons/mail.svg"
                         alt="Email Icon"
+                        width={12}
+                        height={12}
                         className="h-3 w-3 flex-shrink-0"
                         style={{ filter: "invert(60%) sepia(20%) saturate(400%) hue-rotate(103deg)" }}
                       />

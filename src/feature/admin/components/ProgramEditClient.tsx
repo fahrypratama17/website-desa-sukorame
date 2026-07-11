@@ -1,14 +1,18 @@
 'use client';
 
-import Link from 'next/link';
-import { createProgram } from '@/feature/admin/actions/program';
-import { uploadImage } from '@/feature/admin/actions/upload';
 import { useState } from 'react';
+import Link from 'next/link';
+import { updateProgram } from '@/feature/admin/actions/program';
+import { uploadImage } from '@/feature/admin/actions/upload';
+import type { Program } from '@prisma/client';
 
-export default function TambahProgramPage() {
-  const [imageUrl, setImageUrl] = useState('');
+export default function ProgramEditClient({ program }: { program: Program }) {
+  const [imageUrl, setImageUrl] = useState(program.image || '');
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Bind the ID to the server action
+  const updateProgramWithId = updateProgram.bind(null, program.id);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -34,36 +38,26 @@ export default function TambahProgramPage() {
       setImageUrl(result.url);
     }
   };
-  return (
-    <div className="w-full space-y-6">
-      <div className="flex items-center gap-4">
-        <Link href="/admin/program" className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-        </Link>
-        <div>
-          <h2 className="text-2xl font-montserrat-700 text-[#1C3F2D]">Tambah Program</h2>
-          <p className="text-[#414844] mt-1 font-inter-400 text-sm">Tambahkan program kerja atau kegiatan baru desa.</p>
-        </div>
-      </div>
 
+  return (
+    <div className="w-full">
       {error && (
-        <div className="p-4 bg-red-50 border-l-4 border-red-500 text-red-700 font-inter-500 text-sm rounded-r-lg shadow-sm">
+        <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 font-inter-500 text-sm rounded-r-lg shadow-sm">
           {error}
         </div>
       )}
 
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-        <form action={createProgram} className="space-y-6">
+        <form action={updateProgramWithId} className="space-y-6">
           <div className="space-y-4">
             <div>
               <label htmlFor="title" className="block text-sm font-inter-600 text-gray-700 mb-2">Judul Program <span className="text-red-500">*</span></label>
-              <input type="text" id="title" name="title" required className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" placeholder="Contoh: Pembangunan Irigasi Sawah" />
+              <input type="text" id="title" name="title" defaultValue={program.title} required className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" />
             </div>
 
             <div>
               <label htmlFor="kategori" className="block text-sm font-inter-600 text-gray-700 mb-2">Kategori <span className="text-red-500">*</span></label>
-              <select id="kategori" name="kategori" required className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] bg-white">
-                <option value="">-- Pilih Kategori --</option>
+              <select id="kategori" name="kategori" defaultValue={program.kategori} required className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] bg-white">
                 <option value="Infrastruktur">Infrastruktur</option>
                 <option value="Pendidikan">Pendidikan</option>
                 <option value="Ekonomi">Ekonomi</option>
@@ -85,7 +79,7 @@ export default function TambahProgramPage() {
                 />
                 {isUploading && <p className="text-sm text-[#285A43] mt-2 font-inter-500 animate-pulse">Mengunggah gambar...</p>}
               </div>
-              
+
               <div className="flex items-center gap-2 mb-3">
                 <div className="h-px bg-gray-200 flex-1"></div>
                 <span className="text-xs text-gray-400 font-inter-500 uppercase">ATAU URL MANUAL</span>
@@ -99,7 +93,6 @@ export default function TambahProgramPage() {
                 value={imageUrl}
                 onChange={(e) => setImageUrl(e.target.value)}
                 className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" 
-                placeholder="https://..." 
               />
               
               {imageUrl && (
@@ -115,7 +108,7 @@ export default function TambahProgramPage() {
 
             <div>
               <label htmlFor="description" className="block text-sm font-inter-600 text-gray-700 mb-2">Deskripsi Program <span className="text-red-500">*</span></label>
-              <textarea id="description" name="description" required rows={6} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] resize-y" placeholder="Jelaskan detail program ini..."></textarea>
+              <textarea id="description" name="description" defaultValue={program.description} required rows={6} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] resize-y"></textarea>
             </div>
           </div>
 
@@ -124,7 +117,7 @@ export default function TambahProgramPage() {
               Batal
             </Link>
             <button type="submit" disabled={isUploading} className="px-6 py-3 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition shadow-sm disabled:opacity-70 disabled:cursor-not-allowed">
-              {isUploading ? 'Tunggu Upload...' : 'Simpan Program'}
+              {isUploading ? 'Tunggu Upload...' : 'Simpan Perubahan'}
             </button>
           </div>
         </form>

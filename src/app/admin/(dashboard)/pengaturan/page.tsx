@@ -6,6 +6,8 @@ import SubmitButton from '@/feature/admin/components/SubmitButton';
 import DynamicMisiForm from '@/feature/admin/components/DynamicMisiForm';
 import DynamicNilaiUtamaForm from '@/feature/admin/components/DynamicNilaiUtamaForm';
 import ToastForm from '@/feature/admin/components/ToastForm';
+import HeroBannerUploadClient from '@/feature/admin/components/HeroBannerUploadClient';
+import ChangePasswordClient from '@/feature/admin/components/ChangePasswordClient';
 import prisma from '@/lib/prisma';
 
 export default async function PengaturanPage({ searchParams }: { searchParams: Promise<{ tab?: string }> }) {
@@ -41,6 +43,13 @@ export default async function PengaturanPage({ searchParams }: { searchParams: P
       label: 'Kontak & Statistik', 
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+      )
+    },
+    { 
+      id: 'keamanan', 
+      label: 'Keamanan Akun', 
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
       )
     },
   ];
@@ -92,6 +101,7 @@ export default async function PengaturanPage({ searchParams }: { searchParams: P
                   <label htmlFor="hero_subtitle" className="block text-sm font-inter-600 text-gray-700 mb-2">Sub-Slogan Beranda (Deskripsi Singkat)</label>
                   <textarea id="hero_subtitle" name="hero_subtitle" defaultValue={settings.hero_subtitle || ''} rows={2} className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] resize-y"></textarea>
                 </div>
+                <HeroBannerUploadClient initialUrl={settings.hero_banner_image || ''} />
               </div>
             </div>
 
@@ -250,14 +260,23 @@ export default async function PengaturanPage({ searchParams }: { searchParams: P
           </div>
         )}
 
-        {/* Floating Action Button for saving form (selalu ada di setiap tab statis) */}
-        <div className="fixed bottom-6 right-6 lg:right-10 z-40">
-          <div className="bg-white p-2 rounded-2xl shadow-xl border border-gray-200/60 backdrop-blur-md bg-white/80">
-            <SubmitButton text="Simpan Pengaturan Tab Ini" loadingText="Menyimpan..." />
+        {/* Floating Action Button for saving form (selalu ada di setiap tab statis KECUALI keamanan) */}
+        {currentTab !== 'keamanan' && (
+          <div className="fixed bottom-6 right-6 lg:right-10 z-40">
+            <div className="bg-white p-2 rounded-2xl shadow-xl border border-gray-200/60 backdrop-blur-md bg-white/80">
+              <SubmitButton text="Simpan Perubahan" loadingText="Menyimpan..." />
+            </div>
           </div>
-        </div>
+        )}
 
       </ToastForm>
+
+      {/* ======================= TAB: KEAMANAN ======================= */}
+      {currentTab === 'keamanan' && (
+        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 mt-8">
+          <ChangePasswordClient />
+        </div>
+      )}
 
       {/* ======================= DYNAMIC CRUD FOR PROFIL TAB ======================= */}
       {currentTab === 'profil' && (

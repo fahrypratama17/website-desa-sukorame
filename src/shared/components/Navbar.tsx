@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -96,9 +97,11 @@ const Navbar = ({ settings }: NavbarProps) => {
       <nav className="relative z-[100] py-4 lg:py-8 bg-white shadow-sm">
         <div className="mx-auto flex w-[90%] items-center justify-between">
         <Link href="/" className="flex items-center gap-2 text-green-50" onClick={() => setIsOpen(false)}>
-          <img
+          <Image
             src="/assets/icons/desa.svg"
             alt="desa"
+            width={24}
+            height={24}
             className="h-6 w-6"
           />
           <h3 className="font-montserrat-700 text-lg xl:text-xl whitespace-nowrap">Desa Sukorame</h3>
@@ -130,9 +133,11 @@ const Navbar = ({ settings }: NavbarProps) => {
                   }`}
                 >
                   {item.name}
-                  <img
+                  <Image
                     src="/assets/icons/chevron-down.svg"
                     alt="down"
+                    width={8}
+                    height={8}
                     className="size-2"
                   />
                 </button>
@@ -180,7 +185,7 @@ const Navbar = ({ settings }: NavbarProps) => {
           </button>
 
           <button className="hidden lg:flex font-inter-500 bg-mint-850 cursor-pointer items-center gap-2 rounded-full px-3 py-2 xl:px-4 text-sm xl:text-base whitespace-nowrap transition-transform duration-300 hover:scale-105 text-green-50">
-            <img src="/assets/icons/loc.svg" alt="desa" className="h-5 w-5 xl:h-6 xl:w-6" />
+            <Image src="/assets/icons/loc.svg" alt="desa" width={24} height={24} className="h-5 w-5 xl:h-6 xl:w-6" />
             <p>{settings?.kontak_lokasi || "Kec. Binangun, Blitar"}</p>
           </button>
         </div>
@@ -236,7 +241,7 @@ const Navbar = ({ settings }: NavbarProps) => {
             </button>
             
             <div className="mt-2 font-inter-500 bg-mint-850 flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-base text-green-50">
-              <img src="/assets/icons/loc.svg" alt="desa" className="h-6 w-6" />
+              <Image src="/assets/icons/loc.svg" alt="desa" width={24} height={24} className="h-6 w-6" />
               <p>{settings?.kontak_lokasi || "Kec. Binangun, Blitar"}</p>
             </div>
           </div>

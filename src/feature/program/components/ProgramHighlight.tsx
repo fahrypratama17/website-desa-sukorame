@@ -1,4 +1,5 @@
 import { programHighlightData } from "../data/data";
+import Image from "next/image";
 
 const ProgramHighlight = () => {
   return (
@@ -30,15 +31,17 @@ const ProgramHighlight = () => {
             className="font-inter-600 flex w-fit items-center gap-2 rounded-lg bg-[#0A2615] px-6 py-3.5 text-sm text-white transition-colors hover:bg-[#1C3F2D]"
           >
             {programHighlightData.buttonText}
-            <img src="/assets/icons/arrow.svg" alt="arrow" className="h-4 w-4" style={{ filter: "brightness(0) invert(1)" }} />
+            <Image src="/assets/icons/arrow.svg" alt="arrow" width={16} height={16} className="h-4 w-4" style={{ filter: "brightness(0) invert(1)" }} />
           </a>
         </div>
 
         {/* Right Image */}
         <div className="w-full lg:w-1/2">
-          <img
+          <Image
             src={programHighlightData.image}
             alt="Program Highlight"
+            width={800}
+            height={800}
             className="h-full w-full object-cover"
           />
         </div>

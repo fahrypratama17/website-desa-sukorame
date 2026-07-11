@@ -1,4 +1,5 @@
 import { gambaranUmum } from "../data/data";
+import Image from "next/image";
 
 interface GambaranUmumProps {
   data: {
@@ -13,11 +14,13 @@ const GambaranUmum = ({ data }: GambaranUmumProps) => {
     <section className="mt-12 mb-16">
       <div className="flex overflow-hidden rounded-2xl shadow-lg">
         {/* Foto Sawah */}
-        <div className="w-1/2 min-h-[400px]">
-          <img
+        <div className="w-1/2 min-h-[400px] relative">
+          <Image
             src="/assets/images/profile-placeholder.png"
-            alt="Pemandangan Desa Sukorame"
-            className="h-full w-full object-cover"
+            alt="Profil Desa Sukorame"
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
           />
         </div>
 

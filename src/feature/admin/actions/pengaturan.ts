@@ -6,7 +6,7 @@ import { requireAuth } from '@/lib/auth-guard';
 import { logActivity } from '@/lib/audit';
 
 const SETTING_KEYS = [
-  'desa_nama', 'hero_title', 'hero_subtitle',
+  'desa_nama', 'hero_title', 'hero_subtitle', 'hero_banner_image',
   'desa_visi', 'desa_visi_subtitle',
   'profil_hero_subtitle', 'tentang_desa_deskripsi', 'gambaran_umum_deskripsi',
   'statistik_penduduk', 'statistik_dusun', 'statistik_rtrw',

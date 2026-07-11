@@ -17,16 +17,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   return {
     title: `${berita.title} | Desa Sukorame`,
-    description: berita.content.substring(0, 160).replace(/[#*`]/g, '') + '...',
+    description: berita.content.replace(/<[^>]*>?/gm, '').substring(0, 160).replace(/[#*`_\[\]]/g, '') + '...',
     openGraph: {
       title: berita.title,
-      description: berita.content.substring(0, 160).replace(/[#*`]/g, '') + '...',
+      description: berita.content.replace(/<[^>]*>?/gm, '').substring(0, 160).replace(/[#*`_\[\]]/g, '') + '...',
       images: berita.thumbnail ? [berita.thumbnail] : [],
     }
   };
 }
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 export default async function BeritaDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;

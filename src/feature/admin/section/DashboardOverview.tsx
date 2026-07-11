@@ -66,7 +66,7 @@ export default function DashboardOverview({ stats, recentActivities }: Dashboard
         <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-2 relative overflow-hidden group">
           <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#0A2615]/5 rounded-full group-hover:scale-110 transition duration-300"></div>
           <div className="flex items-center gap-3">
-             <div className="p-3 bg-green-50 rounded-xl text-green-600">
+             <div className="p-3 bg-green-950 rounded-xl text-green-50">
                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
              </div>
             <span className="text-sm font-inter-500 text-gray-500">Jumlah Lembaga</span>

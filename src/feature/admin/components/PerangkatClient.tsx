@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import type { Perangkat } from "@prisma/client";
 import DeleteButton from "./DeleteButton";
 import Link from "next/link";
+import { uploadImage } from '@/feature/admin/actions/upload';
 
 type PerangkatClientProps = {
   initialData: Perangkat[];
@@ -16,19 +17,29 @@ export default function PerangkatClient({ initialData, saveAction, deleteAction 
   const [editingItem, setEditingItem] = useState<Perangkat | null>(null);
   const [isPending, startTransition] = useTransition();
 
+  const [imageUrl, setImageUrl] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const handleOpenAdd = () => {
     setEditingItem(null);
+    setImageUrl('');
+    setError(null);
     setIsModalOpen(true);
   };
 
   const handleOpenEdit = (item: Perangkat) => {
     setEditingItem(item);
+    setImageUrl(item.image || '');
+    setError(null);
     setIsModalOpen(true);
   };
 
   const handleClose = () => {
     setIsModalOpen(false);
     setEditingItem(null);
+    setImageUrl('');
+    setError(null);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -44,6 +55,31 @@ export default function PerangkatClient({ initialData, saveAction, deleteAction 
     });
   };
 
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 2 * 1024 * 1024) {
+      setError("Ukuran foto maksimal adalah 2 MB. Silakan pilih atau kompres foto yang lebih kecil.");
+      return;
+    }
+
+    setIsUploading(true);
+    setError(null);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("folder", "perangkat");
+
+    const result = await uploadImage(formData);
+    setIsUploading(false);
+
+    if (result.error) {
+      setError(result.error);
+    } else if (result.url) {
+      setImageUrl(result.url);
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -55,7 +91,7 @@ export default function PerangkatClient({ initialData, saveAction, deleteAction 
           <Link
             href="/admin/perangkat/trash"
             className="px-4 py-2.5 bg-red-50 text-red-700 rounded-lg font-inter-600 hover:bg-red-100 transition flex items-center gap-2 border border-red-200"
-            title="Lihat Tong Sampah"
+            title="Lihat Data yang Terhapus"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
             <span className="hidden sm:inline">Tong Sampah</span>
@@ -84,7 +120,7 @@ export default function PerangkatClient({ initialData, saveAction, deleteAction 
               {initialData.length === 0 ? (
                 <tr>
                   <td colSpan={3} className="px-6 py-12 text-center text-gray-500 font-inter-400">
-                    Belum ada data perangkat desa.
+                    Data tim perangkat desa masih kosong. Klik &quot;Tambah Perangkat&quot; untuk memperkenalkan tim Anda.
                   </td>
                 </tr>
               ) : (
@@ -157,8 +193,50 @@ export default function PerangkatClient({ initialData, saveAction, deleteAction 
               </div>
 
               <div>
-                <label htmlFor="image" className="block text-sm font-inter-600 text-gray-700 mb-2">URL/Path Foto (Opsional)</label>
-                <input type="text" id="image" name="image" defaultValue={editingItem?.image || ''} placeholder="/assets/perangkat/foto.jpg" className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" />
+                <label htmlFor="image" className="block text-sm font-inter-600 text-gray-700 mb-2">Foto Perangkat (Opsional)</label>
+                
+                {error && (
+                  <div className="mb-3 p-3 bg-red-50 border-l-4 border-red-500 text-red-700 text-sm font-inter-500 rounded-r-lg">
+                    {error}
+                  </div>
+                )}
+
+                <div className="mb-3">
+                  <input 
+                    type="file" 
+                    accept="image/*"
+                    onChange={handleUpload}
+                    disabled={isUploading}
+                    className="block w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-inter-600 file:bg-[#E5F2EC] file:text-[#1C3F2D] hover:file:bg-[#C9E6D7] transition cursor-pointer border border-gray-200 rounded-xl"
+                  />
+                  {isUploading && <p className="text-sm text-[#285A43] mt-2 font-inter-500 animate-pulse">Mengunggah foto...</p>}
+                </div>
+
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="h-px bg-gray-200 flex-1"></div>
+                  <span className="text-xs text-gray-400 font-inter-500 uppercase">ATAU URL MANUAL</span>
+                  <div className="h-px bg-gray-200 flex-1"></div>
+                </div>
+
+                <input 
+                  type="text" 
+                  id="image" 
+                  name="image" 
+                  value={imageUrl}
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  placeholder="/assets/perangkat/foto.jpg" 
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" 
+                />
+                
+                {imageUrl && (
+                  <div className="mt-4 w-24 h-24 rounded-full overflow-hidden border border-gray-200 bg-gray-50 relative flex items-center justify-center">
+                    <img 
+                      src={imageUrl} 
+                      alt="Preview" 
+                      className="w-full h-full object-cover relative z-10" 
+                    />
+                  </div>
+                )}
               </div>
 
               <div>
@@ -167,11 +245,11 @@ export default function PerangkatClient({ initialData, saveAction, deleteAction 
               </div>
 
               <div className="pt-4 flex justify-end gap-3 mt-6">
-                <button type="button" onClick={handleClose} disabled={isPending} className="px-5 py-2.5 text-gray-600 font-inter-600 hover:bg-gray-100 rounded-xl transition">
+                <button type="button" onClick={handleClose} disabled={isPending || isUploading} className="px-5 py-2.5 text-gray-600 font-inter-600 hover:bg-gray-100 rounded-xl transition">
                   Batal
                 </button>
-                <button type="submit" disabled={isPending} className="px-5 py-2.5 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition shadow-sm flex items-center gap-2">
-                  {isPending ? 'Menyimpan...' : 'Simpan'}
+                <button type="submit" disabled={isPending || isUploading} className="px-5 py-2.5 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition shadow-sm flex items-center gap-2">
+                  {isPending ? 'Menyimpan...' : (isUploading ? 'Tunggu Upload...' : 'Simpan')}
                 </button>
               </div>
             </form>

@@ -48,7 +48,7 @@ const BeritaPageSection = ({ beritaData, totalPages }: BeritaPageSectionProps) =
                   </h3>
                   <p className="font-inter-400 text-xs md:text-sm text-[#414844] line-clamp-2 md:line-clamp-3 mt-auto">
                     {/* We only show a brief text, stripping markdown isn't trivial here without a library, but basic plain text is fine for preview */}
-                    {item.content.replace(/[#*`_\[\]]/g, '')}
+                    {item.content.replace(/<[^>]*>?/gm, '').replace(/[#*`_\[\]]/g, '')}
                   </p>
                 </div>
               </Link>

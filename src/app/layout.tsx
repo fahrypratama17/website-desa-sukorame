@@ -2,9 +2,19 @@ import "@/index.css";
 import PublicLayoutWrapper from "@/shared/components/PublicLayoutWrapper";
 import { getGlobalSettings } from "@/lib/settings";
 
-export const metadata = {
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://sukorame.web.id'),
   title: "Website Desa Sukorame",
   description: "Pusat informasi dan pelayanan digital terpadu untuk masyarakat Desa Sukorame.",
+  openGraph: {
+    title: "Website Desa Sukorame",
+    description: "Pusat informasi dan pelayanan digital terpadu untuk masyarakat Desa Sukorame.",
+    siteName: "Desa Sukorame",
+    locale: 'id_ID',
+    type: 'website',
+  },
 };
 
 export default async function RootLayout({

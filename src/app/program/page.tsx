@@ -5,6 +5,7 @@ export const metadata = {
   description: "Informasi program kerja, pembangunan, dan kegiatan strategis Pemerintah Desa Sukorame.",
 };
 
+export const revalidate = 3600;
 
 export default function Program() {
   return <ProgramContainer />;

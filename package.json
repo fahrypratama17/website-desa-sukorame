@@ -14,6 +14,7 @@
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.2",
     "@prisma/client": "^5.22.0",
+    "@supabase/supabase-js": "^2.110.2",
     "@tailwindcss/postcss": "^4.3.2",
     "@tailwindcss/typography": "^0.5.20",
     "bcryptjs": "^3.0.3",
@@ -25,8 +26,10 @@
     "react-dom": "^19.2.7",
     "react-markdown": "^10.1.0",
     "react-simplemde-editor": "^5.2.0",
+    "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.1",
     "tailwindcss": "^4.3.2",
+    "uuid": "^14.0.1",
     "zod": "^4.4.3"
   },
   "devDependencies": {
@@ -34,6 +37,7 @@
     "@types/node": "^24.13.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "@types/uuid": "^10.0.0",
     "oxlint": "^1.71.0",
     "prettier": "^3.9.4",
     "prettier-plugin-tailwindcss": "^0.8.0",

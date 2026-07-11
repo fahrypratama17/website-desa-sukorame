@@ -6,7 +6,7 @@ export const metadata = {
   description: "Kumpulan berita, artikel, dan pengumuman terbaru dari Pemerintah Desa Sukorame.",
 };
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 export default async function BeritaPage(props: { searchParams: Promise<{ page?: string }> }) {
   const searchParams = await props.searchParams;

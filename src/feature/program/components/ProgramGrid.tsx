@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import Image from "next/image";
 
 const ProgramGrid = async () => {
   const programs = await prisma.program.findMany({
@@ -18,7 +19,9 @@ const ProgramGrid = async () => {
           {programs.map((program) => (
             <div key={program.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
               {program.image ? (
-                <img src={program.image} alt={program.title} className="w-full h-48 object-cover" />
+                <div className="relative h-48 w-full">
+                  <Image src={program.image} alt={program.title} fill className="object-cover" />
+                </div>
               ) : (
                 <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
                   <span className="text-gray-400 font-inter-500">Tidak ada gambar</span>

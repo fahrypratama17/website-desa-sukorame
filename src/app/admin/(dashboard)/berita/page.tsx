@@ -42,7 +42,7 @@ export default async function BeritaPage(props: { searchParams?: Promise<{ q?: s
           <Link
             href="/admin/berita/trash"
             className="px-4 py-2.5 bg-red-50 text-red-700 rounded-lg font-inter-600 hover:bg-red-100 transition flex items-center gap-2 border border-red-200"
-            title="Lihat Tong Sampah"
+            title="Lihat Data yang Terhapus"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
             <span className="hidden sm:inline">Tong Sampah</span>
@@ -52,7 +52,7 @@ export default async function BeritaPage(props: { searchParams?: Promise<{ q?: s
             className="px-5 py-2.5 bg-[#0A2615] text-white rounded-lg font-inter-600 hover:bg-[#1C3F2D] transition flex items-center gap-2 shadow-sm"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
-            Tulis Berita
+            Tulis Artikel Baru
           </Link>
         </div>
       </div>
@@ -68,6 +68,7 @@ export default async function BeritaPage(props: { searchParams?: Promise<{ q?: s
                 <th className="px-6 py-4">Penulis</th>
                 <th className="px-6 py-4">Status</th>
                 <th className="px-6 py-4">Tanggal</th>
+                <th className="px-6 py-4 text-center">Dilihat</th>
                 <th className="px-6 py-4 text-right">Aksi</th>
               </tr>
             </thead>
@@ -75,7 +76,7 @@ export default async function BeritaPage(props: { searchParams?: Promise<{ q?: s
               {beritaList.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="px-6 py-12 text-center text-gray-500 font-inter-400">
-                    Tidak ada berita ditemukan.
+                    Belum ada berita yang diterbitkan. Mari tulis artikel pertama untuk desa kita!
                   </td>
                 </tr>
               ) : (
@@ -120,6 +121,12 @@ export default async function BeritaPage(props: { searchParams?: Promise<{ q?: s
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-500 font-inter-400">
                       {new Date(berita.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-inter-600 bg-blue-50 text-blue-700">
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                        {berita.viewCount}
+                      </span>
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-end gap-2">

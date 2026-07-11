@@ -1,5 +1,6 @@
 import { nilaiUtamaHeader } from "../data/data";
 import type { NilaiUtama } from "@prisma/client";
+import Image from "next/image";
 
 interface NilaiCardProps {
   icon: string;
@@ -12,7 +13,7 @@ const NilaiCard = ({ icon, title, description }: NilaiCardProps) => {
     <div className="flex flex-col items-center rounded-xl bg-white px-5 pt-8 pb-3 text-center shadow-[0_4px_20px_-10px_rgba(0,0,0,0.1)] transition-shadow duration-300 hover:shadow-lg">
       {/* Icon Circle */}
       <div className="bg-green-50 mb-4 flex h-12 w-12 items-center justify-center rounded-full">
-        <img src={icon} alt={title} className="size-6" />
+        <Image src={icon} alt={title} width={24} height={24} className="size-6" />
       </div>
 
       {/* Title */}
@@ -42,16 +43,20 @@ const NilaiUtamaSection = ({ nilaiItems }: NilaiUtamaSectionProps) => {
     <section className="mb-16">
       <div className="bg-green-950 relative overflow-hidden rounded-[40px] px-10 py-16">
         {/* Top-Left Accent */}
-        <img
+        <Image
           src="/assets/icons/potted_plant.svg"
           alt=""
+          width={112}
+          height={112}
           className="absolute -top-2 -left-2 z-0 h-28 w-28 opacity-30"
         />
 
         {/* Bottom-Right Accent (flipped) */}
-        <img
+        <Image
           src="/assets/icons/potted_plant.svg"
           alt=""
+          width={112}
+          height={112}
           className="absolute -right-2 -bottom-2 z-0 h-28 w-28 rotate-180 opacity-30"
         />
 
@@ -62,9 +67,11 @@ const NilaiUtamaSection = ({ nilaiItems }: NilaiUtamaSectionProps) => {
 
         {/* Ornament */}
         <div className="relative z-10 mb-4 flex justify-center">
-          <img
+          <Image
             src="/assets/icons/leaf-green.svg"
             alt="ornament"
+            width={20}
+            height={20}
             className="size-5"
           />
         </div>

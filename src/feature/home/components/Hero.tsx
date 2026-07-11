@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface HeroProps {
   settings: Record<string, string>;
@@ -8,10 +9,12 @@ const Hero = ({ settings }: HeroProps) => {
   return (
     <section className="relative">
       <div className="relative flex items-center justify-center min-h-[500px] md:min-h-[600px] lg:min-h-[80vh] overflow-hidden">
-        <img
-          src="/assets/images/hero-placeholder.png"
-          alt="image"
-          className="absolute inset-0 h-full w-full object-cover"
+        <Image
+          src={settings.hero_banner_image || "/assets/images/hero-placeholder.png"}
+          alt="Banner Desa"
+          fill
+          priority
+          className="absolute inset-0 object-cover"
         />
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 flex flex-col gap-6 w-[90%] md:w-full py-16">
@@ -34,9 +37,11 @@ const Hero = ({ settings }: HeroProps) => {
       <div className="relative md:absolute mt-8 md:mt-0 md:-bottom-25 left-1/2 grid grid-cols-2 gap-4 md:flex md:gap-0 w-[90%] md:w-[80%] -translate-x-1/2 items-center justify-around rounded-xl bg-white p-4 md:p-8 shadow-2xl">
         <div className="flex flex-col items-center gap-1 md:gap-2">
           <div className="bg-mint-850 flex size-10 md:size-16 items-center justify-center rounded-full">
-            <img
+            <Image
               src="/assets/icons/person.svg"
               alt="penduduk"
+              width={32}
+              height={32}
               className="size-5 md:size-8"
             />
           </div>
@@ -45,9 +50,11 @@ const Hero = ({ settings }: HeroProps) => {
         </div>
         <div className="flex flex-col items-center gap-1 md:gap-2">
           <div className="bg-mint-850 flex size-10 md:size-16 items-center justify-center rounded-full">
-            <img
+            <Image
               src="/assets/icons/home.svg"
               alt="dusun"
+              width={32}
+              height={32}
               className="size-5 md:size-8"
             />
           </div>
@@ -56,9 +63,11 @@ const Hero = ({ settings }: HeroProps) => {
         </div>
         <div className="flex flex-col items-center gap-1 md:gap-2">
           <div className="bg-mint-850 flex size-10 md:size-16 items-center justify-center rounded-full">
-            <img
+            <Image
               src="/assets/icons/map.svg"
               alt="rtrw"
+              width={32}
+              height={32}
               className="size-5 md:size-8"
             />
           </div>
@@ -67,9 +76,11 @@ const Hero = ({ settings }: HeroProps) => {
         </div>
         <div className="flex flex-col items-center gap-1 md:gap-2">
           <div className="bg-mint-850 flex size-10 md:size-16 items-center justify-center rounded-full">
-            <img
+            <Image
               src="/assets/icons/star.svg"
               alt="potensi"
+              width={32}
+              height={32}
               className="size-5 md:size-8"
             />
           </div>

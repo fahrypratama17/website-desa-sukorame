@@ -1,4 +1,5 @@
 import { potensiHeroData } from "../data/data";
+import Image from "next/image";
 
 const PotensiHero = () => {
   return (
@@ -11,9 +12,11 @@ const PotensiHero = () => {
         <div className="relative z-10 flex max-w-lg flex-col items-start gap-6 lg:w-1/2">
           {/* Badge */}
           <div className="flex items-center gap-2 rounded-full bg-[#E5F2EC] px-4 py-2">
-            <img
+            <Image
               src="/assets/icons/star-circle.svg"
               alt="Leaf"
+              width={16}
+              height={16}
               className="h-4 w-4"
             />
             <span className="font-inter-600 text-xs text-[#285A43]">
@@ -40,9 +43,11 @@ const PotensiHero = () => {
         {/* Right Image */}
         <div className="relative z-10 w-full lg:w-1/2">
           <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-            <img
+            <Image
               src={potensiHeroData.image}
               alt="Potensi Desa Sukorame"
+              width={800}
+              height={500}
               className="h-[400px] w-full object-cover lg:h-[500px]"
             />
             {/* Gradient Overlay */}

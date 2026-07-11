@@ -6,7 +6,7 @@ export const metadata = {
   description: "Daftar lembaga kemasyarakatan yang aktif di lingkungan Desa Sukorame.",
 };
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 export default async function Lembaga() {
   const lembagaData = await prisma.lembaga.findMany({

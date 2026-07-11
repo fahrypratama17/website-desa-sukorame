@@ -21,8 +21,8 @@ export default function DeleteButton({ onDelete, itemName = "data ini", isSoftDe
 
   const modalTitle = isSoftDelete ? "Pindahkan ke Tong Sampah?" : "Konfirmasi Hapus";
   const modalDesc = isSoftDelete 
-    ? `${itemName.charAt(0).toUpperCase() + itemName.slice(1)} akan dipindahkan ke Tong Sampah dan tidak akan tampil di halaman publik. Anda masih dapat memulihkannya nanti.`
-    : `Apakah Anda yakin ingin menghapus ${itemName}? Tindakan ini tidak dapat dibatalkan.`;
+    ? `Data ini akan diarsipkan ke Tong Sampah dan disembunyikan dari halaman publik. Jangan khawatir, Anda bisa memulihkannya kembali kapan saja.`
+    : `Apakah Anda yakin ingin menghapus ${itemName}? Tindakan ini permanen dan tidak dapat dibatalkan.`;
   const confirmBtnText = isSoftDelete ? "Ya, Pindahkan" : "Hapus Data";
   const confirmBtnColor = isSoftDelete ? "bg-orange-600 hover:bg-orange-700" : "bg-red-600 hover:bg-red-700";
   const iconColor = isSoftDelete ? "bg-orange-100 text-orange-600" : "bg-red-100 text-red-600";
