@@ -10,12 +10,14 @@ const MemberPhoto = ({
   initials,
   avatarColor,
   className = "",
+  priority = false,
 }: {
   src: string;
   name: string;
   initials: string;
   avatarColor: string;
   className?: string;
+  priority?: boolean;
 }) => {
   const [imgError, setImgError] = useState(false);
 
@@ -42,6 +44,8 @@ const MemberPhoto = ({
       width={400}
       height={400}
       className={`w-full h-full object-cover transition-transform duration-500 hover:scale-105 ${className}`}
+      unoptimized
+      priority={priority}
       onError={() => setImgError(true)}
     />
   );
@@ -103,6 +107,7 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
                 name={kepalaDesa.name}
                 initials={kepalaDesa.initials}
                 avatarColor={kepalaDesa.avatarColor}
+                priority={true}
               />
             </div>
 

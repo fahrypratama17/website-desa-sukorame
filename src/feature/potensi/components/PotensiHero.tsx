@@ -42,13 +42,14 @@ const PotensiHero = () => {
 
         {/* Right Image */}
         <div className="relative z-10 w-full lg:w-1/2">
-          <div className="relative overflow-hidden rounded-3xl shadow-2xl">
+          <div className="relative h-[400px] lg:h-[500px] w-full overflow-hidden rounded-3xl shadow-2xl">
             <Image
               src={potensiHeroData.image}
               alt="Potensi Desa Sukorame"
-              width={800}
-              height={500}
-              className="h-[400px] w-full object-cover lg:h-[500px]"
+              fill
+              priority
+              className="object-cover"
+              unoptimized
             />
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#0A2615] via-[#0A2615]/40 to-transparent"></div>

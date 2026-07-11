@@ -14,6 +14,7 @@ const Hero = ({ settings }: HeroProps) => {
           alt="Banner Desa"
           fill
           priority
+          unoptimized
           className="absolute inset-0 object-cover"
         />
         <div className="absolute inset-0 bg-black/40" />

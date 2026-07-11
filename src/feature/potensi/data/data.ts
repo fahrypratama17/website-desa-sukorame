@@ -36,7 +36,7 @@ export const pilarEkonomiData = {
       title: "Wisata Budaya & Petilasan",
       description: "Situs Petilasan Mbah Irojoyo dan Punden Mbah Eko sebagai pusat pelestarian kearifan lokal melalui tradisi tahunan Bersih Desa.",
       icon: "/assets/icons/people-tree.svg",
-      image: "/assets/images/potensi-3.png",
+      image: "https://uoibjwlbyieaqextbrky.supabase.co/storage/v1/object/public/desa-storage/potensi/petilasan.png",
       span: "row-span-1 col-span-1",
     },
     {

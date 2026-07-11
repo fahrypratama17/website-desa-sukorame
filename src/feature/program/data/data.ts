@@ -7,13 +7,13 @@ export const programHeaderData = {
 export const kategoriProgramData = [
   {
     id: "ekonomi",
-    icon: "/assets/icons/market-filled.svg",
+    icon: "/assets/icons/market.svg",
     title: "Pemberdayaan Ekonomi",
     description: "Optimalisasi BUMDes dengan sistem 'Cash and Carry' serta pembinaan UMKM mebel kayu.",
   },
   {
     id: "kesejahteraan",
-    icon: "/assets/icons/hand-care-filled.svg",
+    icon: "/assets/icons/hand-care.svg",
     title: "Kesehatan & Kesejahteraan",
     description: "Program Bedah Rumah (RTLH) dan pengadaan Mobil Siaga untuk layanan kesehatan 24 jam.",
   },

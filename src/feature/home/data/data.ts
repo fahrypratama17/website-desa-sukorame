@@ -13,7 +13,7 @@ export const potensiData = [
   },
   {
     id: 3,
-    src: "/assets/images/potensi-3.png",
+    src: "https://uoibjwlbyieaqextbrky.supabase.co/storage/v1/object/public/desa-storage/potensi/petilasan.png",
     title: "Wisata Budaya & Petilasan",
     desc: "Melestarikan tradisi lokal melalui ritual Bersih Desa tahunan yang berpusat di Petilasan Mbah Irojoyo dan Punden Mbah Eko sebagai warisan kearifan lokal.",
   },

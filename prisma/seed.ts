@@ -293,30 +293,19 @@ async function main() {
     console.log('✅ Admin User seeded');
   }
 
-  // Seed sample berita
+  // Seed sample berita MMD FILKOM UB
   const sampleBerita = [
     {
-      title: 'Persiapan Tradisi Tahunan Bersih Desa di Petilasan Mbah Irojoyo',
-      slug: 'persiapan-tradisi-tahunan-bersih-desa-di-petilasan-mbah-irojoyo',
-      content: '<p>Pemerintah Desa Sukorame bersama tokoh masyarakat dan sesepuh desa kembali mengadakan rapat persiapan untuk tradisi "Bersih Desa" yang rutin diadakan setiap tahun. Kegiatan spiritual dan budaya ini berpusat di Punden Mbah Eko dan Petilasan Mbah Irojoyo, yang dipercaya sebagai sosok babat alas (pembuka lahan) Desa Sukorame.</p><p>Tradisi ini bukan sekadar melestarikan adat istiadat peninggalan nenek moyang, namun juga menjadi wadah mempererat kerukunan dan tali silaturahmi seluruh warga. Acara puncak rencananya akan dimeriahkan dengan doa bersama dan pertunjukan seni budaya lokal dari Kelompok Kesenian Sukorame.</p>',
-      thumbnail: 'https://images.unsplash.com/photo-1596484552834-6a58f850d0fa?auto=format&fit=crop&q=80&w=800',
+      title: 'Mahasiswa Membangun Desa (MMD) FILKOM UB Bantu Wujudkan Desa Sukorame Go Digital',
+      slug: 'mmd-filkom-ub-wujudkan-desa-sukorame-go-digital',
+      content: `## Mahasiswa FILKOM UB Mengabdi di Desa Sukorame\n\nPemerintah Desa Sukorame dengan hangat menyambut kedatangan kelompok mahasiswa dari **Fakultas Ilmu Komputer Universitas Brawijaya (FILKOM UB)** yang tergabung dalam program *Mahasiswa Membangun Desa (MMD)*. Kedatangan kelompok mahasiswa ini membawa angin segar bagi percepatan kemajuan desa melalui berbagai program kerja yang inovatif.\n\n### Fokus Program Kerja MMD\n\nSelama masa pengabdiannya, mahasiswa MMD FILKOM UB akan melaksanakan serangkaian program kerja utama yang dirancang khusus untuk memajukan Desa Sukorame:\n\n1. **Digitalisasi Desa (Website & Sosial Media)**: Merancang dan membangun *Website* Resmi Desa Sukorame sebagai pusat informasi terpadu, serta pembuatan dan pengelolaan akun Sosial Media resmi desa agar potensi Sukorame semakin dikenal luas.\n2. **Video Profil Desa**: Memproduksi video profil desa yang sinematik dan informatif untuk mendokumentasikan kekayaan alam, budaya, dan kearifan lokal Desa Sukorame.\n3. **Sosialisasi dan Edukasi Teknologi**: Menyelenggarakan program edukasi dan sosialisasi pengenalan teknologi informasi di Sekolah Dasar (SD) setempat untuk menanamkan literasi digital sejak dini.\n\n### Kegiatan Sosial dan Kemasyarakatan\n\nSelain berfokus pada ranah teknologi, para mahasiswa juga sangat aktif melebur dengan masyarakat melalui berbagai kegiatan tambahan, di antaranya:\n* Membantu kelancaran Masa Pengenalan Lingkungan Sekolah (MPLS) di tingkat SD, TK, dan PAUD.\n* Turut serta dan bergotong royong dalam berbagai kegiatan rutin kemasyarakatan di Desa Sukorame.\n\nKepala Desa Sukorame menyambut baik seluruh agenda positif ini. *"Sinergi antara semangat muda para mahasiswa dengan kearifan lokal warga akan membawa Desa Sukorame melangkah lebih maju,"* ujar beliau.\n\nKami berharap seluruh program kerja yang dijalankan memberikan manfaat jangka panjang yang nyata bagi Desa Sukorame. Selamat mengabdi dan berkarya, mahasiswa MMD FILKOM UB!`,
+      thumbnail: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
       kategori: KategoriBerita.Kegiatan,
-      authorName: 'Yadi (Kepala Desa)',
-      authorId: adminUser.id,
-      status: 'PUBLISHED',
-      publishedAt: new Date(),
-    },
-    {
-      title: 'Peningkatan Hasil Panen Tebu dan Jagung di Masa Tanam 2025',
-      slug: 'peningkatan-hasil-panen-tebu-dan-jagung',
-      content: '<p>Tahun ini, Kelompok Tani Desa Sukorame berhasil mencatatkan peningkatan produksi yang signifikan, khususnya pada komoditas tebu dan jagung. Berdasarkan laporan, panen tebu rata-rata mencapai 80 Ton per hektar, sedangkan jagung mencapai 5 Ton per hektar.</p><p>Capaian ini tak lepas dari bantuan pembinaan pertanian berkelanjutan dari dinas terkait dan efektivitas penggunaan pupuk organik dari pemanfaatan kotoran hewan ternak (sapi dan kambing) warga desa. Ke depan, Pemerintah Desa berharap ada teknologi pengolahan pasca panen yang lebih modern untuk meningkatkan nilai jual.</p>',
-      thumbnail: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800',
-      kategori: KategoriBerita.Pemberdayaan,
       authorName: 'Admin Desa',
       authorId: adminUser.id,
       status: 'PUBLISHED',
-      publishedAt: new Date(Date.now() - 86400000 * 2), // 2 days ago
-    },
+      publishedAt: new Date(),
+    }
   ];
 
   await prisma.berita.deleteMany({});
