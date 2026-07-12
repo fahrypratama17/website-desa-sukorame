@@ -1,3 +1,5 @@
+import { FiMenu } from 'react-icons/fi';
+
 export default function AdminHeader({ 
   userName, 
   onMenuClick 
@@ -16,9 +18,7 @@ export default function AdminHeader({
           className="md:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition"
           aria-label="Toggle menu"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+          <FiMenu className="w-6 h-6" />
         </button>
         <h1 className="text-lg md:text-xl font-montserrat-600 text-[#1C3F2D] hidden sm:block">Manajemen Desa</h1>
       </div>

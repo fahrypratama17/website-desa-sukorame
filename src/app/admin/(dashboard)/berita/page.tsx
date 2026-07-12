@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FiTrash2, FiPlus, FiImage, FiEye, FiEdit } from 'react-icons/fi';
 import { deleteBerita } from '@/feature/admin/actions/berita';
 import prisma from '@/lib/prisma';
 import DeleteButton from '@/feature/admin/components/DeleteButton';
@@ -44,14 +45,14 @@ export default async function BeritaPage(props: { searchParams?: Promise<{ q?: s
             className="px-4 py-2.5 bg-red-50 text-red-700 rounded-lg font-inter-600 hover:bg-red-100 transition flex items-center gap-2 border border-red-200"
             title="Lihat Data yang Terhapus"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+            <FiTrash2 className="w-5 h-5" />
             <span className="hidden sm:inline">Tong Sampah</span>
           </Link>
           <Link
             href="/admin/berita/tambah"
             className="px-5 py-2.5 bg-[#0A2615] text-white rounded-lg font-inter-600 hover:bg-[#1C3F2D] transition flex items-center gap-2 shadow-sm"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+            <FiPlus className="w-5 h-5" />
             Tulis Artikel Baru
           </Link>
         </div>
@@ -91,7 +92,7 @@ export default async function BeritaPage(props: { searchParams?: Promise<{ q?: s
                           <img src={berita.thumbnail} alt={berita.title} className="w-12 h-12 rounded-lg object-cover" />
                         ) : (
                           <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400">
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                            <FiImage className="w-6 h-6" />
                           </div>
                         )}
                         <div>
@@ -124,7 +125,7 @@ export default async function BeritaPage(props: { searchParams?: Promise<{ q?: s
                     </td>
                     <td className="px-6 py-4 text-center">
                       <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-inter-600 bg-blue-50 text-blue-700">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                        <FiEye className="w-3.5 h-3.5" />
                         {berita.viewCount}
                       </span>
                     </td>
@@ -135,7 +136,7 @@ export default async function BeritaPage(props: { searchParams?: Promise<{ q?: s
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition"
                           title="Edit"
                         >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                          <FiEdit className="w-5 h-5" />
                         </Link>
                         <DeleteButton 
                           itemName="berita"

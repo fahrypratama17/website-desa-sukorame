@@ -1,3 +1,5 @@
+import { FiArrowRight } from "react-icons/fi";
+
 interface TentangProps {
   settings: Record<string, string>;
 }
@@ -16,11 +18,7 @@ const Tentang = ({ settings }: TentangProps) => {
           </p>
           <div className="text-mint-350 font-inter-500 flex items-center gap-2 text-[14px]">
             <a href="/profil/profil-desa">Baca Profil Desa</a>
-            <img
-              src="/assets/icons/arrow.svg"
-              alt="arrow"
-              className="size-3"
-            />
+            <FiArrowRight className="size-3" />
           </div>
         </div>
         <img

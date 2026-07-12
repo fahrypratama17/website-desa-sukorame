@@ -7,6 +7,7 @@ import { uploadImage } from '@/feature/admin/actions/upload';
 import dynamic from 'next/dynamic';
 import "easymde/dist/easymde.min.css";
 import { Berita } from '@prisma/client';
+import { FiLoader } from 'react-icons/fi';
 
 const SimpleMdeReact = dynamic(() => import('react-simplemde-editor'), { ssr: false });
 
@@ -204,11 +205,11 @@ export default function BeritaEditClient({ berita }: { berita: Berita }) {
             <h3 className="text-sm font-montserrat-700 text-[#1C3F2D] mb-4 uppercase tracking-wider border-b border-gray-100 pb-3">Aksi Perubahan</h3>
             <div className="flex flex-col gap-3">
               <button type="submit" name="status" value="PUBLISHED" onClick={() => setSubmitAction('PUBLISHED')} disabled={isPending || isUploading || isEditorUploading} className="w-full px-5 py-2.5 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition shadow-sm disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2">
-                {isPending && submitAction === 'PUBLISHED' ? <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> : ''}
+                {isPending && submitAction === 'PUBLISHED' ? <FiLoader className="w-4 h-4 animate-spin" /> : ''}
                 {isUploading || isEditorUploading ? 'Tunggu Upload...' : berita.status === 'PUBLISHED' ? 'Simpan Perubahan' : 'Publikasikan Sekarang'}
               </button>
               <button type="submit" name="status" value="DRAFT" onClick={() => setSubmitAction('DRAFT')} disabled={isPending || isUploading || isEditorUploading} className="w-full px-5 py-2.5 bg-gray-100 text-gray-700 font-inter-600 hover:bg-gray-200 rounded-xl transition shadow-sm disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 border border-gray-200">
-                {isPending && submitAction === 'DRAFT' ? <svg className="w-4 h-4 animate-spin text-gray-500" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> : ''}
+                {isPending && submitAction === 'DRAFT' ? <FiLoader className="w-4 h-4 animate-spin text-gray-500" /> : ''}
                 {isUploading || isEditorUploading ? 'Tunggu Upload...' : 'Simpan sebagai Draf'}
               </button>
               <Link 

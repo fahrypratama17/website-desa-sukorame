@@ -2,6 +2,7 @@
 
 import { Berita } from "@prisma/client";
 import Link from "next/link";
+import { FiArrowRight, FiImage, FiCalendar } from "react-icons/fi";
 
 interface BeritaTerbaruProps {
   beritaData: Berita[];
@@ -22,7 +23,7 @@ const BeritaTerbaru = ({ beritaData }: BeritaTerbaruProps) => {
           </p>
           <Link href="/berita" className="text-mint-350 font-inter-500 flex items-center gap-2 text-[14px]">
             Lihat Semua Berita
-            <img src="/assets/icons/arrow.svg" alt="arrow" className="size-3" />
+            <FiArrowRight className="size-3" />
           </Link>
         </div>
 
@@ -34,7 +35,7 @@ const BeritaTerbaru = ({ beritaData }: BeritaTerbaruProps) => {
                   <img src={item.thumbnail} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center bg-[#EBE9DE]">
-                    <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5L17.5 4.5" /></svg>
+                    <FiImage className="w-12 h-12 text-gray-400" />
                   </div>
                 )}
                 <div className="absolute top-2 left-2 md:top-4 md:left-4 bg-white/90 backdrop-blur-sm px-2 py-0.5 md:px-3 md:py-1 rounded-full text-[10px] md:text-xs font-inter-600 text-[#1C3F2D] shadow-sm">
@@ -43,7 +44,7 @@ const BeritaTerbaru = ({ beritaData }: BeritaTerbaruProps) => {
               </div>
               <div className="p-3 md:p-6 flex flex-col flex-grow">
                 <div className="text-[10px] md:text-xs text-gray-500 font-inter-500 mb-2 md:mb-3 flex items-center gap-1 md:gap-2">
-                  <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  <FiCalendar className="w-3 h-3 md:w-4 md:h-4" />
                   {new Date(item.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}
                 </div>
                 <h3 className="font-montserrat-700 text-sm md:text-xl text-[#1C3F2D] mb-2 md:mb-3 group-hover:text-[#285A43] transition line-clamp-2">

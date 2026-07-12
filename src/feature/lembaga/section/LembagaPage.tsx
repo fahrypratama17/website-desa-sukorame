@@ -3,6 +3,7 @@ import KolaborasiCard from "../components/KolaborasiCard";
 import { kolaborasiData } from "../data/data";
 import Link from "next/link";
 import { Lembaga } from "@prisma/client";
+import { FiShield } from "react-icons/fi";
 
 interface LembagaPageProps {
   lembagaData: Lembaga[];
@@ -63,6 +64,9 @@ const LembagaPage = ({ lembagaData }: LembagaPageProps) => {
       {/* Footer CTA Banner */}
       <section className="mx-auto w-[90%]">
         <div className="rounded-[32px] bg-[#0A2615] px-12 py-16 relative overflow-hidden">
+          {/* Accent icon */}
+          <FiShield className="absolute -top-16 -right-12 z-0 h-80 w-80 opacity-[0.05] text-white" />
+
           <div className="relative z-10 max-w-2xl">
             <h2 className="font-montserrat-700 text-white mb-6 text-3xl">
               Kolaborasi untuk Desa
@@ -77,7 +81,7 @@ const LembagaPage = ({ lembagaData }: LembagaPageProps) => {
               className="inline-flex items-center gap-2 rounded-full bg-[#1A452F] px-6 py-3 text-sm font-inter-600 text-white transition-colors hover:bg-[#235C3E]"
             >
               Hubungi Lembaga Desa
-              <img src="/assets/icons/shield.svg" alt="icon" className="size-4" />
+              <FiShield className="size-4" />
             </Link>
           </div>
         </div>

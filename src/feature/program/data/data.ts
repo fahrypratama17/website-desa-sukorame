@@ -7,19 +7,19 @@ export const programHeaderData = {
 export const kategoriProgramData = [
   {
     id: "ekonomi",
-    icon: "/assets/icons/market.svg",
+    icon: "FiShoppingBag",
     title: "Pemberdayaan Ekonomi",
     description: "Optimalisasi BUMDes dengan sistem 'Cash and Carry' serta pembinaan UMKM mebel kayu.",
   },
   {
     id: "kesejahteraan",
-    icon: "/assets/icons/hand-care.svg",
+    icon: "FiHeart",
     title: "Kesehatan & Kesejahteraan",
     description: "Program Bedah Rumah (RTLH) dan pengadaan Mobil Siaga untuk layanan kesehatan 24 jam.",
   },
   {
     id: "infrastruktur",
-    icon: "/assets/icons/infrastructure-filled.svg",
+    icon: "FiTruck",
     title: "Infrastruktur & Lingkungan",
     description: "Pembangunan Jalan Usaha Tani (JUT) dan pemeliharaan Bendungan Kering (Dry Dam) penahan banjir.",
   },

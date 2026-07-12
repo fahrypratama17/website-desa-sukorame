@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { useEffect, useState } from "react";
 import { incrementBeritaView } from "@/feature/berita/actions/view";
+import { FiCalendar, FiEye } from "react-icons/fi";
 
 interface BeritaDetailSectionProps {
   berita: Berita;
@@ -41,11 +42,11 @@ const BeritaDetailSection = ({ berita }: BeritaDetailSectionProps) => {
               {berita.kategori}
             </span>
             <span className="text-gray-500 text-sm font-inter-500 flex items-center gap-1.5">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+              <FiCalendar className="w-4 h-4" />
               {new Date(berita.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
             </span>
             <span className="text-gray-500 text-sm font-inter-500 flex items-center gap-1.5 ml-2">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+              <FiEye className="w-4 h-4" />
               {berita.viewCount} Dilihat
             </span>
           </div>

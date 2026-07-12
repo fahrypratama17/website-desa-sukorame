@@ -59,31 +59,31 @@ async function main() {
   // ---------------------------------------------------------
   const misiData = [
     {
-      icon: '/assets/icons/leaf.svg',
+      icon: 'FiFeather',
       title: 'Kerukunan Beragama',
       description: 'Membina kerukunan umat beragama & mengembangkan kegiatan keagamaan untuk menambah keimanan kepada Tuhan YME.',
       order: 1,
     },
     {
-      icon: '/assets/icons/eye.svg',
+      icon: 'FiEye',
       title: 'Pemerintahan Bertanggung Jawab',
       description: 'Menata tata kelola pemerintahan yang bertanggung jawab dan melayani seluruh masyarakat tanpa membedakan.',
       order: 2,
     },
     {
-      icon: '/assets/icons/three-people.svg',
+      icon: 'FiUsers',
       title: 'Musyawarah Mufakat',
       description: 'Mengutamakan prinsip musyawarah untuk mencapai mufakat dalam setiap pengambilan kebijakan desa.',
       order: 3,
     },
     {
-      icon: '/assets/icons/agriculture.svg',
+      icon: 'FiSun',
       title: 'Pengembangan Pertanian & Peternakan',
       description: 'Mengembangkan potensi mayoritas warga di sektor pertanian dan peternakan dengan memberikan pelatihan yang berkesinambungan.',
       order: 4,
     },
     {
-      icon: '/assets/icons/hand-care.svg',
+      icon: 'FiHeart',
       title: 'Kesehatan & Kesejahteraan Sosial',
       description: 'Meningkatkan layanan kesehatan masyarakat, fasilitas olahraga, dan bantuan sosial seperti Bedah Rumah (RTLH) bagi warga miskin.',
       order: 5,
@@ -101,25 +101,25 @@ async function main() {
   // ---------------------------------------------------------
   const nilaiUtamaData = [
     {
-      icon: '/assets/icons/three-people.svg',
+      icon: 'FiUsers',
       title: 'Guyub Rukun & Gotong Royong',
       description: 'Menjunjung tinggi kerukunan dan kerja bakti bersama (kearifan lokal) dalam setiap aspek pembangunan desa.',
       order: 1,
     },
     {
-      icon: '/assets/icons/eye.svg',
+      icon: 'FiEye',
       title: 'Adil & Setara',
       description: 'Memberikan perlindungan hukum dan pelayanan yang sama bagi seluruh lapisan masyarakat.',
       order: 2,
     },
     {
-      icon: '/assets/icons/agriculture.svg',
+      icon: 'FiSun',
       title: 'Kemandirian Ekonomi',
       description: 'Mendorong kemandirian warga melalui pemberdayaan BUMDes, UMKM, dan industri permebelan lokal.',
       order: 3,
     },
     {
-      icon: '/assets/icons/hand-care.svg',
+      icon: 'FiHeart',
       title: 'Aman & Sejahtera',
       description: 'Menjaga ketertiban desa dan mewujudkan kesejahteraan bagi keluarga kurang mampu.',
       order: 4,
@@ -256,12 +256,12 @@ async function main() {
   // 6. SEED LEMBAGA DESA
   // ---------------------------------------------------------
   const lembaga = [
-    { name: 'BPD (Badan Permusyawaratan Desa)', description: 'BPD diketuai oleh Budi Ariesta dan menjadi mitra pemerintah desa dalam merancang peraturan dan pengawasan.', logo: '/assets/icons/handshake.svg' },
-    { name: 'LPMD', description: 'Lembaga Pemberdayaan Masyarakat Desa diketuai oleh Yatemin YP untuk menggerakkan partisipasi pembangunan.', logo: '/assets/icons/people-tree.svg' },
-    { name: 'PKK', description: 'Pemberdayaan Kesejahteraan Keluarga diketuai oleh Sustiani, bertujuan mewujudkan keluarga yang tangguh dan mandiri.', logo: '/assets/icons/home.svg' },
-    { name: 'Karang Taruna', description: 'Diketuai oleh Ribut Wahyudi, menjadi wadah pemuda dalam olahraga, seni budaya, dan kegiatan sosial.', logo: '/assets/icons/grad.svg' },
-    { name: 'Kelompok Tani', description: 'Desa Sukorame memiliki 5 kelompok tani aktif dengan total sekitar 200 anggota, fokus pada peningkatan hasil padi, jagung, dan tebu.', logo: '/assets/icons/agriculture.svg' },
-    { name: 'Kelompok Kesenian', description: 'Menampung warga pegiat seni dalam melestarikan budaya lokal, termasuk ritual Bersih Desa tahunan.', logo: '/assets/icons/leaf.svg' },
+    { name: 'BPD (Badan Permusyawaratan Desa)', description: 'BPD diketuai oleh Budi Ariesta dan menjadi mitra pemerintah desa dalam merancang peraturan dan pengawasan.', logo: 'FiUsers' },
+    { name: 'LPMD', description: 'Lembaga Pemberdayaan Masyarakat Desa diketuai oleh Yatemin YP untuk menggerakkan partisipasi pembangunan.', logo: 'FiUsers' },
+    { name: 'PKK', description: 'Pemberdayaan Kesejahteraan Keluarga diketuai oleh Sustiani, bertujuan mewujudkan keluarga yang tangguh dan mandiri.', logo: 'FiHome' },
+    { name: 'Karang Taruna', description: 'Diketuai oleh Ribut Wahyudi, menjadi wadah pemuda dalam olahraga, seni budaya, dan kegiatan sosial.', logo: 'FiStar' },
+    { name: 'Kelompok Tani', description: 'Desa Sukorame memiliki 5 kelompok tani aktif dengan total sekitar 200 anggota, fokus pada peningkatan hasil padi, jagung, dan tebu.', logo: 'FiSun' },
+    { name: 'Kelompok Kesenian', description: 'Menampung warga pegiat seni dalam melestarikan budaya lokal, termasuk ritual Bersih Desa tahunan.', logo: 'FiFeather' },
   ];
 
   await prisma.lembaga.deleteMany({});

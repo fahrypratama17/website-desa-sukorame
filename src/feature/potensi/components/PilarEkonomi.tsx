@@ -1,4 +1,5 @@
 import { pilarEkonomiData } from "../data/data";
+import DynamicIcon from "@/shared/components/DynamicIcon";
 
 const PilarEkonomi = () => {
   return (
@@ -27,11 +28,7 @@ const PilarEkonomi = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-[#0A2615] via-[#0A2615]/60 to-transparent"></div>
             <div className="absolute bottom-0 left-0 p-8">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#7BB08F]">
-                <img
-                  src={pilarEkonomiData.items[0].icon}
-                  alt="icon"
-                  className="h-6 w-6 brightness-0 invert"
-                />
+                <DynamicIcon name={pilarEkonomiData.items[0].icon} className="h-6 w-6 text-white" />
               </div>
               <h3 className="font-montserrat-700 mb-2 text-2xl text-white">
                 {pilarEkonomiData.items[0].title}
@@ -51,11 +48,7 @@ const PilarEkonomi = () => {
             />
             <div className="flex flex-col justify-center p-8 md:w-2/3">
               <div className="mb-4 flex items-center gap-3">
-                <img
-                  src={pilarEkonomiData.items[1].icon}
-                  alt="icon"
-                  className="h-6 w-6"
-                />
+                <DynamicIcon name={pilarEkonomiData.items[1].icon} className="h-6 w-6 text-[#1C3F2D]" />
                 <h3 className="font-montserrat-700 text-xl text-[#1C3F2D]">
                   {pilarEkonomiData.items[1].title}
                 </h3>
@@ -69,11 +62,7 @@ const PilarEkonomi = () => {
           {/* Card 3 (Bottom right 1) */}
           <div className="group col-span-1 row-span-1 flex flex-col justify-between rounded-3xl bg-[#0A2615] p-8 md:col-span-1">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1C3F2D]">
-              <img
-                src={pilarEkonomiData.items[2].icon}
-                alt="icon"
-                className="h-6 w-6 brightness-0 invert"
-              />
+              <DynamicIcon name={pilarEkonomiData.items[2].icon} className="h-6 w-6 text-white" />
             </div>
             <div>
               <h3 className="font-montserrat-700 mb-2 text-xl text-white">
@@ -88,19 +77,7 @@ const PilarEkonomi = () => {
           {/* Card 4 (Bottom right 2) */}
           <div className="group col-span-1 row-span-1 flex flex-col justify-between rounded-3xl bg-[#EBE9DE] p-8 md:col-span-1">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#DCD8C5]">
-              <div
-                className="h-6 w-6 bg-[#2F2C1A]"
-                style={{
-                  WebkitMaskImage: `url(${pilarEkonomiData.items[3].icon})`,
-                  WebkitMaskSize: "contain",
-                  WebkitMaskRepeat: "no-repeat",
-                  WebkitMaskPosition: "center",
-                  maskImage: `url(${pilarEkonomiData.items[3].icon})`,
-                  maskSize: "contain",
-                  maskRepeat: "no-repeat",
-                  maskPosition: "center",
-                }}
-              />
+              <DynamicIcon name={pilarEkonomiData.items[3].icon} className="h-6 w-6 text-[#2F2C1A]" />
             </div>
             <div>
               <h3 className="font-montserrat-700 mb-2 text-xl text-[#2F2C1A]">

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { FiArrowLeft } from 'react-icons/fi';
 import { createProgram } from '@/feature/admin/actions/program';
 import { uploadImage } from '@/feature/admin/actions/upload';
 import { useState } from 'react';
@@ -38,7 +39,7 @@ export default function TambahProgramPage() {
     <div className="w-full space-y-6">
       <div className="flex items-center gap-4">
         <Link href="/admin/program" className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+          <FiArrowLeft className="w-6 h-6" />
         </Link>
         <div>
           <h2 className="text-2xl font-montserrat-700 text-[#1C3F2D]">Tambah Program</h2>

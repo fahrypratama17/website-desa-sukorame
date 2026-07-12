@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FiTrash2, FiArrowLeft, FiImage } from 'react-icons/fi';
 import { restoreBerita, hardDeleteBerita } from '@/feature/admin/actions/berita';
 import prisma from '@/lib/prisma';
 import TrashActionButtons from '@/feature/admin/components/TrashActionButtons';
@@ -15,7 +16,7 @@ export default async function TrashBeritaPage() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h2 className="text-2xl font-montserrat-700 text-red-800 flex items-center gap-2">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+            <FiTrash2 className="w-6 h-6" />
             Tong Sampah Berita
           </h2>
           <p className="text-[#414844] mt-1 font-inter-400">Daftar berita yang telah Anda hapus. Anda masih dapat memulihkannya kembali ke daftar utama.</p>
@@ -24,7 +25,7 @@ export default async function TrashBeritaPage() {
           href="/admin/berita"
           className="px-5 py-2.5 bg-gray-100 text-gray-700 rounded-lg font-inter-600 hover:bg-gray-200 transition flex items-center gap-2 shadow-sm border border-gray-200"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+          <FiArrowLeft className="w-5 h-5" />
           Kembali ke Berita
         </Link>
       </div>
@@ -59,7 +60,7 @@ export default async function TrashBeritaPage() {
                           <img src={berita.thumbnail} alt={berita.title} className="w-12 h-12 rounded-lg object-cover opacity-50 grayscale" />
                         ) : (
                           <div className="w-12 h-12 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-400 opacity-50">
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                            <FiImage className="w-6 h-6" />
                           </div>
                         )}
                         <div>

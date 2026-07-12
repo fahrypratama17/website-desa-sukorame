@@ -43,7 +43,7 @@ const VisiMisiPage = ({ settings, misiItems, nilaiItems }: VisiMisiPageProps) =>
             {misiItems.slice(0, 3).map((item) => (
               <MisiCard
                 key={item.id}
-                icon={item.icon || "/assets/icons/leaf.svg"}
+                icon={item.icon || "FiFeather"}
                 title={item.title}
                 description={item.description}
               />
@@ -56,7 +56,7 @@ const VisiMisiPage = ({ settings, misiItems, nilaiItems }: VisiMisiPageProps) =>
               {misiItems.slice(3).map((item) => (
                 <MisiCard
                   key={item.id}
-                  icon={item.icon || "/assets/icons/leaf.svg"}
+                  icon={item.icon || "FiFeather"}
                   title={item.title}
                   description={item.description}
                 />

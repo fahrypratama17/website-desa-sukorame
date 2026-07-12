@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import { FiMenu, FiX, FiSearch, FiChevronDown, FiArrowRight, FiMapPin, FiHome } from "react-icons/fi";
+import { FaBuildingColumns } from "react-icons/fa6";
 
 interface NavbarProps {
   settings?: Record<string, string>;
@@ -96,14 +98,8 @@ const Navbar = ({ settings }: NavbarProps) => {
     <>
       <nav className="relative z-[100] py-4 lg:py-8 bg-white shadow-sm">
         <div className="mx-auto flex w-[90%] items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 text-green-50" onClick={() => setIsOpen(false)}>
-          <Image
-            src="/assets/icons/desa.svg"
-            alt="desa"
-            width={24}
-            height={24}
-            className="h-6 w-6"
-          />
+        <Link href="/" className="flex items-center gap-3 text-green-50" onClick={() => setIsOpen(false)}>
+          <FaBuildingColumns className="h-6 w-6 text-[#1C3F2D]" />
           <h3 className="font-montserrat-700 text-lg xl:text-xl whitespace-nowrap">Desa Sukorame</h3>
         </Link>
         
@@ -114,9 +110,9 @@ const Navbar = ({ settings }: NavbarProps) => {
           aria-label="Toggle Menu"
         >
           {isOpen ? (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+            <FiX className="w-6 h-6" />
           ) : (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+            <FiMenu className="w-6 h-6" />
           )}
         </button>
 
@@ -133,13 +129,7 @@ const Navbar = ({ settings }: NavbarProps) => {
                   }`}
                 >
                   {item.name}
-                  <Image
-                    src="/assets/icons/chevron-down.svg"
-                    alt="down"
-                    width={8}
-                    height={8}
-                    className="size-2"
-                  />
+                  <FiChevronDown className="h-4 w-4" />
                 </button>
 
                 <div className="invisible absolute top-full left-0 z-50 mt-2 min-w-45 origin-top scale-95 rounded-lg bg-white py-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
@@ -181,11 +171,11 @@ const Navbar = ({ settings }: NavbarProps) => {
             className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 border border-gray-200 text-green-800 hover:bg-green-100 hover:text-green-700 transition-colors"
             aria-label="Open Search"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            <FiSearch className="w-5 h-5" />
           </button>
 
           <button className="hidden lg:flex font-inter-500 bg-mint-850 cursor-pointer items-center gap-2 rounded-full px-3 py-2 xl:px-4 text-sm xl:text-base whitespace-nowrap transition-transform duration-300 hover:scale-105 text-green-50">
-            <Image src="/assets/icons/loc.svg" alt="desa" width={24} height={24} className="h-5 w-5 xl:h-6 xl:w-6" />
+            <FiMapPin className="h-5 w-5 xl:h-6 xl:w-6" />
             <p>{settings?.kontak_lokasi || "Kec. Binangun, Blitar"}</p>
           </button>
         </div>
@@ -204,7 +194,7 @@ const Navbar = ({ settings }: NavbarProps) => {
                       className="flex items-center justify-between font-inter-600 text-green-50 py-2"
                     >
                       {item.name}
-                      <svg className={`w-4 h-4 transition-transform ${openDropdown === item.name ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                      <FiChevronDown className={`w-4 h-4 transition-transform ${openDropdown === item.name ? 'rotate-180' : ''}`} />
                     </button>
                     {openDropdown === item.name && (
                       <div className="flex flex-col gap-2 pl-4 pt-2 border-l-2 border-gray-100 ml-2">
@@ -236,12 +226,12 @@ const Navbar = ({ settings }: NavbarProps) => {
               onClick={() => setIsSearchOpen(true)}
               className="mt-2 flex items-center justify-center bg-white text-green-800 font-inter-600 rounded-xl px-4 py-3 border border-gray-200 shadow-sm"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+              <FiSearch className="w-5 h-5 mr-2" />
               Cari Berita & Program
             </button>
             
             <div className="mt-2 font-inter-500 bg-mint-850 flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-base text-green-50">
-              <Image src="/assets/icons/loc.svg" alt="desa" width={24} height={24} className="h-6 w-6" />
+              <FiMapPin className="h-6 w-6" />
               <p>{settings?.kontak_lokasi || "Kec. Binangun, Blitar"}</p>
             </div>
           </div>
@@ -261,12 +251,12 @@ const Navbar = ({ settings }: NavbarProps) => {
               className="absolute right-4 top-4 md:right-5 md:top-5 text-gray-400 hover:text-gray-800 bg-gray-50 hover:bg-gray-100 rounded-full p-2 transition-colors"
               aria-label="Close Search"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              <FiX className="w-5 h-5" />
             </button>
             <form onSubmit={handleSearch} className="flex flex-col gap-4 mt-2 md:mt-0">
               <label htmlFor="global-search" className="font-montserrat-700 text-lg md:text-xl text-[#1C3F2D] text-center mb-1">Pencarian Website</label>
               <div className="relative">
-                <svg className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                <FiSearch className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input 
                   id="global-search"
                   type="text"
@@ -282,7 +272,7 @@ const Navbar = ({ settings }: NavbarProps) => {
                   aria-label="Cari"
                   title="Cari"
                 >
-                  <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  <FiArrowRight className="w-4 h-4 md:w-5 md:h-5" />
                 </button>
               </div>
             </form>

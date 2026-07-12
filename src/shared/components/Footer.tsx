@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import DynamicIcon from "./DynamicIcon";
 
 export const shortcutData = [
   {
@@ -46,15 +47,15 @@ const Footer = ({ settings }: FooterProps) => {
   
   const dynamicContactData = [
     {
-      icon: "/assets/icons/loc-white.svg",
+      icon: "FiMapPin",
       name: safeSettings.kontak_alamat || "Jl. Raya Sukorame No. 1",
     },
     {
-      icon: "/assets/icons/mail.svg",
+      icon: "FiMail",
       name: safeSettings.kontak_email || "info@sukorame.desa.id",
     },
     {
-      icon: "/assets/icons/phone.svg",
+      icon: "FiPhone",
       name: safeSettings.kontak_telepon || "(0355) 123456",
     },
   ];
@@ -99,7 +100,7 @@ const Footer = ({ settings }: FooterProps) => {
             <div className="flex flex-col gap-4">
               {dynamicContactData.map(({ icon, name }) => (
                 <div key={name} className="font-inter-600 flex w-fit cursor-pointer items-center gap-4 text-base text-[#FCF9F2CC] transition-transform duration-200 hover:scale-105">
-                  <Image src={icon} alt="desa" width={16} height={16} className="h-4 w-4" />
+                  <DynamicIcon name={icon} className="h-4 w-4" />
                   <p>{name}</p>
                 </div>
               ))}

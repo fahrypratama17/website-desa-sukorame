@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { FaWhatsapp, FaMapMarkerAlt, FaClock } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
+import { HiLocationMarker, HiClock } from "react-icons/hi";
 import { FiPhone, FiMail, FiChevronDown, FiSend } from "react-icons/fi";
 
 const KontakPage = ({ settings }: { settings: Record<string, string> }) => {
@@ -47,7 +48,7 @@ const KontakPage = ({ settings }: { settings: Record<string, string> }) => {
     <div className="min-h-screen bg-[#FAF9F6] pb-24">
       {/* Header Area */}
       <div className="mx-auto w-[90%] max-w-6xl pt-16 md:pt-24">
-        <h1 className="font-montserrat-700 text-4xl md:text-5xl text-[#1C3F2D] mb-4">
+        <h1 className="font-montserrat-700 text-3xl md:text-5xl text-[#1C3F2D] mb-4">
           Hubungi Kami
         </h1>
         <p className="font-inter-400 text-[#414844] text-base md:text-lg max-w-2xl leading-relaxed">
@@ -64,7 +65,7 @@ const KontakPage = ({ settings }: { settings: Record<string, string> }) => {
           {/* Card: Alamat */}
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-5 items-start">
             <div className="w-12 h-12 shrink-0 rounded-full bg-[#B2D8C6] flex items-center justify-center">
-              <FaMapMarkerAlt className="h-5 w-5 text-[#1C3F2D]" />
+              <HiLocationMarker className="h-6 w-6 text-[#1C3F2D]" />
             </div>
             <div>
               <h3 className="font-montserrat-700 text-lg text-[#1C3F2D] mb-1">Alamat Kantor</h3>
@@ -77,7 +78,7 @@ const KontakPage = ({ settings }: { settings: Record<string, string> }) => {
           {/* Card: Jam Pelayanan */}
           <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-5 items-start">
             <div className="w-12 h-12 shrink-0 rounded-full bg-[#B2D8C6] flex items-center justify-center">
-              <FaClock className="h-5 w-5 text-[#1C3F2D]" />
+              <HiClock className="h-6 w-6 text-[#1C3F2D]" />
             </div>
             <div>
               <h3 className="font-montserrat-700 text-lg text-[#1C3F2D] mb-1">Jam Pelayanan</h3>
@@ -116,8 +117,8 @@ const KontakPage = ({ settings }: { settings: Record<string, string> }) => {
           {/* Card: Layanan Cepat WhatsApp */}
           <div className="bg-[#0A2615] rounded-2xl p-6 shadow-md relative overflow-hidden mt-2">
             {/* Background decoration */}
-            <div className="absolute -top-12 -right-12 w-48 h-48 bg-white opacity-5 rounded-full pointer-events-none"></div>
-            <div className="absolute -bottom-10 right-8 w-32 h-32 bg-white opacity-5 rounded-full pointer-events-none"></div>
+            <div className="absolute -top-12 -right-12 w-48 h-48 bg-white/10 rounded-full pointer-events-none"></div>
+            <div className="absolute -bottom-10 right-8 w-32 h-32 bg-white/10 rounded-full pointer-events-none"></div>
             
             <div className="flex items-center justify-between relative z-10">
               <div className="pr-4">
@@ -140,7 +141,7 @@ const KontakPage = ({ settings }: { settings: Record<string, string> }) => {
         {/* Right Column: Form */}
         <div className="lg:col-span-7">
           <div className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-gray-100">
-            <h2 className="font-montserrat-700 text-3xl text-[#1C3F2D] mb-8">Kirim Pesan</h2>
+            <h2 className="font-montserrat-700 text-2xl md:text-3xl text-[#1C3F2D] mb-8">Kirim Pesan</h2>
             
             <form onSubmit={handleWhatsAppRedirect} className="flex flex-col gap-6">
               
@@ -220,7 +221,7 @@ const KontakPage = ({ settings }: { settings: Record<string, string> }) => {
                 </p>
                 <button 
                   type="submit"
-                  className="w-full sm:w-auto font-inter-600 bg-[#0A2615] hover:bg-[#1C3F2D] text-white text-sm whitespace-nowrap px-8 py-3.5 rounded-lg flex items-center justify-center gap-2 transition-colors"
+                  className="w-full sm:w-auto font-inter-600 bg-[#0A2615] hover:bg-[#1C3F2D] text-white text-xs sm:text-sm px-6 py-3 rounded-lg flex items-center justify-center gap-2 transition-colors"
                 >
                   Kirim Pesan
                   <FiSend className="h-5 w-5" />

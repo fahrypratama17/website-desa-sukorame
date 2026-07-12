@@ -1,4 +1,5 @@
 import { potensiData } from "../data/data";
+import { FiArrowRight } from "react-icons/fi";
 
 const Potensi = () => {
   return (
@@ -13,11 +14,7 @@ const Potensi = () => {
           </p>
           <div className="text-mint-350 font-inter-500 flex items-center gap-2 text-[14px]">
             <a href="/potensi">Lihat Semua</a>
-            <img
-              src="/assets/icons/arrow.svg"
-              alt="arrow"
-              className="size-3"
-            />
+            <FiArrowRight className="size-3" />
           </div>
         </div>
         <div className="mt-8 grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 w-full">

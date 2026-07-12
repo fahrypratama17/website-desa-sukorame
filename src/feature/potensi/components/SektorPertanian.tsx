@@ -1,4 +1,6 @@
 import { sektorPertanianData } from "../data/data";
+import DynamicIcon from "@/shared/components/DynamicIcon";
+import { FiArrowRight } from "react-icons/fi";
 
 const SektorPertanian = () => {
   return (
@@ -28,19 +30,7 @@ const SektorPertanian = () => {
         <div className="flex w-full flex-col items-start gap-8 lg:w-1/2 lg:pl-10">
           <div>
             <div className="mb-4 flex items-center gap-3">
-              <div
-                className="h-8 w-8 bg-[#1C3F2D]"
-                style={{
-                  WebkitMaskImage: `url(${sektorPertanianData.icon})`,
-                  WebkitMaskSize: "contain",
-                  WebkitMaskRepeat: "no-repeat",
-                  WebkitMaskPosition: "center",
-                  maskImage: `url(${sektorPertanianData.icon})`,
-                  maskSize: "contain",
-                  maskRepeat: "no-repeat",
-                  maskPosition: "center",
-                }}
-              />
+              <DynamicIcon name={sektorPertanianData.icon} className="h-8 w-8 text-[#1C3F2D]" />
               <h2 className="font-montserrat-700 text-3xl text-[#1C3F2D]">
                 {sektorPertanianData.title}
               </h2>
@@ -54,19 +44,7 @@ const SektorPertanian = () => {
             {sektorPertanianData.features.map((feature, index) => (
               <div key={index} className="flex gap-4">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E5F2EC]">
-                  <div
-                    className="h-5 w-5 bg-[#1C3F2D]"
-                    style={{
-                      WebkitMaskImage: `url(${feature.icon})`,
-                      WebkitMaskSize: "contain",
-                      WebkitMaskRepeat: "no-repeat",
-                      WebkitMaskPosition: "center",
-                      maskImage: `url(${feature.icon})`,
-                      maskSize: "contain",
-                      maskRepeat: "no-repeat",
-                      maskPosition: "center",
-                    }}
-                  />
+                  <DynamicIcon name={feature.icon} className="h-5 w-5 text-[#1C3F2D]" />
                 </div>
                 <div>
                   <h4 className="font-montserrat-700 mb-1 text-lg text-[#1C3F2D]">
@@ -85,7 +63,7 @@ const SektorPertanian = () => {
             className="font-inter-600 flex w-fit items-center gap-2 rounded-lg bg-[#285A43] px-6 py-3 text-sm text-white transition-colors hover:bg-[#1C3F2D]"
           >
             {sektorPertanianData.buttonText}
-            <img src="/assets/icons/arrow.svg" alt="arrow" className="h-4 w-4" style={{ filter: "brightness(0) invert(1)" }} />
+            <FiArrowRight className="h-4 w-4 text-white" />
           </a>
         </div>
         

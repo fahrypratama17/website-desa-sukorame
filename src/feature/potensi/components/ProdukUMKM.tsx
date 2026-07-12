@@ -1,4 +1,5 @@
 import { produkUMKMData } from "../data/data";
+import DynamicIcon from "@/shared/components/DynamicIcon";
 
 const ProdukUMKM = () => {
   return (
@@ -9,7 +10,7 @@ const ProdukUMKM = () => {
         <div className="flex w-full flex-col gap-8 lg:w-5/12">
           <div>
             <div className="mb-4 flex items-center gap-3">
-              <img src={produkUMKMData.icon} alt="Icon" className="h-8 w-8" />
+              <DynamicIcon name={produkUMKMData.icon} className="h-8 w-8 text-[#1C3F2D]" />
               <h2 className="font-montserrat-700 text-3xl text-[#1C3F2D]">
                 {produkUMKMData.title}
               </h2>
@@ -54,11 +55,7 @@ const ProdukUMKM = () => {
             {/* Floating Stat Card */}
             <div className="absolute bottom-6 left-6 flex items-center gap-4 rounded-2xl bg-white/90 p-4 shadow-lg backdrop-blur-md">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#0A2615]">
-                <img
-                  src={produkUMKMData.statIcon}
-                  alt="stat"
-                  className="h-6 w-6 brightness-0 invert"
-                />
+                <DynamicIcon name={produkUMKMData.statIcon} className="h-6 w-6 text-white" />
               </div>
               <div>
                 <h4 className="font-montserrat-700 text-xl text-[#1C3F2D]">

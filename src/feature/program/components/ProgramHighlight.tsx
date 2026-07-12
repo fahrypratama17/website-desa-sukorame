@@ -1,5 +1,6 @@
 import { programHighlightData } from "../data/data";
 import Image from "next/image";
+import { FiArrowRight } from "react-icons/fi";
 
 const ProgramHighlight = () => {
   return (
@@ -31,7 +32,7 @@ const ProgramHighlight = () => {
             className="font-inter-600 flex w-fit items-center gap-2 rounded-lg bg-[#0A2615] px-6 py-3.5 text-sm text-white transition-colors hover:bg-[#1C3F2D]"
           >
             {programHighlightData.buttonText}
-            <Image src="/assets/icons/arrow.svg" alt="arrow" width={16} height={16} className="h-4 w-4" style={{ filter: "brightness(0) invert(1)" }} />
+            <FiArrowRight className="h-4 w-4 text-white" />
           </a>
         </div>
 

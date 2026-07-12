@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { FiArrowLeft, FiLoader } from 'react-icons/fi';
 import { createBerita } from '@/feature/admin/actions/berita';
 import { uploadImage } from '@/feature/admin/actions/upload';
 import { useState, useMemo, useTransition, useEffect } from 'react';
@@ -151,7 +152,7 @@ export default function TambahBeritaPage() {
     <div className="w-full space-y-6">
       <div className="flex items-center gap-4">
         <Link href="/admin/berita" className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+          <FiArrowLeft className="w-6 h-6" />
         </Link>
         <div>
           <h2 className="text-2xl font-montserrat-700 text-[#1C3F2D]">Tambah Berita Baru</h2>
@@ -208,11 +209,11 @@ export default function TambahBeritaPage() {
             <h3 className="text-sm font-montserrat-700 text-[#1C3F2D] mb-4 uppercase tracking-wider border-b border-gray-100 pb-3">Aksi Publikasi</h3>
             <div className="flex flex-col gap-3">
               <button type="submit" name="status" value="PUBLISHED" onClick={() => setSubmitAction('PUBLISHED')} disabled={isPending || isUploading || isEditorUploading} className="w-full px-5 py-2.5 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition shadow-sm disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2">
-                {isPending && submitAction === 'PUBLISHED' ? <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> : ''}
+                {isPending && submitAction === 'PUBLISHED' ? <FiLoader className="w-4 h-4 animate-spin" /> : ''}
                 {isUploading || isEditorUploading ? 'Tunggu Upload...' : 'Publikasikan Sekarang'}
               </button>
               <button type="submit" name="status" value="DRAFT" onClick={() => setSubmitAction('DRAFT')} disabled={isPending || isUploading || isEditorUploading} className="w-full px-5 py-2.5 bg-gray-100 text-gray-700 font-inter-600 hover:bg-gray-200 rounded-xl transition shadow-sm disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 border border-gray-200">
-                {isPending && submitAction === 'DRAFT' ? <svg className="w-4 h-4 animate-spin text-gray-500" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> : ''}
+                {isPending && submitAction === 'DRAFT' ? <FiLoader className="w-4 h-4 animate-spin text-gray-500" /> : ''}
                 {isUploading || isEditorUploading ? 'Tunggu Upload...' : 'Simpan sebagai Draf'}
               </button>
               <Link 

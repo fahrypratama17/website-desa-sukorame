@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Berita } from "@prisma/client";
+import { FiSearch, FiImage, FiCalendar } from "react-icons/fi";
 
 interface SearchResultSectionProps {
   query: string;
@@ -21,7 +22,7 @@ const SearchResultSection = ({ query, results }: SearchResultSectionProps) => {
 
         {results.length === 0 ? (
           <div className="text-center py-24 bg-gray-50 rounded-3xl border border-gray-100 flex flex-col items-center justify-center">
-            <svg className="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            <FiSearch className="w-16 h-16 text-gray-300 mb-4" />
             <h3 className="text-xl font-montserrat-600 text-gray-600 mb-2">Pencarian tidak ditemukan</h3>
             <p className="text-gray-500 font-inter-400 text-sm max-w-md">Kami tidak dapat menemukan berita atau program yang cocok dengan kata kunci tersebut. Coba gunakan kata kunci lain.</p>
           </div>
@@ -34,7 +35,7 @@ const SearchResultSection = ({ query, results }: SearchResultSectionProps) => {
                     <img src={item.thumbnail} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-[#EBE9DE]">
-                      <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5L17.5 4.5" /></svg>
+                      <FiImage className="w-12 h-12 text-gray-400" />
                     </div>
                   )}
                   <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-inter-600 text-[#1C3F2D] shadow-sm">
@@ -43,7 +44,7 @@ const SearchResultSection = ({ query, results }: SearchResultSectionProps) => {
                 </div>
                 <div className="p-5 sm:p-6 flex flex-col flex-grow w-full">
                   <div className="text-xs text-gray-500 font-inter-500 mb-2 flex items-center gap-1">
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                    <FiCalendar className="w-3.5 h-3.5" />
                     {new Date(item.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
                   </div>
                   <h3 className="font-montserrat-700 text-lg md:text-xl text-[#1C3F2D] mb-3 group-hover:text-[#285A43] transition line-clamp-2 leading-snug">

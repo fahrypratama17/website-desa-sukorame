@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 interface PaginationProps {
   totalPages: number;
@@ -33,11 +34,11 @@ const Pagination = ({ totalPages }: PaginationProps) => {
           href={createPageURL(currentPage - 1)}
           className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-green-50 hover:text-green-700 hover:border-green-200 transition-colors shadow-sm"
         >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+          <FiChevronLeft className="h-5 w-5" />
         </Link>
       ) : (
         <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-100 text-gray-300 bg-gray-50 cursor-not-allowed">
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+          <FiChevronLeft className="h-5 w-5" />
         </div>
       )}
 
@@ -64,11 +65,11 @@ const Pagination = ({ totalPages }: PaginationProps) => {
           href={createPageURL(currentPage + 1)}
           className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-green-50 hover:text-green-700 hover:border-green-200 transition-colors shadow-sm"
         >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          <FiChevronRight className="h-5 w-5" />
         </Link>
       ) : (
         <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-100 text-gray-300 bg-gray-50 cursor-not-allowed">
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          <FiChevronRight className="h-5 w-5" />
         </div>
       )}
     </div>

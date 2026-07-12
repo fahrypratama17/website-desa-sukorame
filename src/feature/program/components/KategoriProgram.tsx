@@ -1,4 +1,5 @@
 import { kategoriProgramData } from "../data/data";
+import DynamicIcon from "@/shared/components/DynamicIcon";
 
 const KategoriProgram = () => {
   return (
@@ -11,19 +12,7 @@ const KategoriProgram = () => {
           >
             {/* Icon */}
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E5F2EC]">
-              <div
-                className="h-6 w-6 bg-[#1C3F2D]"
-                style={{
-                  WebkitMaskImage: `url(${kategori.icon})`,
-                  WebkitMaskSize: "contain",
-                  WebkitMaskRepeat: "no-repeat",
-                  WebkitMaskPosition: "center",
-                  maskImage: `url(${kategori.icon})`,
-                  maskSize: "contain",
-                  maskRepeat: "no-repeat",
-                  maskPosition: "center",
-                }}
-              />
+              <DynamicIcon name={kategori.icon} className="h-6 w-6 text-[#1C3F2D]" />
             </div>
 
             {/* Content */}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Perangkat } from "@prisma/client";
 import Image from "next/image";
+import { FiMail, FiSearch } from "react-icons/fi";
 
 const MemberPhoto = ({
   src,
@@ -131,14 +132,7 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
 
               {/* Kontak Email */}
               <div className="flex items-center gap-2 mt-2">
-                <Image
-                  src="/assets/icons/mail.svg"
-                  alt="Email Icon"
-                  width={16}
-                  height={16}
-                  className="h-4 w-4"
-                  style={{ filter: "invert(23%) sepia(40%) saturate(700%) hue-rotate(103deg)" }}
-                />
+                <FiMail className="h-4 w-4 text-green-350" />
                 <a
                   href={`mailto:${kepalaDesa.email}`}
                   className="font-inter-600 text-green-50 hover:text-green-350 text-sm transition-colors"
@@ -217,21 +211,7 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
             {/* Input Pencarian */}
             <div className="relative w-full sm:w-80">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <svg
-                  className="w-4 h-4 text-green-350"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                  />
-                </svg>
+                <FiSearch className="w-4 h-4 text-green-350" aria-hidden="true" />
               </span>
               <input
                 type="text"
@@ -275,14 +255,7 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
                       href={`mailto:${member.email}`}
                       className="flex items-center gap-1.5 text-[11px] text-green-350 hover:text-green-250 transition-colors mt-auto pt-2 border-t border-green-850/10 break-all"
                     >
-                      <Image
-                        src="/assets/icons/mail.svg"
-                        alt="Email Icon"
-                        width={12}
-                        height={12}
-                        className="h-3 w-3 flex-shrink-0"
-                        style={{ filter: "invert(60%) sepia(20%) saturate(400%) hue-rotate(103deg)" }}
-                      />
+                      <FiMail className="h-3 w-3 flex-shrink-0" />
                       <span>{member.email}</span>
                     </a>
                   </div>
