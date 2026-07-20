@@ -1,8 +1,24 @@
-import Breadcrumb from "../components/Breadcrumb.tsx";
-import GambaranUmum from "../components/GambaranUmum.tsx";
-import { profilHero } from "../data/data.ts";
+import Breadcrumb from "../components/Breadcrumb";
+import GambaranUmum from "../components/GambaranUmum";
+import { profilHero, gambaranUmum } from "../data/data";
 
-const ProfilPage = () => {
+interface ProfilPageProps {
+  settings: Record<string, string>;
+}
+
+const ProfilPage = ({ settings }: ProfilPageProps) => {
+  const title = `Profil ${settings.desa_nama || "Desa Sukorame"}`;
+  const subtitle = settings.profil_hero_subtitle || profilHero.subtitle;
+
+  const dynamicGambaran = {
+    ...gambaranUmum,
+    description: settings.gambaran_umum_deskripsi || gambaranUmum.description,
+    stats: [
+      { label: "LUAS WILAYAH", value: settings.statistik_luas || "450 Ha" },
+      { label: "KETINGGIAN", value: settings.statistik_ketinggian || "350 mdpl" },
+    ],
+  };
+
   return (
     <div className="min-h-screen">
       <div className="mx-auto w-[90%] pt-12">
@@ -12,15 +28,15 @@ const ProfilPage = () => {
         {/* Hero Section */}
         <section className="mb-4">
           <h1 className="font-montserrat-700 text-green-50 mb-4 text-4xl">
-            {profilHero.title}
+            {title}
           </h1>
           <p className="font-inter-400 text-green-350 max-w-2xl text-base leading-relaxed">
-            {profilHero.subtitle}
+            {subtitle}
           </p>
         </section>
 
         {/* Gambaran Umum */}
-        <GambaranUmum />
+        <GambaranUmum data={dynamicGambaran} />
       </div>
     </div>
   );

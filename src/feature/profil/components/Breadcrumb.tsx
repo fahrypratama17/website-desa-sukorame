@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface BreadcrumbItem {
   label: string;
   href?: string;
@@ -17,12 +19,12 @@ const Breadcrumb = ({ items }: BreadcrumbProps) => {
               <span className="text-green-450">&gt;</span>
             )}
             {item.href ? (
-              <a
+              <Link
                 href={item.href}
                 className="text-green-450 transition-colors duration-200 hover:text-green-250"
               >
                 {item.label}
-              </a>
+              </Link>
             ) : (
               <span className="font-inter-600 text-green-50">
                 {item.label}

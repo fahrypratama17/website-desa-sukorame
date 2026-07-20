@@ -1,13 +1,21 @@
-import Hero from "../components/Hero.tsx";
-import Tentang from "../components/Tentang.tsx";
-import Potensi from "../components/Potensi.tsx";
+import Hero from "../components/Hero";
+import Tentang from "../components/Tentang";
+import Potensi from "../components/Potensi";
+import BeritaTerbaru from "../components/BeritaTerbaru";
+import { Berita } from "@prisma/client";
 
-const HomePage = () => {
+interface HomePageProps {
+  settings: Record<string, string>;
+  latestBerita: Berita[];
+}
+
+const HomePage = ({ settings, latestBerita }: HomePageProps) => {
   return (
     <>
-      <Hero />
-      <Tentang />
+      <Hero settings={settings} />
+      <Tentang settings={settings} />
       <Potensi />
+      <BeritaTerbaru beritaData={latestBerita} />
     </>
   );
 };

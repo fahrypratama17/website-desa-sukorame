@@ -1,43 +1,21 @@
-import VisiSection from "../components/VisiSection.tsx";
-import MisiCard from "../components/MisiCard.tsx";
-import NilaiUtama from "../components/NilaiUtama.tsx";
-import { visiMisiHeader } from "../data/data.ts";
-import type { MisiItem } from "../data/data.ts";
+import VisiSection from "../components/VisiSection";
+import MisiCard from "../components/MisiCard";
+import NilaiUtamaSection from "../components/NilaiUtama";
+import { visiMisiHeader } from "../data/data";
+import type { Misi, NilaiUtama } from "@prisma/client";
 
-const misiItems: MisiItem[] = [
-  {
-    icon: "/src/assets/icons/leaf.svg",
-    title: "Pemberdayaan Ekonomi",
-    description:
-      "Meningkatkan perekonomian masyarakat melalui pemberdayaan UMKM, kelompok tani, dan pemanfaatan potensi agrikultur lokal secara berkelanjutan.",
-  },
-  {
-    icon: "/src/assets/icons/grad.svg",
-    title: "Peningkatan SDM",
-    description:
-      "Meningkatkan kualitas Sumber Daya Manusia melalui fasilitasi pendidikan yang inklusif, pelatihan keterampilan, dan pembinaan karakter generasi muda.",
-  },
-  {
-    icon: "/src/assets/icons/shield.svg",
-    title: "Kesehatan & Kesejahteraan",
-    description:
-      "Mewujudkan lingkungan desa yang sehat dan sejahtera melalui optimalisasi pelayanan posyandu, sanitasi lingkungan, dan program kesehatan masyarakat.",
-  },
-  {
-    icon: "/src/assets/icons/transparancy.svg",
-    title: "Tata Kelola Transparan",
-    description:
-      "Menyelenggarakan tata kelola pemerintahan desa yang bersih, transparan, dan akuntabel berbasis digitalisasi pelayanan publik.",
-  },
-  {
-    icon: "/src/assets/icons/people-tree.svg",
-    title: "Pelestarian Budaya",
-    description:
-      "Melestarikan nilai-nilai gotong royong, kearifan lokal, dan tradisi budaya masyarakat desa sebagai identitas dan pemersatu warga.",
-  },
-];
+interface VisiMisiPageProps {
+  settings: Record<string, string>;
+  misiItems: Misi[];
+  nilaiItems: NilaiUtama[];
+}
 
-const VisiMisiPage = () => {
+const VisiMisiPage = ({ settings, misiItems, nilaiItems }: VisiMisiPageProps) => {
+  const visiData = {
+    quote: settings.desa_visi || '"Terwujudnya Desa Sukorame yang Mandiri, Sejahtera, dan Berbudaya melalui Peningkatan Ekonomi Berbasis Agrikultur dan Tata Kelola Pemerintahan yang Transparan."',
+    description: settings.desa_visi_subtitle || "Visi ini menjadi bintang penunjuk arah dalam setiap kebijakan dan program yang kami jalankan, memastikan bahwa pembangunan desa selalu berpusat pada kesejahteraan warga dan pelestarian lingkungan."
+  };
+
   return (
     <div className="min-h-screen">
       <div className="mx-auto w-[90%] pt-12">
@@ -52,7 +30,7 @@ const VisiMisiPage = () => {
         </section>
 
         {/* Visi */}
-        <VisiSection />
+        <VisiSection data={visiData} />
 
         {/* Misi Pembangunan Desa */}
         <section className="mb-12">
@@ -61,32 +39,40 @@ const VisiMisiPage = () => {
           </h2>
 
           {/* Row 1: 3 cards */}
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {misiItems.slice(0, 3).map((item) => (
               <MisiCard
-                key={item.title}
-                icon={item.icon}
+                key={item.id}
+                icon={item.icon || "FiFeather"}
                 title={item.title}
                 description={item.description}
               />
             ))}
           </div>
 
-          {/* Row 2: 2 cards centered */}
-          <div className="mx-auto mt-6 grid max-w-[66.66%] grid-cols-2 gap-6">
-            {misiItems.slice(3).map((item) => (
-              <MisiCard
-                key={item.title}
-                icon={item.icon}
-                title={item.title}
-                description={item.description}
-              />
-            ))}
-          </div>
+          {/* Row 2: remaining cards centered */}
+          {misiItems.length > 3 && (
+            <div className="mx-auto mt-6 grid max-w-[66.66%] grid-cols-1 md:grid-cols-2 gap-6">
+              {misiItems.slice(3).map((item) => (
+                <MisiCard
+                  key={item.id}
+                  icon={item.icon || "FiFeather"}
+                  title={item.title}
+                  description={item.description}
+                />
+              ))}
+            </div>
+          )}
+
+          {misiItems.length === 0 && (
+            <div className="text-center py-12 text-gray-400 text-sm">
+              Belum ada data misi.
+            </div>
+          )}
         </section>
 
         {/* Nilai-Nilai Utama */}
-        <NilaiUtama />
+        <NilaiUtamaSection nilaiItems={nilaiItems} />
       </div>
     </div>
   );

@@ -1,0 +1,205 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── 1. Akun Admin (Standar NextAuth / Auth.js) ─────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?   // Untuk login manual (Credentials)
+  role          String    @default("ADMIN")
+  accounts      Account[]
+  sessions      Session[]
+  berita        Berita[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@map("users")
+}
+
+model Account {
+  id                       String  @id @default(cuid())
+  userId                   String
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+  refresh_token_expires_in Int?
+  user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ─── 2. Perangkat Desa ──────────────────────────────────
+
+model Perangkat {
+  id          Int       @id @default(autoincrement())
+  name        String
+  role        String
+  email       String    @unique
+  image       String?
+  quote       String?   @db.Text
+  order       Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  @@map("perangkat")
+}
+
+// ─── 3. Program Desa ────────────────────────────────────
+
+model Program {
+  id          Int       @id @default(autoincrement())
+  kategori    String
+  title       String
+  description String    @db.Text
+  image       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  @@map("program")
+}
+
+// ─── 4. Misi Desa (sebelumnya JSON di Setting) ──────────
+
+model Misi {
+  id          Int      @id @default(autoincrement())
+  icon        String?
+  title       String
+  description String   @db.Text
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("misi")
+}
+
+// ─── 5. Nilai Utama Desa (sebelumnya JSON di Setting) ───
+
+model NilaiUtama {
+  id          Int      @id @default(autoincrement())
+  icon        String?
+  title       String
+  description String   @db.Text
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("nilai_utama")
+}
+
+// ─── 6. Lembaga Desa ────────────────────────────────────
+
+model Lembaga {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String    @db.Text
+  logo        String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  @@map("lembaga")
+}
+
+// ─── 7. Pengaturan Global (Key-Value) ───────────────────
+
+model Setting {
+  id          Int      @id @default(autoincrement())
+  key         String   @unique
+  value       String   @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("settings")
+}
+
+// ─── 8. Berita & Artikel Desa ───────────────────────────
+
+enum KategoriBerita {
+  Pengumuman
+  Kegiatan
+  Pembangunan
+  Pemberdayaan
+  Lainnya
+}
+
+model Berita {
+  id          Int            @id @default(autoincrement())
+  slug        String         @unique
+  title       String
+  content     String         @db.LongText
+  thumbnail   String?
+  kategori    KategoriBerita @default(Kegiatan)
+  authorName  String         @default("Admin Desa")
+  authorId    String?
+  author      User?          @relation(fields: [authorId], references: [id])
+  status      String         @default("PUBLISHED")
+  publishedAt DateTime?
+  viewCount   Int            @default(0)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  deletedAt   DateTime?
+
+  @@map("berita")
+}
+
+// ─── 9. Rekam Jejak (Audit Log) ─────────────────────────
+
+model AuditLog {
+  id         Int      @id @default(autoincrement())
+  userId     String?
+  userName   String   @default("Sistem")
+  action     String   // e.g. "CREATE", "UPDATE", "SOFT_DELETE", "RESTORE", "HARD_DELETE"
+  entity     String   // e.g. "Berita", "Program", "Perangkat", "Setting"
+  entityName String   // e.g. "Kegiatan Kerja Bakti..."
+  createdAt  DateTime @default(now())
+
+  @@map("audit_logs")
+}

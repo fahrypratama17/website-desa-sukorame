@@ -1,4 +1,4 @@
-import PotensiPage from "../section/PotensiPage.tsx";
+import PotensiPage from "../section/PotensiPage";
 
 const PotensiContainer = () => {
   return <PotensiPage />;

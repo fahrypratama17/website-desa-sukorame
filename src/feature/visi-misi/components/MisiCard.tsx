@@ -1,3 +1,5 @@
+import DynamicIcon from "@/shared/components/DynamicIcon";
+
 interface MisiCardProps {
   icon: string;
   title: string;
@@ -7,16 +9,14 @@ interface MisiCardProps {
 const MisiCard = ({ icon, title, description }: MisiCardProps) => {
   return (
     <div className="relative flex flex-col items-center overflow-hidden rounded-xl border-2 border-green-850/50 bg-white px-6 pt-8 pb-2 text-center transition-shadow duration-300 hover:shadow-lg">
-      {/* Accent icon — top right */}
-      <img
-        src={icon}
-        alt=""
-        className="absolute -top-4 -right-4 z-0 h-14 w-14 opacity-[0.12] invert"
+      <DynamicIcon
+        name={icon}
+        className="absolute -top-4 -right-4 z-0 h-20 w-20 opacity-[0.04] text-[#1C3F2D]"
       />
 
       {/* Icon Circle — solid dark green */}
       <div className="bg-green-50 relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-full">
-        <img src={icon} alt={title} className="size-7" />
+        <DynamicIcon name={icon} className="size-7 text-white" />
       </div>
 
       {/* Title */}

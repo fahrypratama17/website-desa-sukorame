@@ -1,20 +1,20 @@
 export const potensiData = [
   {
     id: 1,
-    src: "/src/assets/images/potensi-1.png",
-    title: "Pertanian Organik",
-    desc: "Komoditas padi dan palawija yang dikelola dengan metode ramah lingkungan oleh kelompok tani lokal.",
+    src: "/assets/images/potensi-1.png",
+    title: "Sentra Industri Permebelan",
+    desc: "Desa Sukorame terkenal sebagai sentra industri permebelan dan ukir kayu di wilayah Kecamatan Binangun, menjadi penggerak utama ekonomi UMKM warga.",
   },
   {
     id: 2,
-    src: "/src/assets/images/potensi-2.png",
-    title: "UMKM Kerajinan",
-    desc: "Produk anyaman bambu dan kerajinan tangan berkualitas ekspor karya warga desa.",
+    src: "/assets/images/potensi-2.png",
+    title: "Pertanian Tebu & Jagung",
+    desc: "Sektor agrikultur yang menjadi tulang punggung mayoritas warga, dengan hasil panen unggulan tebu mencapai 80 Ton/Ha serta jagung yang melimpah.",
   },
   {
     id: 3,
-    src: "/src/assets/images/potensi-3.png",
-    title: "Wisata Alam Semilir",
-    desc: "Destinasi ekowisata perbukitan dengan pemandangan asri dan udara segar, cocok untuk keluarga.",
+    src: "https://uoibjwlbyieaqextbrky.supabase.co/storage/v1/object/public/desa-storage/potensi/petilasan.png",
+    title: "Wisata Budaya & Petilasan",
+    desc: "Melestarikan tradisi lokal melalui ritual Bersih Desa tahunan yang berpusat di Petilasan Mbah Irojoyo dan Punden Mbah Eko sebagai warisan kearifan lokal.",
   },
 ];

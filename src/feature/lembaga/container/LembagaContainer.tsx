@@ -1,7 +1,16 @@
-import LembagaPage from "../section/LembagaPage.tsx";
+import LembagaPage from "../section/LembagaPage";
+import { Lembaga } from "@prisma/client";
 
-const LembagaContainer = () => {
-  return <LembagaPage />;
+interface LembagaContainerProps {
+  lembagaData: Lembaga[];
+}
+
+const LembagaContainer = ({ lembagaData }: LembagaContainerProps) => {
+  return (
+    <div>
+      <LembagaPage lembagaData={lembagaData} />
+    </div>
+  );
 };
 
 export default LembagaContainer;

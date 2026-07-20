@@ -1,4 +1,4 @@
-import ProgramPage from "../section/ProgramPage.tsx";
+import ProgramPage from "../section/ProgramPage";
 
 const ProgramContainer = () => {
   return <ProgramPage />;
