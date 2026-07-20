@@ -1,10 +1,11 @@
 import Link from 'next/link';
+import { FaSeedling } from 'react-icons/fa';
 
 export default function NotFound() {
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-[#FAF9F6] p-4 text-center">
       <div className="w-24 h-24 mb-8 bg-[#285A43]/10 rounded-full flex items-center justify-center">
-        <span className="text-5xl">🌱</span>
+        <FaSeedling className="h-12 w-12 text-[#285A43]" />
       </div>
       
       <h1 className="text-6xl font-montserrat-700 text-[#1C3F2D] mb-4">404</h1>

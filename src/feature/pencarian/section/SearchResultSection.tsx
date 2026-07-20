@@ -8,6 +8,28 @@ interface SearchResultSectionProps {
   query: string;
   results: Berita[];
 }
+const highlightText = (text: string, highlight: string) => {
+  if (!highlight.trim()) {
+    return <>{text}</>;
+  }
+  // Escape special characters in query to prevent regex errors
+  const escapedHighlight = highlight.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const parts = text.split(new RegExp(`(${escapedHighlight})`, 'gi'));
+  
+  return (
+    <>
+      {parts.map((part, i) =>
+        part.toLowerCase() === highlight.toLowerCase() ? (
+          <strong key={i} className="font-bold text-[#1C3F2D] bg-yellow-200/60 px-0.5 rounded-sm">
+            {part}
+          </strong>
+        ) : (
+          part
+        )
+      )}
+    </>
+  );
+};
 
 const SearchResultSection = ({ query, results }: SearchResultSectionProps) => {
   return (
@@ -48,10 +70,10 @@ const SearchResultSection = ({ query, results }: SearchResultSectionProps) => {
                     {new Date(item.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
                   </div>
                   <h3 className="font-montserrat-700 text-lg md:text-xl text-[#1C3F2D] mb-3 group-hover:text-[#285A43] transition line-clamp-2 leading-snug">
-                    {item.title}
+                    {highlightText(item.title, query)}
                   </h3>
                   <p className="font-inter-400 text-sm text-[#414844] line-clamp-2 sm:line-clamp-3 mt-auto">
-                    {item.content.replace(/<[^>]*>?/gm, '').replace(/[#*`_\[\]]/g, '')}
+                    {highlightText(item.content.replace(/<[^>]*>?/gm, '').replace(/[#*`_\[\]]/g, ''), query)}
                   </p>
                 </div>
               </Link>

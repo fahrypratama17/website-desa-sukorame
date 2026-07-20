@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { HiLocationMarker, HiClock } from "react-icons/hi";
 import { FiPhone, FiMail, FiChevronDown, FiSend } from "react-icons/fi";
+import MapViewer from "../components/MapViewer";
 
 const KontakPage = ({ settings }: { settings: Record<string, string> }) => {
   const [formData, setFormData] = useState({
@@ -235,17 +236,8 @@ const KontakPage = ({ settings }: { settings: Record<string, string> }) => {
       </div>
 
       {/* Map Section */}
-      <div className="mx-auto w-[90%] max-w-6xl mt-12 rounded-3xl overflow-hidden shadow-sm border border-gray-200 h-[400px] bg-gray-200 relative mb-12">
-        <iframe 
-          src="https://maps.google.com/maps?q=Desa+Sukorame+Kecamatan+Binangun+Blitar&t=&z=14&ie=UTF8&iwloc=&output=embed" 
-          width="100%" 
-          height="100%" 
-          style={{ border: 0 }} 
-          allowFullScreen={false} 
-          loading="lazy" 
-          referrerPolicy="no-referrer-when-downgrade"
-          className="w-full h-full"
-        ></iframe>
+      <div className="mx-auto w-[90%] max-w-6xl mt-12 rounded-3xl overflow-hidden shadow-sm border border-gray-200 h-[500px] bg-[#E8EFEA] relative mb-12">
+        <MapViewer />
       </div>
     </div>
   );

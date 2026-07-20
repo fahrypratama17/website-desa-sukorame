@@ -1,6 +1,6 @@
 import { potensiHeroData } from "../data/data";
 import Image from "next/image";
-import { FiStar } from "react-icons/fi";
+import { FaStar } from "react-icons/fa";
 
 const PotensiHero = () => {
   return (
@@ -13,7 +13,7 @@ const PotensiHero = () => {
         <div className="relative z-10 flex max-w-lg flex-col items-start gap-6 lg:w-1/2">
           {/* Badge */}
           <div className="flex items-center gap-2 rounded-full bg-[#E5F2EC] px-4 py-2">
-            <FiStar className="h-4 w-4 text-[#285A43]" />
+            <FaStar className="h-4 w-4 text-[#285A43]" />
             <span className="font-inter-600 text-xs text-[#285A43]">
               {potensiHeroData.badge}
             </span>

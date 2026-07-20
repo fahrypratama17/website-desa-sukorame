@@ -4,8 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import { FiMenu, FiX, FiSearch, FiChevronDown, FiArrowRight, FiMapPin, FiHome } from "react-icons/fi";
-import { FaBuildingColumns } from "react-icons/fa6";
+import { FiMenu, FiX, FiChevronDown, FiArrowRight, FiMapPin, FiHome } from "react-icons/fi";
+import { FaBuildingColumns, FaMagnifyingGlass } from "react-icons/fa6";
 
 interface NavbarProps {
   settings?: Record<string, string>;
@@ -171,7 +171,7 @@ const Navbar = ({ settings }: NavbarProps) => {
             className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 border border-gray-200 text-green-800 hover:bg-green-100 hover:text-green-700 transition-colors"
             aria-label="Open Search"
           >
-            <FiSearch className="w-5 h-5" />
+            <FaMagnifyingGlass className="w-5 h-5" />
           </button>
 
           <button className="hidden lg:flex font-inter-500 bg-mint-850 cursor-pointer items-center gap-2 rounded-full px-3 py-2 xl:px-4 text-sm xl:text-base whitespace-nowrap transition-transform duration-300 hover:scale-105 text-green-50">
@@ -226,7 +226,7 @@ const Navbar = ({ settings }: NavbarProps) => {
               onClick={() => setIsSearchOpen(true)}
               className="mt-2 flex items-center justify-center bg-white text-green-800 font-inter-600 rounded-xl px-4 py-3 border border-gray-200 shadow-sm"
             >
-              <FiSearch className="w-5 h-5 mr-2" />
+              <FaMagnifyingGlass className="w-5 h-5 mr-2" />
               Cari Berita & Program
             </button>
             
@@ -256,7 +256,7 @@ const Navbar = ({ settings }: NavbarProps) => {
             <form onSubmit={handleSearch} className="flex flex-col gap-4 mt-2 md:mt-0">
               <label htmlFor="global-search" className="font-montserrat-700 text-lg md:text-xl text-[#1C3F2D] text-center mb-1">Pencarian Website</label>
               <div className="relative">
-                <FiSearch className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+                <FaMagnifyingGlass className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input 
                   id="global-search"
                   type="text"

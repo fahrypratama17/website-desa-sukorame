@@ -11,7 +11,7 @@ const ProdukUMKM = () => {
           <div>
             <div className="mb-4 flex items-center gap-3">
               <DynamicIcon name={produkUMKMData.icon} className="h-8 w-8 text-[#1C3F2D]" />
-              <h2 className="font-montserrat-700 text-3xl text-[#1C3F2D]">
+              <h2 className="font-montserrat-700 text-2xl lg:text-3xl text-[#1C3F2D]">
                 {produkUMKMData.title}
               </h2>
             </div>

@@ -43,6 +43,7 @@ async function main() {
 
     // Footer
     { key: 'footer_deskripsi', value: 'Pusat informasi dan pelayanan publik Pemerintah Desa Sukorame untuk mewujudkan desa yang mandiri dan sejahtera.' },
+    { key: 'hero_banner_image', value: 'https://uoibjwlbyieaqextbrky.supabase.co/storage/v1/object/public/desa-storage/banner/406254f1-5bcb-4eb5-893a-9e82d2cddd0e.svg' },
   ];
 
   for (const setting of settings) {
@@ -256,12 +257,12 @@ async function main() {
   // 6. SEED LEMBAGA DESA
   // ---------------------------------------------------------
   const lembaga = [
-    { name: 'BPD (Badan Permusyawaratan Desa)', description: 'BPD diketuai oleh Budi Ariesta dan menjadi mitra pemerintah desa dalam merancang peraturan dan pengawasan.', logo: 'FiUsers' },
-    { name: 'LPMD', description: 'Lembaga Pemberdayaan Masyarakat Desa diketuai oleh Yatemin YP untuk menggerakkan partisipasi pembangunan.', logo: 'FiUsers' },
-    { name: 'PKK', description: 'Pemberdayaan Kesejahteraan Keluarga diketuai oleh Sustiani, bertujuan mewujudkan keluarga yang tangguh dan mandiri.', logo: 'FiHome' },
-    { name: 'Karang Taruna', description: 'Diketuai oleh Ribut Wahyudi, menjadi wadah pemuda dalam olahraga, seni budaya, dan kegiatan sosial.', logo: 'FiStar' },
-    { name: 'Kelompok Tani', description: 'Desa Sukorame memiliki 5 kelompok tani aktif dengan total sekitar 200 anggota, fokus pada peningkatan hasil padi, jagung, dan tebu.', logo: 'FiSun' },
-    { name: 'Kelompok Kesenian', description: 'Menampung warga pegiat seni dalam melestarikan budaya lokal, termasuk ritual Bersih Desa tahunan.', logo: 'FiFeather' },
+    { name: 'BPD (Badan Permusyawaratan Desa)', description: 'BPD diketuai oleh Budi Ariesta dan menjadi mitra pemerintah desa dalam merancang peraturan dan pengawasan.', logo: 'FaPeopleRoof' },
+    { name: 'LPMD', description: 'Lembaga Pemberdayaan Masyarakat Desa diketuai oleh Yatemin YP untuk menggerakkan partisipasi pembangunan.', logo: 'FaPersonChalkboard' },
+    { name: 'PKK', description: 'Pemberdayaan Kesejahteraan Keluarga diketuai oleh Sustiani, bertujuan mewujudkan keluarga yang tangguh dan mandiri.', logo: 'FaPersonBreastfeeding' },
+    { name: 'Karang Taruna', description: 'Diketuai oleh Ribut Wahyudi, menjadi wadah pemuda dalam olahraga, seni budaya, dan kegiatan sosial.', logo: 'FaPeopleGroup' },
+    { name: 'Kelompok Tani', description: 'Desa Sukorame memiliki 5 kelompok tani aktif dengan total sekitar 200 anggota, fokus pada peningkatan hasil padi, jagung, dan tebu.', logo: 'FaSeedling' },
+    { name: 'Kelompok Kesenian', description: 'Menampung warga pegiat seni dalam melestarikan budaya lokal, termasuk ritual Bersih Desa tahunan.', logo: 'FaMasksTheater' },
   ];
 
   await prisma.lembaga.deleteMany({});
@@ -299,7 +300,7 @@ async function main() {
       title: 'Mahasiswa Membangun Desa (MMD) FILKOM UB Bantu Wujudkan Desa Sukorame Go Digital',
       slug: 'mmd-filkom-ub-wujudkan-desa-sukorame-go-digital',
       content: `## Mahasiswa FILKOM UB Mengabdi di Desa Sukorame\n\nPemerintah Desa Sukorame dengan hangat menyambut kedatangan kelompok mahasiswa dari **Fakultas Ilmu Komputer Universitas Brawijaya (FILKOM UB)** yang tergabung dalam program *Mahasiswa Membangun Desa (MMD)*. Kedatangan kelompok mahasiswa ini membawa angin segar bagi percepatan kemajuan desa melalui berbagai program kerja yang inovatif.\n\n### Fokus Program Kerja MMD\n\nSelama masa pengabdiannya, mahasiswa MMD FILKOM UB akan melaksanakan serangkaian program kerja utama yang dirancang khusus untuk memajukan Desa Sukorame:\n\n1. **Digitalisasi Desa (Website & Sosial Media)**: Merancang dan membangun *Website* Resmi Desa Sukorame sebagai pusat informasi terpadu, serta pembuatan dan pengelolaan akun Sosial Media resmi desa agar potensi Sukorame semakin dikenal luas.\n2. **Video Profil Desa**: Memproduksi video profil desa yang sinematik dan informatif untuk mendokumentasikan kekayaan alam, budaya, dan kearifan lokal Desa Sukorame.\n3. **Sosialisasi dan Edukasi Teknologi**: Menyelenggarakan program edukasi dan sosialisasi pengenalan teknologi informasi di Sekolah Dasar (SD) setempat untuk menanamkan literasi digital sejak dini.\n\n### Kegiatan Sosial dan Kemasyarakatan\n\nSelain berfokus pada ranah teknologi, para mahasiswa juga sangat aktif melebur dengan masyarakat melalui berbagai kegiatan tambahan, di antaranya:\n* Membantu kelancaran Masa Pengenalan Lingkungan Sekolah (MPLS) di tingkat SD, TK, dan PAUD.\n* Turut serta dan bergotong royong dalam berbagai kegiatan rutin kemasyarakatan di Desa Sukorame.\n\nKepala Desa Sukorame menyambut baik seluruh agenda positif ini. *"Sinergi antara semangat muda para mahasiswa dengan kearifan lokal warga akan membawa Desa Sukorame melangkah lebih maju,"* ujar beliau.\n\nKami berharap seluruh program kerja yang dijalankan memberikan manfaat jangka panjang yang nyata bagi Desa Sukorame. Selamat mengabdi dan berkarya, mahasiswa MMD FILKOM UB!`,
-      thumbnail: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
+      thumbnail: 'https://uoibjwlbyieaqextbrky.supabase.co/storage/v1/object/public/desa-storage/berita/84ec79a2-c34b-4e23-82e9-565c6230fc96.jpg',
       kategori: KategoriBerita.Kegiatan,
       authorName: 'Admin Desa',
       authorId: adminUser.id,
