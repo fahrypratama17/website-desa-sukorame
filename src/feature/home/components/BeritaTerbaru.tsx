@@ -27,7 +27,7 @@ const BeritaTerbaru = ({ beritaData }: BeritaTerbaruProps) => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
           {beritaData.map((item) => (
             <Link href={`/berita/${item.slug}`} key={item.id} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 transition duration-300 flex flex-col">
               <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">

@@ -5,7 +5,7 @@ const ProdukUMKM = () => {
   return (
     <section className="bg-[#FAF9F6] py-16 pb-24">
       <div className="mx-auto flex w-[90%] flex-col-reverse gap-12 lg:flex-row lg:items-center">
-        
+
         {/* Left Content */}
         <div className="flex w-full flex-col gap-8 lg:w-5/12">
           <div>
@@ -49,26 +49,26 @@ const ProdukUMKM = () => {
             <img
               src={produkUMKMData.image}
               alt="Produk UMKM"
-              className="h-[400px] w-full object-cover lg:h-[450px]"
+              className="h-[250px] sm:h-[400px] w-full object-cover lg:h-[450px]"
             />
-            
+
             {/* Floating Stat Card */}
-            <div className="absolute bottom-6 left-6 flex items-center gap-4 rounded-2xl bg-white/90 p-4 shadow-lg backdrop-blur-md">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#0A2615]">
-                <DynamicIcon name={produkUMKMData.statIcon} className="h-6 w-6 text-white" />
+            <div className="absolute bottom-3 left-3 md:bottom-6 md:left-6 flex items-center gap-3 md:gap-4 rounded-2xl bg-white/90 p-3 md:p-4 shadow-lg backdrop-blur-md">
+              <div className="flex h-10 w-10 md:h-12 md:w-12 shrink-0 items-center justify-center rounded-xl bg-[#0A2615]">
+                <DynamicIcon name={produkUMKMData.statIcon} className="h-5 w-5 md:h-6 md:w-6 text-white" />
               </div>
               <div>
-                <h4 className="font-montserrat-700 text-xl text-[#1C3F2D]">
+                <h4 className="font-montserrat-700 text-base md:text-xl text-[#1C3F2D]">
                   {produkUMKMData.statNumber}
                 </h4>
-                <p className="font-inter-400 text-xs text-[#414844]">
+                <p className="font-inter-400 text-[10px] md:text-xs text-[#414844]">
                   {produkUMKMData.statText}
                 </p>
               </div>
             </div>
           </div>
         </div>
-        
+
       </div>
     </section>
   );

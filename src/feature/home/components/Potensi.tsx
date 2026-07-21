@@ -17,7 +17,7 @@ const Potensi = () => {
             <FiArrowRight className="size-3" />
           </div>
         </div>
-        <div className="mt-8 grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 w-full">
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 w-full">
           {potensiData.map(({ id, src, title, desc }) => (
             <div
               className="bg-white-50 flex flex-col overflow-hidden rounded-xl shadow-2xl duration-300 hover:-translate-y-3"

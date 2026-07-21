@@ -16,12 +16,12 @@ const SektorPertanian = () => {
             <img
               src={sektorPertanianData.image1}
               alt="Rice Fields"
-              className="mt-12 h-64 w-1/2 rounded-3xl object-cover shadow-lg"
+              className="mt-12 h-44 sm:h-64 w-1/2 rounded-3xl object-cover shadow-lg"
             />
             <img
               src={sektorPertanianData.image2}
               alt="Farmer"
-              className="mb-12 h-64 w-1/2 rounded-3xl object-cover shadow-lg"
+              className="mb-12 h-44 sm:h-64 w-1/2 rounded-3xl object-cover shadow-lg"
             />
           </div>
         </div>

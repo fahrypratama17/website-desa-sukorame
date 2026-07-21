@@ -16,10 +16,10 @@ const PilarEkonomi = () => {
         </div>
 
         {/* Bento Grid */}
-        <div className="grid h-auto grid-cols-1 gap-6 md:grid-cols-3 md:grid-rows-2 lg:h-[500px]">
+        <div className="grid h-auto grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 lg:h-[500px]">
           
           {/* Card 1 (Large left) */}
-          <div className="group relative col-span-1 row-span-2 h-[400px] overflow-hidden rounded-3xl md:col-span-1 md:h-auto">
+          <div className="group relative col-span-1 lg:row-span-2 h-[250px] sm:h-[350px] lg:h-auto overflow-hidden rounded-3xl lg:col-span-1">
             <img
               src={pilarEkonomiData.items[0].image}
               alt={pilarEkonomiData.items[0].title}
@@ -38,15 +38,15 @@ const PilarEkonomi = () => {
               </p>
             </div>
           </div>
-
+ 
           {/* Card 2 (Top right, wide) */}
-          <div className="group col-span-1 row-span-1 flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm md:col-span-2 md:flex-row">
+          <div className="group col-span-1 row-span-1 flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm lg:col-span-2 lg:flex-row">
             <img
               src={pilarEkonomiData.items[1].image}
               alt={pilarEkonomiData.items[1].title}
-              className="h-48 w-full object-cover md:h-full md:w-1/3"
+              className="h-48 w-full object-cover lg:h-full lg:w-1/3"
             />
-            <div className="flex flex-col justify-center p-8 md:w-2/3">
+            <div className="flex flex-col justify-center p-8 lg:w-2/3">
               <div className="mb-4 flex items-center gap-3">
                 <DynamicIcon name={pilarEkonomiData.items[1].icon} className="h-6 w-6 text-[#1C3F2D]" />
                 <h3 className="font-montserrat-700 text-lg md:text-xl text-[#1C3F2D]">
