@@ -5,7 +5,7 @@ import { FiGrid, FiFileText, FiBriefcase, FiUsers, FiBox, FiSettings, FiClipboar
 export default function AdminSidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () => void }) {
   return (
     <aside 
-      className={`bg-[#0A2615] text-white flex flex-col fixed h-full z-30 shadow-2xl md:shadow-xl transition-transform duration-300 w-64 ${
+      className={`bg-[#0A2615] text-white flex flex-col fixed h-full z-40 shadow-2xl md:shadow-xl transition-transform duration-300 w-64 ${
         isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
       }`}
     >

@@ -88,21 +88,21 @@ export default function PerangkatClient({ initialData, saveAction, deleteAction 
           <h2 className="text-2xl font-montserrat-700 text-[#1C3F2D]">Kelola Perangkat Desa</h2>
           <p className="text-[#414844] mt-1 font-inter-400">Daftar aparatur dan staf pemerintahan desa.</p>
         </div>
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
           <Link
             href="/admin/perangkat/trash"
-            className="px-4 py-2.5 bg-red-50 text-red-700 rounded-lg font-inter-600 hover:bg-red-100 transition flex items-center gap-2 border border-red-200"
+            className="px-4 py-2.5 bg-red-50 text-red-700 rounded-lg font-inter-600 hover:bg-red-100 transition flex items-center justify-center gap-2 border border-red-200 whitespace-nowrap w-full sm:w-auto shrink-0"
             title="Lihat Data yang Terhapus"
           >
             <FiTrash2 className="w-5 h-5" />
-            <span className="hidden sm:inline">Tong Sampah</span>
+            <span>Tong Sampah</span>
           </Link>
           <button 
             onClick={handleOpenAdd}
-            className="px-5 py-2.5 bg-[#0A2615] text-white rounded-lg font-inter-600 hover:bg-[#1C3F2D] transition flex items-center gap-2 shadow-sm"
+            className="px-5 py-2.5 bg-[#0A2615] text-white rounded-lg font-inter-600 hover:bg-[#1C3F2D] transition flex items-center justify-center gap-2 shadow-sm whitespace-nowrap w-full sm:w-auto shrink-0"
           >
             <FiPlus className="w-5 h-5" />
-            Tambah Perangkat
+            <span>Tambah Perangkat</span>
           </button>
         </div>
       </div>

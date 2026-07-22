@@ -33,28 +33,30 @@ export default async function BeritaPage(props: { searchParams?: Promise<{ q?: s
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
         <div>
           <h2 className="text-2xl font-montserrat-700 text-[#1C3F2D]">Kelola Berita &amp; Artikel</h2>
           <p className="text-[#414844] mt-1 font-inter-400">Daftar semua berita dan artikel yang dipublikasikan.</p>
         </div>
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-3 w-full xl:w-auto">
           <AdminSearch placeholder="Cari judul berita..." />
-          <Link
-            href="/admin/berita/trash"
-            className="px-4 py-2.5 bg-red-50 text-red-700 rounded-lg font-inter-600 hover:bg-red-100 transition flex items-center gap-2 border border-red-200"
-            title="Lihat Data yang Terhapus"
-          >
-            <FiTrash2 className="w-5 h-5" />
-            <span className="hidden sm:inline">Tong Sampah</span>
-          </Link>
-          <Link
-            href="/admin/berita/tambah"
-            className="px-5 py-2.5 bg-[#0A2615] text-white rounded-lg font-inter-600 hover:bg-[#1C3F2D] transition flex items-center gap-2 shadow-sm"
-          >
-            <FiPlus className="w-5 h-5" />
-            Tulis Artikel Baru
-          </Link>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
+            <Link
+              href="/admin/berita/trash"
+              className="px-4 py-2.5 bg-red-50 text-red-700 rounded-lg font-inter-600 hover:bg-red-100 transition flex items-center justify-center gap-2 border border-red-200 whitespace-nowrap w-full sm:w-auto shrink-0"
+              title="Lihat Data yang Terhapus"
+            >
+              <FiTrash2 className="w-5 h-5" />
+              <span>Tong Sampah</span>
+            </Link>
+            <Link
+              href="/admin/berita/tambah"
+              className="px-5 py-2.5 bg-[#0A2615] text-white rounded-lg font-inter-600 hover:bg-[#1C3F2D] transition flex items-center justify-center gap-2 shadow-sm whitespace-nowrap w-full sm:w-auto shrink-0"
+            >
+              <FiPlus className="w-5 h-5" />
+              <span>Tulis Artikel Baru</span>
+            </Link>
+          </div>
         </div>
       </div>
 
