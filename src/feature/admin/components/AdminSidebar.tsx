@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { handleSignOut } from '../../../app/admin/actions';
-import { FiGrid, FiFileText, FiBriefcase, FiUsers, FiBox, FiSettings, FiClipboard, FiLogOut } from 'react-icons/fi';
+import { FiGrid, FiFileText, FiBriefcase, FiUsers, FiBox, FiSettings, FiClipboard, FiLogOut, FiX } from 'react-icons/fi';
 
-export default function AdminSidebar({ isOpen }: { isOpen?: boolean }) {
+export default function AdminSidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () => void }) {
   return (
     <aside 
       className={`bg-[#0A2615] text-white flex flex-col fixed h-full z-30 shadow-2xl md:shadow-xl transition-transform duration-300 w-64 ${
@@ -14,6 +14,13 @@ export default function AdminSidebar({ isOpen }: { isOpen?: boolean }) {
           <h2 className="text-xl font-montserrat-700">CMS Sukorame</h2>
           <p className="text-xs text-gray-400 mt-1 font-inter-400">Panel Admin Desa</p>
         </div>
+        <button 
+          onClick={onClose}
+          className="md:hidden p-1.5 text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition"
+          aria-label="Tutup menu"
+        >
+          <FiX className="w-5 h-5" />
+        </button>
       </div>
       <nav className="flex-1 p-4 space-y-2 font-inter-500 overflow-y-auto">
         <Link href="/admin/dashboard" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition group">

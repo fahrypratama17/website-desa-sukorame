@@ -47,7 +47,7 @@ export default function ProgramEditClient({ program }: { program: Program }) {
         </div>
       )}
 
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-6 md:p-8">
         <form action={updateProgramWithId} className="space-y-6">
           <div className="space-y-4">
             <div>
@@ -112,11 +112,11 @@ export default function ProgramEditClient({ program }: { program: Program }) {
             </div>
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-gray-100">
-            <Link href="/admin/program" className="px-6 py-3 text-gray-600 font-inter-600 hover:bg-gray-100 rounded-xl transition">
+          <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 pt-4 border-t border-gray-100">
+            <Link href="/admin/program" className="w-full sm:w-auto text-center px-6 py-3 text-gray-600 font-inter-600 hover:bg-gray-100 rounded-xl transition">
               Batal
             </Link>
-            <button type="submit" disabled={isUploading} className="px-6 py-3 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition shadow-sm disabled:opacity-70 disabled:cursor-not-allowed">
+            <button type="submit" disabled={isUploading} className="w-full sm:w-auto text-center px-6 py-3 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition shadow-sm disabled:opacity-70 disabled:cursor-not-allowed">
               {isUploading ? 'Tunggu Upload...' : 'Simpan Perubahan'}
             </button>
           </div>

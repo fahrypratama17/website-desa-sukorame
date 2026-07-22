@@ -48,7 +48,7 @@ const PotensiHero = () => {
             />
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#0A2615] via-[#0A2615]/40 to-transparent"></div>
-            
+
             {/* Overlay Text */}
             <div className="absolute bottom-0 left-0 p-8 lg:p-12">
               <p className="font-inter-600 mb-2 text-xs tracking-[0.2em] text-[#A3C7B3] uppercase">

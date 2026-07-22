@@ -22,7 +22,7 @@ export default function AdminLayoutWrapper({
 
   return (
     <>
-      <AdminSidebar isOpen={isSidebarOpen} />
+      <AdminSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       
       {/* Main Content */}
       <div className="flex-1 flex flex-col md:pl-64 min-h-screen relative transition-all duration-300 w-full">

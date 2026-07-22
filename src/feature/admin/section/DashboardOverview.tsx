@@ -26,9 +26,9 @@ export default function DashboardOverview({ stats, recentActivities }: Dashboard
         <p className="text-[#414844] mt-2 font-inter-400">Ringkasan aktivitas dan statistik Website Desa Sukorame.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {/* Card: Total Berita */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-2 relative overflow-hidden group">
+        <div className="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-2 relative overflow-hidden group">
           <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#0A2615]/5 rounded-full group-hover:scale-110 transition duration-300"></div>
           <div className="flex items-center gap-3">
              <div className="p-3 bg-blue-50 rounded-xl text-blue-600">
@@ -40,11 +40,11 @@ export default function DashboardOverview({ stats, recentActivities }: Dashboard
         </div>
 
         {/* Card: Total Program */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-2 relative overflow-hidden group">
+        <div className="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-2 relative overflow-hidden group">
           <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#0A2615]/5 rounded-full group-hover:scale-110 transition duration-300"></div>
           <div className="flex items-center gap-3">
             <div className="p-3 bg-purple-50 rounded-xl text-purple-600">
-              <FiBriefcase className="w-6 h-6" />
+               <FiBriefcase className="w-6 h-6" />
             </div>
             <span className="text-sm font-inter-500 text-gray-500">Total Program</span>
           </div>
@@ -52,7 +52,7 @@ export default function DashboardOverview({ stats, recentActivities }: Dashboard
         </div>
         
         {/* Card: Jumlah Perangkat */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-2 relative overflow-hidden group">
+        <div className="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-2 relative overflow-hidden group">
           <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#0A2615]/5 rounded-full group-hover:scale-110 transition duration-300"></div>
           <div className="flex items-center gap-3">
             <div className="p-3 bg-amber-50 rounded-xl text-amber-600">
@@ -64,7 +64,7 @@ export default function DashboardOverview({ stats, recentActivities }: Dashboard
         </div>
 
         {/* Card: Jumlah Lembaga */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-2 relative overflow-hidden group">
+        <div className="bg-white p-5 sm:p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col gap-2 relative overflow-hidden group">
           <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#0A2615]/5 rounded-full group-hover:scale-110 transition duration-300"></div>
           <div className="flex items-center gap-3">
              <div className="p-3 bg-green-950 rounded-xl text-green-50">
@@ -86,11 +86,11 @@ export default function DashboardOverview({ stats, recentActivities }: Dashboard
             <div className="flex flex-col gap-4">
               {recentActivities.map((activity, idx) => (
                 <div key={idx} className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-gray-200 transition">
-                  <div className="flex flex-col">
-                    <span className="font-inter-600 text-[#1C3F2D] text-sm">{activity.title}</span>
-                    <div className="flex items-center gap-2 mt-1">
+                  <div className="flex flex-col min-w-0 flex-1 pr-3">
+                    <span className="font-inter-600 text-[#1C3F2D] text-sm break-words">{activity.title}</span>
+                    <div className="flex flex-wrap items-center gap-2 mt-1">
                       <span className="text-xs font-inter-500 px-2 py-0.5 bg-white border border-gray-200 rounded-md text-gray-600">{activity.type}</span>
-                      <span className="text-xs text-gray-500 font-inter-400">
+                      <span className="text-xs text-gray-500 font-inter-400 break-words">
                         {activity.author && <span className="font-inter-500">{activity.author} &bull; </span>}
                         {new Date(activity.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                       </span>

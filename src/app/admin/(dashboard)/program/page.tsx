@@ -62,26 +62,26 @@ export default async function ProgramPage(props: { searchParams?: Promise<{ q?: 
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[#FAF9F6] border-b border-gray-100 text-[#414844] font-inter-600 text-sm">
-                <th className="px-6 py-4">No</th>
-                <th className="px-6 py-4">Program</th>
-                <th className="px-6 py-4">Kategori</th>
-                <th className="px-6 py-4 text-right">Aksi</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4">No</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4">Program</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4">Kategori</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4 text-right">Aksi</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {programs.length === 0 ? (
                 <tr>
-                  <td colSpan={4} className="px-6 py-12 text-center text-gray-500 font-inter-400">
+                  <td colSpan={4} className="px-4 sm:px-6 py-12 text-center text-gray-500 font-inter-400">
                     Belum ada program kerja yang tercatat. Silakan tambah program baru.
                   </td>
                 </tr>
               ) : (
                 programs.map((program, index) => (
                   <tr key={program.id} className="hover:bg-gray-50/50 transition">
-                    <td className="px-6 py-4 text-sm text-gray-500 font-inter-400">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm text-gray-500 font-inter-400">
                       {skip + index + 1}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       <div className="flex items-center gap-4">
                         {program.image ? (
                           <img src={program.image} alt={program.title} className="w-12 h-12 rounded-lg object-cover" />
@@ -96,12 +96,12 @@ export default async function ProgramPage(props: { searchParams?: Promise<{ q?: 
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
                         {program.kategori}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           href={`/admin/program/${program.id}/edit`}
