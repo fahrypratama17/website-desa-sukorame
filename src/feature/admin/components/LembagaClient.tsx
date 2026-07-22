@@ -88,25 +88,25 @@ export default function LembagaClient({ initialData, saveAction, deleteAction }:
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[#FAF9F6] border-b border-gray-100 text-[#414844] font-inter-600 text-sm">
-                <th className="px-6 py-4">No</th>
-                <th className="px-6 py-4">Lembaga</th>
-                <th className="px-6 py-4 text-right">Aksi</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4">No</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4">Lembaga</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4 text-right">Aksi</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {initialData.length === 0 ? (
                 <tr>
-                  <td colSpan={3} className="px-6 py-12 text-center text-gray-500 font-inter-400">
+                  <td colSpan={3} className="px-4 sm:px-6 py-12 text-center text-gray-500 font-inter-400">
                     Data lembaga desa masih kosong. Klik &quot;Tambah Lembaga&quot; untuk mendaftarkan organisasi desa.
                   </td>
                 </tr>
               ) : (
                 initialData.map((item, index) => (
                   <tr key={item.id} className="hover:bg-gray-50/50 transition">
-                    <td className="px-6 py-4 text-sm text-gray-500 font-inter-400">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm text-gray-500 font-inter-400">
                       {index + 1}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       <div className="flex items-center gap-4">
                         {item.logo ? (
                           <div className="w-12 h-12 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center text-[#285A43]">
@@ -123,7 +123,7 @@ export default function LembagaClient({ initialData, saveAction, deleteAction }:
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       <div className="flex items-center justify-end gap-2">
                         <button 
                           onClick={() => handleOpenEdit(item)}
@@ -155,7 +155,7 @@ export default function LembagaClient({ initialData, saveAction, deleteAction }:
               </button>
             </div>
             
-            <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-4">
+            <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-inter-600 text-gray-700 mb-2">Nama Lembaga <span className="text-red-500">*</span></label>
                 <input type="text" id="name" name="name" defaultValue={editingItem?.name} required className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" placeholder="Contoh: Karang Taruna" />
@@ -199,11 +199,11 @@ export default function LembagaClient({ initialData, saveAction, deleteAction }:
                 <textarea id="description" name="description" defaultValue={editingItem?.description || ''} required rows={5} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] resize-y" placeholder="Jelaskan peran dan fungsi lembaga ini..."></textarea>
               </div>
 
-              <div className="pt-4 flex justify-end gap-3 mt-6">
-                <button type="button" onClick={handleClose} disabled={isPending} className="px-5 py-2.5 text-gray-600 font-inter-600 hover:bg-gray-100 rounded-xl transition">
+              <div className="pt-4 flex flex-col-reverse sm:flex-row justify-end gap-3 mt-6">
+                <button type="button" onClick={handleClose} disabled={isPending} className="w-full sm:w-auto text-center px-5 py-2.5 text-gray-600 font-inter-600 hover:bg-gray-100 rounded-xl transition">
                   Batal
                 </button>
-                <button type="submit" disabled={isPending} className="px-5 py-2.5 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition shadow-sm flex items-center gap-2">
+                <button type="submit" disabled={isPending} className="w-full sm:w-auto text-center px-5 py-2.5 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition shadow-sm flex items-center justify-center gap-2">
                   {isPending ? 'Menyimpan...' : 'Simpan'}
                 </button>
               </div>

@@ -39,7 +39,7 @@ export default function ChangePasswordClient() {
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-      <div className="bg-gray-50/50 px-6 py-5 border-b border-gray-100 flex items-center gap-3">
+      <div className="bg-gray-50/50 px-5 sm:px-6 py-4 sm:py-5 border-b border-gray-100 flex items-center gap-3">
         <FiLock className="w-6 h-6 text-orange-500" />
         <div>
           <h3 className="text-lg font-montserrat-700 text-[#1C3F2D]">Ubah Kata Sandi</h3>
@@ -47,7 +47,7 @@ export default function ChangePasswordClient() {
         </div>
       </div>
       
-      <form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-6">
+      <form onSubmit={handleSubmit} className="p-5 sm:p-6 md:p-8 space-y-6">
         {error && (
           <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-xl">
             <p className="text-sm text-red-700">{error}</p>
@@ -102,7 +102,7 @@ export default function ChangePasswordClient() {
           <button
             type="submit"
             disabled={loading}
-            className={`px-6 py-2.5 bg-[#0A2615] text-white rounded-lg font-inter-600 hover:bg-[#1C3F2D] transition shadow-sm flex items-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+            className={`w-full sm:w-auto justify-center px-6 py-2.5 bg-[#0A2615] text-white rounded-lg font-inter-600 hover:bg-[#1C3F2D] transition shadow-sm flex items-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
           >
             {loading ? (
               <>

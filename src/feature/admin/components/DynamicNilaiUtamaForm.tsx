@@ -86,7 +86,7 @@ export default function DynamicNilaiUtamaForm({ initialData, createAction, updat
       <div className="space-y-4">
         {items.map((item, index) => (
           <div key={item.id} className="p-4 border border-gray-200 rounded-xl bg-gray-50/30 relative group">
-            <div className="absolute right-4 top-4 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="absolute right-4 top-4 flex items-center gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
               <button type="button" onClick={() => openEditForm(item)} className="p-1 text-gray-400 hover:text-blue-600">
                 <FiEdit className="w-4 h-4" />
               </button>
@@ -163,11 +163,11 @@ export default function DynamicNilaiUtamaForm({ initialData, createAction, updat
                 className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#285A43] text-sm resize-y"
               />
             </div>
-            <div className="flex justify-end gap-3 pt-2">
-              <button type="button" onClick={() => { setEditingItem(null); setEditingId(null); }} disabled={isPending} className="px-4 py-2 text-gray-600 font-inter-600 hover:bg-gray-100 rounded-xl transition">
+            <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 pt-2">
+              <button type="button" onClick={() => { setEditingItem(null); setEditingId(null); }} disabled={isPending} className="w-full sm:w-auto text-center px-4 py-2 text-gray-600 font-inter-600 hover:bg-gray-100 rounded-xl transition">
                 Batal
               </button>
-              <button type="button" onClick={handleSave} disabled={isPending} className="px-4 py-2 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition flex items-center gap-2">
+              <button type="button" onClick={handleSave} disabled={isPending} className="w-full sm:w-auto text-center px-4 py-2 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition flex items-center justify-center gap-2">
                 {isPending ? (
                   <FiLoader className="w-4 h-4 animate-spin" />
                 ) : null}

@@ -85,11 +85,11 @@ export default async function PengaturanPage({ searchParams }: { searchParams: P
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* 1. Identitas Utama */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-              <div className="bg-gray-50/50 px-6 py-5 border-b border-gray-100">
+              <div className="bg-gray-50/50 px-5 sm:px-6 py-4 sm:py-5 border-b border-gray-100">
                 <h3 className="text-lg font-montserrat-700 text-[#1C3F2D]">Identitas Utama</h3>
                 <p className="text-sm text-gray-500 mt-1">Informasi dasar desa dan kalimat penyambut utama (slogan) di halaman beranda.</p>
               </div>
-              <div className="p-6 md:p-8 space-y-5">
+              <div className="p-5 sm:p-6 md:p-8 space-y-5">
                 <div>
                   <label htmlFor="desa_nama" className="block text-sm font-inter-600 text-gray-700 mb-2">Nama Desa</label>
                   <input type="text" id="desa_nama" name="desa_nama" defaultValue={settings.desa_nama || ''} className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" />
@@ -108,11 +108,11 @@ export default async function PengaturanPage({ searchParams }: { searchParams: P
 
             {/* 2. Teks Beranda Tambahan */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-              <div className="bg-gray-50/50 px-6 py-5 border-b border-gray-100">
+              <div className="bg-gray-50/50 px-5 sm:px-6 py-4 sm:py-5 border-b border-gray-100">
                 <h3 className="text-lg font-montserrat-700 text-[#1C3F2D]">Teks Pengantar</h3>
                 <p className="text-sm text-gray-500 mt-1">Paragraf perkenalan singkat yang akan dimunculkan di halaman depan setelah banner utama.</p>
               </div>
-              <div className="p-6 md:p-8 space-y-5">
+              <div className="p-5 sm:p-6 md:p-8 space-y-5">
                 <div>
                   <label htmlFor="tentang_desa_deskripsi" className="block text-sm font-inter-600 text-gray-700 mb-2">Teks &quot;Tentang Desa&quot; (Beranda)</label>
                   <textarea id="tentang_desa_deskripsi" name="tentang_desa_deskripsi" defaultValue={settings.tentang_desa_deskripsi || ''} rows={4} className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] resize-y"></textarea>
@@ -122,11 +122,11 @@ export default async function PengaturanPage({ searchParams }: { searchParams: P
 
             {/* 3. Footer */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-              <div className="bg-gray-50/50 px-6 py-5 border-b border-gray-100">
+              <div className="bg-gray-50/50 px-5 sm:px-6 py-4 sm:py-5 border-b border-gray-100">
                 <h3 className="text-lg font-montserrat-700 text-[#1C3F2D]">Pengaturan Footer</h3>
                 <p className="text-sm text-gray-500 mt-1">Teks yang terletak di bagian paling bawah website.</p>
               </div>
-              <div className="p-6 md:p-8 space-y-5">
+              <div className="p-5 sm:p-6 md:p-8 space-y-5">
                 <div>
                   <label htmlFor="footer_deskripsi" className="block text-sm font-inter-600 text-gray-700 mb-2">Deskripsi Singkat Footer</label>
                   <textarea id="footer_deskripsi" name="footer_deskripsi" defaultValue={settings.footer_deskripsi || ''} rows={3} className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] resize-y"></textarea>
@@ -141,11 +141,11 @@ export default async function PengaturanPage({ searchParams }: { searchParams: P
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Profil Singkat */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-              <div className="bg-gray-50/50 px-6 py-5 border-b border-gray-100">
+              <div className="bg-gray-50/50 px-5 sm:px-6 py-4 sm:py-5 border-b border-gray-100">
                 <h3 className="text-lg font-montserrat-700 text-[#1C3F2D]">Profil Singkat Desa</h3>
                 <p className="text-sm text-gray-500 mt-1">Narasi tentang sejarah, kebudayaan, atau gambaran umum desa yang ditampilkan khusus di halaman profil.</p>
               </div>
-              <div className="p-6 md:p-8 space-y-5">
+              <div className="p-5 sm:p-6 md:p-8 space-y-5">
                 <div>
                   <label htmlFor="profil_hero_subtitle" className="block text-sm font-inter-600 text-gray-700 mb-2">Teks Pengantar Halaman Profil</label>
                   <textarea id="profil_hero_subtitle" name="profil_hero_subtitle" defaultValue={settings.profil_hero_subtitle || ''} rows={2} className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] resize-y"></textarea>
@@ -159,11 +159,11 @@ export default async function PengaturanPage({ searchParams }: { searchParams: P
 
             {/* Visi */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-              <div className="bg-gray-50/50 px-6 py-5 border-b border-gray-100">
+              <div className="bg-gray-50/50 px-5 sm:px-6 py-4 sm:py-5 border-b border-gray-100">
                 <h3 className="text-lg font-montserrat-700 text-[#1C3F2D]">Visi Pembangunan</h3>
                 <p className="text-sm text-gray-500 mt-1">Teks utama yang menjelaskan cita-cita besar atau tujuan akhir pembangunan desa.</p>
               </div>
-              <div className="p-6 md:p-8 space-y-5">
+              <div className="p-5 sm:p-6 md:p-8 space-y-5">
                 <div>
                   <label htmlFor="desa_visi" className="block text-sm font-inter-600 text-gray-700 mb-2">Teks Visi Desa</label>
                   <textarea id="desa_visi" name="desa_visi" defaultValue={settings.desa_visi || ''} rows={3} className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] resize-y"></textarea>
@@ -182,11 +182,11 @@ export default async function PengaturanPage({ searchParams }: { searchParams: P
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {/* Statistik */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-              <div className="bg-gray-50/50 px-6 py-5 border-b border-gray-100">
+              <div className="bg-gray-50/50 px-5 sm:px-6 py-4 sm:py-5 border-b border-gray-100">
                 <h3 className="text-lg font-montserrat-700 text-[#1C3F2D]">Statistik &amp; Demografi</h3>
                 <p className="text-sm text-gray-500 mt-1">Angka-angka representatif desa (penduduk, wilayah, dsb) untuk meningkatkan transparansi informasi.</p>
               </div>
-              <div className="p-6 md:p-8">
+              <div className="p-5 sm:p-6 md:p-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="statistik_penduduk" className="block text-sm font-inter-600 text-gray-700 mb-2">Jumlah Penduduk</label>
@@ -218,11 +218,11 @@ export default async function PengaturanPage({ searchParams }: { searchParams: P
 
             {/* Kontak & Sosmed */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-              <div className="bg-gray-50/50 px-6 py-5 border-b border-gray-100">
+              <div className="bg-gray-50/50 px-5 sm:px-6 py-4 sm:py-5 border-b border-gray-100">
                 <h3 className="text-lg font-montserrat-700 text-[#1C3F2D]">Kontak &amp; Sosial Media</h3>
                 <p className="text-sm text-gray-500 mt-1">Informasi untuk menghubungi aparatur desa dan tautan jejaring sosial resmi.</p>
               </div>
-              <div className="p-6 md:p-8 space-y-5">
+              <div className="p-5 sm:p-6 md:p-8 space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="kontak_telepon" className="block text-sm font-inter-600 text-gray-700 mb-2">Nomor Telepon / WhatsApp</label>
@@ -291,11 +291,11 @@ export default async function PengaturanPage({ searchParams }: { searchParams: P
 
           {/* Misi CRUD */}
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div className="bg-gray-50/50 px-6 py-5 border-b border-gray-100">
+            <div className="bg-gray-50/50 px-5 sm:px-6 py-4 sm:py-5 border-b border-gray-100">
               <h3 className="text-lg font-montserrat-700 text-[#1C3F2D]">Daftar Misi Desa</h3>
               <p className="text-sm text-gray-500 mt-1">Kelola poin-poin misi yang ditampilkan dalam bentuk kartu-kartu terpisah di halaman web.</p>
             </div>
-            <div className="p-6 md:p-8">
+            <div className="p-5 sm:p-6 md:p-8">
               <DynamicMisiForm
                 initialData={misiData}
                 createAction={createMisi}
@@ -307,11 +307,11 @@ export default async function PengaturanPage({ searchParams }: { searchParams: P
 
           {/* Nilai Utama CRUD */}
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div className="bg-gray-50/50 px-6 py-5 border-b border-gray-100">
+            <div className="bg-gray-50/50 px-5 sm:px-6 py-4 sm:py-5 border-b border-gray-100">
               <h3 className="text-lg font-montserrat-700 text-[#1C3F2D]">Daftar Nilai Utama</h3>
               <p className="text-sm text-gray-500 mt-1">Nilai-nilai utama atau filosofi yang dijunjung oleh pemerintahan desa.</p>
             </div>
-            <div className="p-6 md:p-8">
+            <div className="p-5 sm:p-6 md:p-8">
               <DynamicNilaiUtamaForm
                 initialData={nilaiUtamaData}
                 createAction={createNilaiUtama}

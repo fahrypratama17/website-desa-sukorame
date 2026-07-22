@@ -41,24 +41,24 @@ export default async function AuditLogPage() {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[#FAF9F6] border-b border-gray-100 text-[#414844] font-inter-600 text-sm">
-                <th className="px-6 py-4">Waktu</th>
-                <th className="px-6 py-4">Pelaku</th>
-                <th className="px-6 py-4">Aksi</th>
-                <th className="px-6 py-4">Modul</th>
-                <th className="px-6 py-4 w-1/3">Detail Objek</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4">Waktu</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4">Pelaku</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4">Aksi</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4">Modul</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4 w-1/3">Detail Objek</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {logs.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500 font-inter-400">
+                  <td colSpan={5} className="px-4 sm:px-6 py-12 text-center text-gray-500 font-inter-400">
                     Belum ada aktivitas yang terekam.
                   </td>
                 </tr>
               ) : (
                 logs.map((log) => (
                   <tr key={log.id} className="hover:bg-gray-50 transition">
-                    <td className="px-6 py-4 text-sm text-gray-500 font-inter-500">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm text-gray-500 font-inter-500">
                       {new Date(log.createdAt).toLocaleDateString('id-ID', {
                         day: 'numeric',
                         month: 'short',
@@ -67,7 +67,7 @@ export default async function AuditLogPage() {
                         minute: '2-digit',
                       })}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-full bg-[#E8F3ED] text-[#1C3F2D] flex items-center justify-center font-bold text-xs uppercase">
                           {log.userName.substring(0, 2)}
@@ -75,15 +75,15 @@ export default async function AuditLogPage() {
                         <span className="font-inter-600 text-gray-700 text-sm">{log.userName}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       {getActionBadge(log.action)}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       <span className="text-sm font-inter-500 text-[#1C3F2D] px-2 py-1 bg-gray-50 rounded-md border border-gray-100">
                         {log.entity}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       <p className="text-sm text-gray-600 font-inter-400 line-clamp-2">
                         {log.entityName}
                       </p>
