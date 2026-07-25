@@ -12,22 +12,22 @@ interface BeritaPageSectionProps {
 
 const BeritaPageSection = ({ beritaData, totalPages }: BeritaPageSectionProps) => {
   return (
-    <section className="bg-white min-h-screen pt-32 pb-16">
-      <div className="mx-auto w-[90%]">
-        <div className="mb-12">
-          <h2 className="text-4xl font-montserrat-700 text-[#1C3F2D] mb-4">Katalog Berita Desa</h2>
-          <p className="text-[#414844] font-inter-400 text-lg">Informasi terbaru seputar kegiatan, pembangunan, dan pengumuman di Desa Sukorame.</p>
+    <section className="bg-white min-h-screen pt-24 md:pt-32 pb-12 md:pb-16">
+      <div className="mx-auto w-[92%] sm:w-[90%]">
+        <div className="mb-8 md:mb-12">
+          <h2 className="text-3xl md:text-4xl font-montserrat-700 text-[#1C3F2D] mb-3 md:mb-4">Katalog Berita Desa</h2>
+          <p className="text-[#414844] font-inter-400 text-base md:text-lg">Informasi terbaru seputar kegiatan, pembangunan, dan pengumuman di Desa Sukorame.</p>
         </div>
 
         {beritaData.length === 0 ? (
-          <div className="text-center py-24 bg-gray-50 rounded-3xl border border-gray-100">
-            <h3 className="text-xl font-montserrat-600 text-gray-500">Belum ada berita yang diterbitkan.</h3>
+          <div className="text-center py-16 md:py-24 bg-gray-50 rounded-3xl border border-gray-100">
+            <h3 className="text-lg md:text-xl font-montserrat-600 text-gray-500">Belum ada berita yang diterbitkan.</h3>
           </div>
         ) : (
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {beritaData.map((item) => (
               <Link href={`/berita/${item.slug}`} key={item.id} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-gray-100 transition duration-300 flex flex-col">
-                <div className="aspect-[4/3] bg-gray-100 overflow-hidden relative">
+                <div className="aspect-[16/10] sm:aspect-[4/3] bg-gray-100 overflow-hidden relative">
                   {item.thumbnail ? (
                     <img src={item.thumbnail} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
                   ) : (
@@ -39,7 +39,7 @@ const BeritaPageSection = ({ beritaData, totalPages }: BeritaPageSectionProps) =
                     {item.kategori}
                   </div>
                 </div>
-                <div className="p-3 md:p-6 flex flex-col flex-grow">
+                <div className="p-4 md:p-6 flex flex-col flex-grow">
                   <div className="text-[10px] md:text-xs text-gray-500 font-inter-500 mb-2 md:mb-3 flex items-center gap-1 md:gap-2">
                     <FiCalendar className="w-3 h-3 md:w-4 md:h-4" />
                     {new Date(item.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}

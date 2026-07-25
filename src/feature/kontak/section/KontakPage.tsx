@@ -46,19 +46,19 @@ const KontakPage = ({ settings }: { settings: Record<string, string> }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] pb-24">
+    <div className="min-h-screen bg-[#FAF9F6] pb-16 md:pb-24">
       {/* Header Area */}
-      <div className="mx-auto w-[90%] max-w-6xl pt-16 md:pt-24">
-        <h1 className="font-montserrat-700 text-3xl md:text-5xl text-[#1C3F2D] mb-4">
+      <div className="mx-auto w-[92%] sm:w-[90%] max-w-6xl pt-20 md:pt-24">
+        <h1 className="font-montserrat-700 text-3xl md:text-5xl text-[#1C3F2D] mb-3 md:mb-4">
           Hubungi Kami
         </h1>
-        <p className="font-inter-400 text-[#414844] text-base md:text-lg max-w-2xl leading-relaxed">
+        <p className="font-inter-400 text-[#414844] text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">
           Pemerintah Desa Sukorame siap melayani dan mendengarkan aspirasi Anda. Silakan hubungi kami melalui kanal yang tersedia atau kunjungi kantor desa pada jam kerja.
         </p>
       </div>
 
       {/* Main Content Grid */}
-      <div className="mx-auto w-[90%] max-w-6xl mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="mx-auto w-[92%] sm:w-[90%] max-w-6xl mt-8 md:mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Left Column: Contact Cards */}
         <div className="lg:col-span-5 flex flex-col gap-4">
@@ -141,8 +141,8 @@ const KontakPage = ({ settings }: { settings: Record<string, string> }) => {
 
         {/* Right Column: Form */}
         <div className="lg:col-span-7">
-          <div className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-gray-100">
-            <h2 className="font-montserrat-700 text-2xl md:text-3xl text-[#1C3F2D] mb-8">Kirim Pesan</h2>
+          <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-sm border border-gray-100">
+            <h2 className="font-montserrat-700 text-xl sm:text-2xl md:text-3xl text-[#1C3F2D] mb-6 md:mb-8">Kirim Pesan</h2>
             
             <form onSubmit={handleWhatsAppRedirect} className="flex flex-col gap-6">
               
@@ -236,7 +236,7 @@ const KontakPage = ({ settings }: { settings: Record<string, string> }) => {
       </div>
 
       {/* Map Section */}
-      <div className="mx-auto w-[90%] max-w-6xl mt-12 rounded-3xl overflow-hidden shadow-sm border border-gray-200 h-[500px] bg-[#E8EFEA] relative mb-12">
+      <div className="mx-auto w-[92%] sm:w-[90%] max-w-6xl mt-8 md:mt-12 rounded-3xl overflow-hidden shadow-sm border border-gray-200 h-[300px] sm:h-[400px] md:h-[500px] bg-[#E8EFEA] relative mb-12 md:mb-16">
         <MapViewer />
       </div>
     </div>

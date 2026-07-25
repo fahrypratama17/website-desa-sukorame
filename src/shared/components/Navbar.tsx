@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FiMenu, FiX, FiChevronDown, FiArrowRight, FiMapPin, FiHome } from "react-icons/fi";
 import { FaBuildingColumns, FaMagnifyingGlass } from "react-icons/fa6";
 
@@ -72,6 +72,19 @@ const Navbar = ({ settings }: NavbarProps) => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const navbarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (navbarRef.current && !navbarRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,157 +109,167 @@ const Navbar = ({ settings }: NavbarProps) => {
 
   return (
     <>
-      <nav className="relative z-[100] py-4 lg:py-8 bg-white shadow-sm">
+      <nav ref={navbarRef} className="relative z-[100] py-4 lg:py-6 xl:py-8 bg-white shadow-sm">
         <div className="mx-auto flex w-[90%] items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 text-green-50" onClick={() => setIsOpen(false)}>
-          <FaBuildingColumns className="h-6 w-6 text-[#1C3F2D]" />
-          <h3 className="font-montserrat-700 text-lg xl:text-xl whitespace-nowrap">Desa Sukorame</h3>
-        </Link>
-        
-        {/* Mobile Toggle Button */}
-        <button 
-          className="lg:hidden p-2 text-green-50"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle Menu"
-        >
-          {isOpen ? (
-            <FiX className="w-6 h-6" />
-          ) : (
-            <FiMenu className="w-6 h-6" />
-          )}
-        </button>
+          <Link href="/" className="flex items-center gap-3 text-green-50" onClick={() => setIsOpen(false)}>
+            <FaBuildingColumns className="h-6 w-6 text-[#1C3F2D]" />
+            <h3 className="font-montserrat-700 text-lg xl:text-xl whitespace-nowrap">Desa Sukorame</h3>
+          </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center justify-between gap-4 xl:gap-8">
-          {navLink.map((item) =>
-            item.children ? (
-              <div key={item.name} className="group relative">
-                <button
-                  className={`flex cursor-pointer items-center gap-1 text-sm xl:text-base whitespace-nowrap transition-all duration-200 hover:scale-105 ${
-                    isDropdownActive(item.children)
-                      ? "font-inter-700 text-green-50 border-b-2 border-green-50 pb-1"
-                      : "font-inter-500 text-green-50/70 hover:text-green-50"
-                  }`}
-                >
-                  {item.name}
-                  <FiChevronDown className="h-4 w-4" />
-                </button>
-
-                <div className="invisible absolute top-full left-0 z-50 mt-2 min-w-45 origin-top scale-95 rounded-lg bg-white py-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
-                  {item.children.map((child) => (
-                    <Link
-                      key={child.name}
-                      href={child.link}
-                      className={`font-inter-500 block px-4 py-2 transition-colors hover:bg-green-100 hover:text-green-700 ${
-                        pathname === child.link
-                          ? "text-green-700 font-inter-700 bg-green-50/5"
-                          : "text-green-50"
-                      }`}
-                    >
-                      {child.name}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <Link
-                key={item.name}
-                href={item.link}
-                className={`text-sm xl:text-base whitespace-nowrap transition-all duration-200 hover:scale-105 ${
-                  isLinkActive(item.link)
-                    ? "font-inter-700 text-green-50 border-b-2 border-green-50 pb-1"
-                    : "font-inter-500 text-green-50/70 hover:text-green-50"
-                }`}
-              >
-                {item.name}
-              </Link>
-            ),
-          )}
-        </div>
-        
-        {/* Desktop Location & Search */}
-        <div className="hidden lg:flex items-center gap-4">
-          <button 
-            onClick={() => setIsSearchOpen(true)}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 border border-gray-200 text-green-800 hover:bg-green-100 hover:text-green-700 transition-colors"
-            aria-label="Open Search"
+          {/* Mobile Toggle Button */}
+          <button
+            className="xl:hidden p-2 text-green-50"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Menu"
           >
-            <FaMagnifyingGlass className="w-5 h-5" />
+            {isOpen ? (
+              <FiX className="w-6 h-6" />
+            ) : (
+              <FiMenu className="w-6 h-6" />
+            )}
           </button>
 
-          <button className="hidden lg:flex font-inter-500 bg-mint-850 cursor-pointer items-center gap-2 rounded-full px-3 py-2 xl:px-4 text-sm xl:text-base whitespace-nowrap transition-transform duration-300 hover:scale-105 text-green-50">
-            <FiMapPin className="h-5 w-5 xl:h-6 xl:w-6" />
-            <p>{settings?.kontak_lokasi || "Kec. Binangun, Blitar"}</p>
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 flex flex-col py-4 max-h-[80vh] overflow-y-auto">
-          <div className="w-[90%] mx-auto flex flex-col gap-4">
-            {navLink.map((item) => (
-              <div key={item.name} className="flex flex-col border-b border-gray-50 pb-2">
-                {item.children ? (
-                  <>
-                    <button 
-                      onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
-                      className="flex items-center justify-between font-inter-600 text-green-50 py-2"
-                    >
-                      {item.name}
-                      <FiChevronDown className={`w-4 h-4 transition-transform ${openDropdown === item.name ? 'rotate-180' : ''}`} />
-                    </button>
-                    {openDropdown === item.name && (
-                      <div className="flex flex-col gap-2 pl-4 pt-2 border-l-2 border-gray-100 ml-2">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.name}
-                            href={child.link}
-                            onClick={() => setIsOpen(false)}
-                            className={`py-2 ${pathname === child.link ? 'text-green-700 font-inter-700' : 'text-gray-500 font-inter-500'}`}
-                          >
-                            {child.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <Link
-                    href={item.link}
-                    onClick={() => setIsOpen(false)}
-                    className={`py-2 ${isLinkActive(item.link) ? 'font-inter-700 text-green-700' : 'font-inter-600 text-green-50'}`}
+          {/* Desktop Navigation */}
+          <div className="hidden xl:flex items-center justify-between gap-4 xl:gap-8">
+            {navLink.map((item) =>
+              item.children ? (
+                <div
+                  key={item.name}
+                  className="group relative"
+                  onMouseEnter={() => setOpenDropdown(item.name)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setOpenDropdown(openDropdown === item.name ? null : item.name);
+                    }}
+                    className={`flex cursor-pointer items-center gap-1 text-sm xl:text-base whitespace-nowrap transition-all duration-200 hover:scale-105 ${isDropdownActive(item.children)
+                        ? "font-inter-700 text-green-50 border-b-2 border-green-50 pb-1"
+                        : "font-inter-500 text-green-50/70 hover:text-green-50"
+                      }`}
                   >
                     {item.name}
-                  </Link>
-                )}
-              </div>
-            ))}
-            <button 
+                    <FiChevronDown className="h-4 w-4" />
+                  </button>
+
+                  <div className={`absolute top-full left-0 z-50 mt-2 min-w-45 origin-top rounded-lg bg-white py-2 shadow-xl transition-all duration-200 ${openDropdown === item.name
+                      ? "visible scale-100 opacity-100 pointer-events-auto"
+                      : "invisible scale-95 opacity-0 pointer-events-none"
+                    }`}>
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.name}
+                        href={child.link}
+                        onClick={() => setOpenDropdown(null)}
+                        className={`font-inter-500 block px-4 py-2 transition-colors hover:bg-green-100 hover:text-green-700 ${pathname === child.link
+                            ? "text-green-700 font-inter-700 bg-green-50/5"
+                            : "text-green-50"
+                          }`}
+                      >
+                        {child.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={item.name}
+                  href={item.link}
+                  className={`text-sm xl:text-base whitespace-nowrap transition-all duration-200 hover:scale-105 ${isLinkActive(item.link)
+                      ? "font-inter-700 text-green-50 border-b-2 border-green-50 pb-1"
+                      : "font-inter-500 text-green-50/70 hover:text-green-50"
+                    }`}
+                >
+                  {item.name}
+                </Link>
+              ),
+            )}
+          </div>
+
+          {/* Desktop Location & Search */}
+          <div className="hidden xl:flex items-center gap-4">
+            <button
               onClick={() => setIsSearchOpen(true)}
-              className="mt-2 flex items-center justify-center bg-white text-green-800 font-inter-600 rounded-xl px-4 py-3 border border-gray-200 shadow-sm"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 border border-gray-200 text-green-800 hover:bg-green-100 hover:text-green-700 transition-colors"
+              aria-label="Open Search"
             >
-              <FaMagnifyingGlass className="w-5 h-5 mr-2" />
-              Cari Berita & Program
+              <FaMagnifyingGlass className="w-5 h-5" />
             </button>
-            
-            <div className="mt-2 font-inter-500 bg-mint-850 flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-base text-green-50">
-              <FiMapPin className="h-6 w-6" />
+
+            <button className="hidden xl:flex font-inter-500 bg-mint-850 cursor-pointer items-center gap-2 rounded-full px-3 py-2 xl:px-4 text-sm xl:text-base whitespace-nowrap transition-transform duration-300 hover:scale-105 text-green-50">
+              <FiMapPin className="h-5 w-5 xl:h-6 xl:w-6" />
               <p>{settings?.kontak_lokasi || "Kec. Binangun, Blitar"}</p>
-            </div>
+            </button>
           </div>
         </div>
-      )}
-    </nav>
-      
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="xl:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 flex flex-col py-4 max-h-[80vh] overflow-y-auto">
+            <div className="w-[90%] mx-auto flex flex-col gap-4">
+              {navLink.map((item) => (
+                <div key={item.name} className="flex flex-col border-b border-gray-50 pb-2">
+                  {item.children ? (
+                    <>
+                      <button
+                        onClick={() => setOpenDropdown(openDropdown === item.name ? null : item.name)}
+                        className="flex items-center justify-between font-inter-600 text-green-50 py-2"
+                      >
+                        {item.name}
+                        <FiChevronDown className={`w-4 h-4 transition-transform ${openDropdown === item.name ? 'rotate-180' : ''}`} />
+                      </button>
+                      {openDropdown === item.name && (
+                        <div className="flex flex-col gap-2 pl-4 pt-2 border-l-2 border-gray-100 ml-2">
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.name}
+                              href={child.link}
+                              onClick={() => setIsOpen(false)}
+                              className={`py-2 ${pathname === child.link ? 'text-green-700 font-inter-700' : 'text-gray-500 font-inter-500'}`}
+                            >
+                              {child.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      href={item.link}
+                      onClick={() => setIsOpen(false)}
+                      className={`py-2 ${isLinkActive(item.link) ? 'font-inter-700 text-green-700' : 'font-inter-600 text-green-50'}`}
+                    >
+                      {item.name}
+                    </Link>
+                  )}
+                </div>
+              ))}
+              <button
+                onClick={() => setIsSearchOpen(true)}
+                className="mt-2 flex items-center justify-center bg-white text-green-800 font-inter-600 rounded-xl px-4 py-3 border border-gray-200 shadow-sm"
+              >
+                <FaMagnifyingGlass className="w-5 h-5 mr-2" />
+                Cari Berita & Program
+              </button>
+
+              <div className="mt-2 font-inter-500 bg-mint-850 flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-base text-green-50">
+                <FiMapPin className="h-6 w-6" />
+                <p>{settings?.kontak_lokasi || "Kec. Binangun, Blitar"}</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </nav>
+
       {/* Search Overlay Modal */}
       {isSearchOpen && (
         <div className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-start justify-center pt-16 px-4 md:pt-24">
           {/* Overlay Click Area to Close */}
           <div className="absolute inset-0" onClick={() => setIsSearchOpen(false)}></div>
-          
+
           <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl p-5 md:p-6 relative z-10 animate-in fade-in zoom-in-95 duration-200">
-            <button 
+            <button
               onClick={() => setIsSearchOpen(false)}
               className="absolute right-4 top-4 md:right-5 md:top-5 text-gray-400 hover:text-gray-800 bg-gray-50 hover:bg-gray-100 rounded-full p-2 transition-colors"
               aria-label="Close Search"
@@ -257,7 +280,7 @@ const Navbar = ({ settings }: NavbarProps) => {
               <label htmlFor="global-search" className="font-montserrat-700 text-lg md:text-xl text-[#1C3F2D] text-center mb-1">Pencarian Website</label>
               <div className="relative">
                 <FaMagnifyingGlass className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                <input 
+                <input
                   id="global-search"
                   type="text"
                   placeholder="Ketik kata kunci berita atau program..."
@@ -266,8 +289,8 @@ const Navbar = ({ settings }: NavbarProps) => {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   autoFocus
                 />
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#285A43] hover:bg-[#1C3F2D] text-white p-2 md:p-2.5 rounded-lg transition-colors flex items-center justify-center shadow-sm"
                   aria-label="Cari"
                   title="Cari"
