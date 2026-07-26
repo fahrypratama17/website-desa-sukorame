@@ -153,23 +153,25 @@ const Navbar = ({ settings }: NavbarProps) => {
                     <FiChevronDown className="h-4 w-4" />
                   </button>
 
-                  <div className={`absolute top-full left-0 z-50 mt-2 min-w-45 origin-top rounded-lg bg-white py-2 shadow-xl transition-all duration-200 ${openDropdown === item.name
+                  <div className={`absolute top-full left-0 z-50 pt-2 min-w-45 origin-top transition-all duration-200 ${openDropdown === item.name
                       ? "visible scale-100 opacity-100 pointer-events-auto"
                       : "invisible scale-95 opacity-0 pointer-events-none"
                     }`}>
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.name}
-                        href={child.link}
-                        onClick={() => setOpenDropdown(null)}
-                        className={`font-inter-500 block px-4 py-2 transition-colors hover:bg-green-100 hover:text-green-700 ${pathname === child.link
-                            ? "text-green-700 font-inter-700 bg-green-50/5"
-                            : "text-green-50"
-                          }`}
-                      >
-                        {child.name}
-                      </Link>
-                    ))}
+                    <div className="rounded-lg bg-white py-2 shadow-xl border border-gray-100">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.name}
+                          href={child.link}
+                          onClick={() => setOpenDropdown(null)}
+                          className={`font-inter-500 block px-4 py-2 transition-colors hover:bg-green-100 hover:text-green-700 ${pathname === child.link
+                              ? "text-green-700 font-inter-700 bg-green-50/5"
+                              : "text-green-50"
+                            }`}
+                        >
+                          {child.name}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ) : (

@@ -44,7 +44,7 @@ const MemberPhoto = ({
       alt={name}
       width={400}
       height={400}
-      className={`w-full h-full object-cover transition-transform duration-500 hover:scale-105 ${className}`}
+      className={`w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105 ${className}`}
       unoptimized
       priority={priority}
       onError={() => setImgError(true)}
