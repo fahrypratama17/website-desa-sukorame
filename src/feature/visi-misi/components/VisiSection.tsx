@@ -10,7 +10,7 @@ import { FiEye } from "react-icons/fi";
 const VisiSection = ({ data }: VisiSectionProps) => {
   return (
     <section className="mb-16">
-      <div className="bg-green-150 relative overflow-hidden rounded-[32px] p-12 text-left flex flex-col items-start w-full">
+      <div className="bg-green-150 relative overflow-hidden rounded-2xl md:rounded-[32px] p-6 md:p-12 text-left flex flex-col items-start w-full">
         {/* Accent icon */}
         <FiEye className="absolute -top-12 -right-12 z-0 h-64 w-64 opacity-[0.05] text-white" />
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Perangkat } from "@prisma/client";
 import Image from "next/image";
 import { FiMail, FiSearch } from "react-icons/fi";
@@ -67,6 +67,16 @@ interface PerangkatPageProps {
 
 const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      // Auto-center the scroll view on mount
+      const centerScroll = (container.scrollWidth - container.clientWidth) / 2;
+      container.scrollLeft = centerScroll;
+    }
+  }, []);
 
   const formattedData = perangkatData.map((p) => ({
     ...p,
@@ -84,12 +94,12 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
   );
 
   return (
-    <div className="min-h-screen bg-white-250 py-16">
-      <div className="mx-auto w-[90%] flex flex-col gap-16">
+    <div className="min-h-screen bg-white-250 py-10 md:py-16">
+      <div className="mx-auto w-[92%] sm:w-[90%] flex flex-col gap-10 md:gap-16">
 
-        {/* Header Section Ã¢â‚¬” lebar sama dengan jajaran perangkat (w-full di dalam 90%) */}
+        {/* Header Section — lebar sama dengan jajaran perangkat (w-full di dalam 90%) */}
         <section className="text-center w-full flex flex-col gap-4">
-          <h1 className="font-montserrat-700 text-green-50 text-[40px] leading-tight">
+          <h1 className="font-montserrat-700 text-green-50 text-3xl md:text-[40px] leading-tight">
             Perangkat Desa Sukorame
           </h1>
           <p className="font-inter-400 text-green-350 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
@@ -98,11 +108,11 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
           </p>
         </section>
 
-        {/* Highlight Kepala Desa Ã¢â‚¬” lebar penuh (w-full) */}
+        {/* Highlight Kepala Desa — lebar penuh (w-full) */}
         <section className="w-full">
-          <div className="bg-white rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 shadow-md border border-green-850/10">
+          <div className="bg-white rounded-3xl p-5 sm:p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8 shadow-md border border-green-850/10">
             {/* Foto Kepala Desa */}
-            <div className="w-full md:w-[300px] h-[340px] rounded-2xl overflow-hidden flex-shrink-0">
+            <div className="w-full max-w-xs md:max-w-none md:w-[300px] h-[300px] sm:h-[340px] rounded-2xl overflow-hidden flex-shrink-0 mx-auto md:mx-0">
               <MemberPhoto
                 src={kepalaDesa.image || ""}
                 name={kepalaDesa.name}
@@ -113,25 +123,25 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
             </div>
 
             {/* Info Kepala Desa */}
-            <div className="flex flex-col flex-grow gap-4 text-left">
+            <div className="flex flex-col flex-grow gap-4 text-center md:text-left items-center md:items-start w-full">
               <div>
-                <span className="inline-block bg-[#DCFCE7] text-[#166534] font-inter-600 text-xs px-3 py-1 rounded-full mb-3 uppercase tracking-wide">
+                <span className="inline-block bg-[#DCFCE7] text-[#166534] font-inter-600 text-xs px-3 py-1 rounded-full mb-2 md:mb-3 uppercase tracking-wide">
                   {kepalaDesa.role}
                 </span>
-                <h2 className="font-montserrat-700 text-green-50 text-3xl md:text-4xl">
+                <h2 className="font-montserrat-700 text-green-50 text-2xl sm:text-3xl md:text-4xl">
                   {kepalaDesa.name}
                 </h2>
               </div>
 
               {/* Kutipan Komitmen */}
-              <div className="border-l-4 border-green-350 pl-4 py-1">
-                <p className="font-inter-400 text-green-350 text-base leading-relaxed italic">
+              <div className="border-l-4 border-green-350 pl-4 py-1 text-left w-full">
+                <p className="font-inter-400 text-green-350 text-sm sm:text-base leading-relaxed italic">
                   "{kepalaDesa.quote}"
                 </p>
               </div>
 
               {/* Kontak Email */}
-              <div className="flex items-center gap-2 mt-2">
+              <div className="flex items-center gap-2 mt-2 justify-center md:justify-start w-full">
                 <FiMail className="h-4 w-4 text-green-350" />
                 <a
                   href={`mailto:${kepalaDesa.email}`}
@@ -144,14 +154,23 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
           </div>
         </section>
 
-        {/* Struktur Organisasi (Bagan Pohon) Ã¢â‚¬” lebar penuh (w-full) */}
-        <section className="w-full flex flex-col gap-8">
+        {/* Struktur Organisasi (Bagan Pohon) — lebar penuh (w-full) */}
+        <section className="w-full flex flex-col gap-6 md:gap-8">
           <h2 className="font-montserrat-700 text-green-50 text-2xl md:text-3xl text-center">
             Struktur Organisasi
           </h2>
 
-          <div className="bg-white/60 backdrop-blur-sm p-8 md:p-12 rounded-3xl border border-green-850/10 shadow-sm flex flex-col items-center overflow-x-auto">
-            <div className="min-w-[900px] flex flex-col items-center w-full">
+          <div className="w-full">
+            {/* Hint Geser untuk Layar Kecil */}
+            <div className="flex lg:hidden items-center justify-center gap-1.5 text-[11px] text-green-350 animate-pulse mb-3 bg-white/40 py-1.5 rounded-full border border-green-850/5">
+              <span>&larr; Geser horizontal untuk melihat bagan &rarr;</span>
+            </div>
+
+            <div 
+              ref={scrollContainerRef}
+              className="bg-white/60 backdrop-blur-sm p-4 sm:p-8 md:p-12 rounded-3xl border border-green-850/10 shadow-sm flex flex-col overflow-x-auto"
+            >
+              <div className="min-w-[900px] flex flex-col items-center w-full">
 
               {/* Level 1: Kepala Desa */}
               <div className="bg-green-50 text-white font-inter-600 px-6 py-3 rounded-lg text-sm shadow-md transition-all duration-300 hover:scale-105 inline-block text-center w-52">
@@ -199,7 +218,8 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
 
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
         {/* Jajaran Perangkat Desa & Pencarian */}
         <section className="w-full flex flex-col gap-8">

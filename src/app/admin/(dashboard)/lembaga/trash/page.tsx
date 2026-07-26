@@ -34,24 +34,24 @@ export default async function LembagaTrashPage() {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-red-50/50 border-b border-red-100 text-red-900 font-inter-600 text-sm">
-                <th className="px-6 py-4">No</th>
-                <th className="px-6 py-4">Lembaga</th>
-                <th className="px-6 py-4">Dihapus Pada</th>
-                <th className="px-6 py-4 text-right">Aksi</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4">No</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4">Lembaga</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4">Dihapus Pada</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4 text-right">Aksi</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {lembagaList.length === 0 ? (
                 <tr>
-                  <td colSpan={4} className="px-6 py-12 text-center text-gray-500 font-inter-400">
+                  <td colSpan={4} className="px-4 sm:px-6 py-12 text-center text-gray-500 font-inter-400">
                     Tong sampah kosong.
                   </td>
                 </tr>
               ) : (
                 lembagaList.map((item, index) => (
                   <tr key={item.id} className="hover:bg-red-50/30 transition">
-                    <td className="px-6 py-4 text-sm text-gray-500 font-inter-400">{index + 1}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm text-gray-500 font-inter-400">{index + 1}</td>
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       <div className="flex items-center gap-4">
                         {item.logo ? (
                           <img src={item.logo} alt={item.name} className="w-12 h-12 rounded-lg object-cover grayscale opacity-70" />
@@ -66,10 +66,10 @@ export default async function LembagaTrashPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-sm text-red-600 font-inter-500">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm text-red-600 font-inter-500">
                       {item.deletedAt ? new Date(item.deletedAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '-'}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       <TrashActionButtons 
                         id={item.id}
                         itemName="lembaga"

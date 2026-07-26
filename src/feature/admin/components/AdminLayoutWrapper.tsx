@@ -22,7 +22,7 @@ export default function AdminLayoutWrapper({
 
   return (
     <>
-      <AdminSidebar isOpen={isSidebarOpen} />
+      <AdminSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       
       {/* Main Content */}
       <div className="flex-1 flex flex-col md:pl-64 min-h-screen relative transition-all duration-300 w-full">
@@ -35,7 +35,7 @@ export default function AdminLayoutWrapper({
       {/* Mobile Overlay */}
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-[#0A2615]/50 backdrop-blur-sm z-20 md:hidden transition-opacity"
+          className="fixed inset-0 bg-[#0A2615]/50 backdrop-blur-sm z-30 md:hidden transition-opacity"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}

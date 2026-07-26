@@ -10,9 +10,9 @@ const ProgramGrid = async () => {
   if (programs.length === 0) return null;
 
   return (
-    <section className="bg-[#FAF9F6] py-16">
+    <section className="bg-[#FAF9F6] py-10 md:py-16">
       <div className="mx-auto w-[90%] max-w-6xl">
-        <h2 className="font-montserrat-700 text-3xl text-[#1C3F2D] mb-8 text-center">
+        <h2 className="font-montserrat-700 text-2xl md:text-3xl text-[#1C3F2D] mb-6 md:mb-8 text-center">
           Daftar Program Desa
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

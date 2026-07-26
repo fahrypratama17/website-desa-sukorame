@@ -32,26 +32,26 @@ const BeritaDetailSection = ({ berita }: BeritaDetailSectionProps) => {
   }, [berita.slug, hasViewed]);
 
   return (
-    <section className="bg-white min-h-screen pt-32 pb-24">
-      <div className="mx-auto w-[90%]">
+    <section className="bg-white min-h-screen pt-24 md:pt-32 pb-16 md:pb-24">
+      <div className="mx-auto w-[92%] sm:w-[90%] max-w-3xl md:max-w-4xl">
         
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="bg-[#285A43]/10 text-[#285A43] px-4 py-1.5 rounded-full text-sm font-inter-600">
+        <div className="mb-6 md:mb-8">
+          <div className="flex flex-wrap items-center gap-3 mb-4 md:mb-6">
+            <span className="bg-[#285A43]/10 text-[#285A43] px-4 py-1.5 rounded-full text-xs sm:text-sm font-inter-600">
               {berita.kategori}
             </span>
-            <span className="text-gray-500 text-sm font-inter-500 flex items-center gap-1.5">
+            <span className="text-gray-500 text-xs sm:text-sm font-inter-500 flex items-center gap-1.5">
               <FiCalendar className="w-4 h-4" />
               {new Date(berita.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}
             </span>
-            <span className="text-gray-500 text-sm font-inter-500 flex items-center gap-1.5 ml-2">
+            <span className="text-gray-500 text-xs sm:text-sm font-inter-500 flex items-center gap-1.5 sm:ml-2">
               <FiEye className="w-4 h-4" />
               {berita.viewCount} Dilihat
             </span>
           </div>
           
-          <h1 className="text-3xl md:text-5xl font-montserrat-700 text-[#1C3F2D] leading-[1.3] mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-montserrat-700 text-[#1C3F2D] leading-[1.3] mb-4 md:mb-6">
             {berita.title}
           </h1>
 
@@ -68,7 +68,7 @@ const BeritaDetailSection = ({ berita }: BeritaDetailSectionProps) => {
 
         {/* Thumbnail */}
         {berita.thumbnail && (
-          <div className="mb-12 rounded-3xl overflow-hidden aspect-[16/9] shadow-md border border-gray-100">
+          <div className="mb-8 md:mb-12 rounded-2xl md:rounded-3xl overflow-hidden aspect-[16/10] sm:aspect-[16/9] shadow-md border border-gray-100">
             <img src={berita.thumbnail} alt={berita.title} className="w-full h-full object-cover" />
           </div>
         )}
@@ -79,23 +79,23 @@ const BeritaDetailSection = ({ berita }: BeritaDetailSectionProps) => {
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw]}
             components={{
-              h1: ({node, ...props}) => <h1 className="text-3xl md:text-4xl font-montserrat-700 text-[#1C3F2D] mt-10 mb-6 leading-tight" {...props} />,
-              h2: ({node, ...props}) => <h2 className="text-2xl md:text-3xl font-montserrat-700 text-[#1C3F2D] mt-10 mb-6 leading-tight" {...props} />,
-              h3: ({node, ...props}) => <h3 className="text-xl md:text-2xl font-montserrat-700 text-[#1C3F2D] mt-8 mb-4 leading-tight" {...props} />,
-              h4: ({node, ...props}) => <h4 className="text-lg md:text-xl font-montserrat-700 text-[#1C3F2D] mt-6 mb-4" {...props} />,
-              h5: ({node, ...props}) => <h5 className="text-base md:text-lg font-montserrat-700 text-[#1C3F2D] mt-5 mb-3" {...props} />,
-              h6: ({node, ...props}) => <h6 className="text-sm md:text-base font-montserrat-700 text-[#1C3F2D] mt-5 mb-3 uppercase tracking-wider" {...props} />,
-              p: ({node, ...props}) => <p className="font-inter-400 text-[#414844] text-lg leading-relaxed mb-6" {...props} />,
+              h1: ({node, ...props}) => <h1 className="text-2xl sm:text-3xl md:text-4xl font-montserrat-700 text-[#1C3F2D] mt-8 md:mt-10 mb-4 md:mb-6 leading-tight" {...props} />,
+              h2: ({node, ...props}) => <h2 className="text-xl sm:text-2xl md:text-3xl font-montserrat-700 text-[#1C3F2D] mt-8 md:mt-10 mb-4 md:mb-6 leading-tight" {...props} />,
+              h3: ({node, ...props}) => <h3 className="text-lg sm:text-xl md:text-2xl font-montserrat-700 text-[#1C3F2D] mt-6 md:mt-8 mb-3 md:mb-4 leading-tight" {...props} />,
+              h4: ({node, ...props}) => <h4 className="text-base sm:text-lg md:text-xl font-montserrat-700 text-[#1C3F2D] mt-5 md:mt-6 mb-3 md:mb-4" {...props} />,
+              h5: ({node, ...props}) => <h5 className="text-sm sm:text-base md:text-lg font-montserrat-700 text-[#1C3F2D] mt-4 md:mt-5 mb-2 md:mb-3" {...props} />,
+              h6: ({node, ...props}) => <h6 className="text-xs sm:text-sm md:text-base font-montserrat-700 text-[#1C3F2D] mt-4 md:mt-5 mb-2 md:mb-3 uppercase tracking-wider" {...props} />,
+              p: ({node, ...props}) => <p className="font-inter-400 text-[#414844] text-base md:text-lg leading-relaxed mb-4 md:mb-6" {...props} />,
               a: ({node, ...props}) => <a className="text-[#285A43] font-inter-500 hover:underline hover:text-[#1C3F2D] transition-colors" {...props} />,
-              ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-6 font-inter-400 text-[#414844] text-lg space-y-3" {...props} />,
-              ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-6 font-inter-400 text-[#414844] text-lg space-y-3" {...props} />,
+              ul: ({node, ...props}) => <ul className="list-disc pl-5 md:pl-6 mb-4 md:mb-6 font-inter-400 text-[#414844] text-base md:text-lg space-y-2 md:space-y-3" {...props} />,
+              ol: ({node, ...props}) => <ol className="list-decimal pl-5 md:pl-6 mb-4 md:mb-6 font-inter-400 text-[#414844] text-base md:text-lg space-y-2 md:space-y-3" {...props} />,
               li: ({node, ...props}) => <li className="leading-relaxed" {...props} />,
               strong: ({node, ...props}) => <strong className="font-inter-700 text-[#1C3F2D]" {...props} />,
-              blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-[#285A43] pl-6 italic my-8 text-gray-600 bg-gray-50 py-4 pr-6 rounded-r-xl" {...props} />,
+              blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-[#285A43] pl-4 md:pl-6 italic my-6 md:my-8 text-gray-600 bg-gray-50 py-3 md:py-4 pr-4 md:pr-6 rounded-r-xl" {...props} />,
               code: ({node, ...props}) => <code className="bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded text-sm font-mono" {...props} />,
-              pre: ({node, ...props}) => <pre className="bg-gray-900 text-gray-100 p-6 rounded-xl overflow-x-auto mb-6 text-sm" {...props} />,
-              img: ({node, ...props}) => <img className="rounded-xl w-full h-auto my-8 shadow-sm border border-gray-100" {...props} />,
-              hr: ({node, ...props}) => <hr className="my-10 border-gray-200" {...props} />,
+              pre: ({node, ...props}) => <pre className="bg-gray-900 text-gray-100 p-4 md:p-6 rounded-xl overflow-x-auto mb-6 text-xs md:text-sm" {...props} />,
+              img: ({node, ...props}) => <img className="rounded-xl w-full h-auto my-6 md:my-8 shadow-sm border border-gray-100" {...props} />,
+              hr: ({node, ...props}) => <hr className="my-8 md:my-10 border-gray-200" {...props} />,
             }}
           >
             {berita.content}

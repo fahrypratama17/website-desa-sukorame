@@ -36,7 +36,7 @@ const Hero = ({ settings }: HeroProps) => {
           </div>
         </div>
       </div>
-      <div className="relative md:absolute mt-8 md:mt-0 md:-bottom-25 left-1/2 grid grid-cols-2 gap-4 md:flex md:gap-0 w-[90%] md:w-[80%] -translate-x-1/2 items-center justify-around rounded-xl bg-white p-4 md:p-8 shadow-2xl">
+      <div className="relative md:absolute mt-8 md:mt-0 md:-bottom-25 left-0 right-0 md:left-1/2 md:right-auto mx-auto md:mx-0 -translate-x-0 md:-translate-x-1/2 grid grid-cols-2 gap-4 md:flex md:gap-0 w-[90%] md:w-[80%] items-center justify-around rounded-xl bg-white p-4 md:p-8 shadow-2xl">
         <div className="flex flex-col items-center gap-1 md:gap-2">
           <div className="bg-mint-850 flex size-10 md:size-16 items-center justify-center rounded-full">
             <FiUser className="size-5 md:size-8 text-[#1C3F2D]" />

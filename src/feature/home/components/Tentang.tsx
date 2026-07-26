@@ -6,7 +6,7 @@ interface TentangProps {
 
 const Tentang = ({ settings }: TentangProps) => {
   return (
-    <section className="bg-white-250 flex items-center justify-center pt-20 pb-20 md:pt-48 md:pb-28">
+    <section className="bg-white-250 flex items-center justify-center py-16 md:pt-48 md:pb-28">
       <div className="mx-auto flex flex-col-reverse lg:flex-row w-[90%] items-center justify-center gap-8 lg:gap-12">
         <div className="flex flex-col gap-6 lg:gap-8 w-full lg:w-1/2">
           <h1 className="font-montserrat-700 text-2xl md:text-3xl lg:text-[32px] text-green-50">

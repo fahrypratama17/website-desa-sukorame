@@ -88,21 +88,21 @@ export default function PerangkatClient({ initialData, saveAction, deleteAction 
           <h2 className="text-2xl font-montserrat-700 text-[#1C3F2D]">Kelola Perangkat Desa</h2>
           <p className="text-[#414844] mt-1 font-inter-400">Daftar aparatur dan staf pemerintahan desa.</p>
         </div>
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
           <Link
             href="/admin/perangkat/trash"
-            className="px-4 py-2.5 bg-red-50 text-red-700 rounded-lg font-inter-600 hover:bg-red-100 transition flex items-center gap-2 border border-red-200"
+            className="px-4 py-2.5 bg-red-50 text-red-700 rounded-lg font-inter-600 hover:bg-red-100 transition flex items-center justify-center gap-2 border border-red-200 whitespace-nowrap w-full sm:w-auto shrink-0"
             title="Lihat Data yang Terhapus"
           >
             <FiTrash2 className="w-5 h-5" />
-            <span className="hidden sm:inline">Tong Sampah</span>
+            <span>Tong Sampah</span>
           </Link>
           <button 
             onClick={handleOpenAdd}
-            className="px-5 py-2.5 bg-[#0A2615] text-white rounded-lg font-inter-600 hover:bg-[#1C3F2D] transition flex items-center gap-2 shadow-sm"
+            className="px-5 py-2.5 bg-[#0A2615] text-white rounded-lg font-inter-600 hover:bg-[#1C3F2D] transition flex items-center justify-center gap-2 shadow-sm whitespace-nowrap w-full sm:w-auto shrink-0"
           >
             <FiPlus className="w-5 h-5" />
-            Tambah Perangkat
+            <span>Tambah Perangkat</span>
           </button>
         </div>
       </div>
@@ -112,25 +112,25 @@ export default function PerangkatClient({ initialData, saveAction, deleteAction 
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[#FAF9F6] border-b border-gray-100 text-[#414844] font-inter-600 text-sm">
-                <th className="px-6 py-4">No</th>
-                <th className="px-6 py-4">Perangkat</th>
-                <th className="px-6 py-4 text-right">Aksi</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4">No</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4">Perangkat</th>
+                <th className="px-4 sm:px-6 py-3 sm:py-4 text-right">Aksi</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {initialData.length === 0 ? (
                 <tr>
-                  <td colSpan={3} className="px-6 py-12 text-center text-gray-500 font-inter-400">
+                  <td colSpan={3} className="px-4 sm:px-6 py-12 text-center text-gray-500 font-inter-400">
                     Data tim perangkat desa masih kosong. Klik &quot;Tambah Perangkat&quot; untuk memperkenalkan tim Anda.
                   </td>
                 </tr>
               ) : (
                 initialData.map((item, index) => (
                   <tr key={item.id} className="hover:bg-gray-50/50 transition">
-                    <td className="px-6 py-4 text-sm text-gray-500 font-inter-400">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4 text-sm text-gray-500 font-inter-400">
                       {index + 1}
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       <div className="flex items-center gap-4">
                         {item.image ? (
                           <img src={item.image} alt={item.name} className="w-10 h-10 rounded-full object-cover bg-gray-100 border border-gray-200" />
@@ -145,7 +145,7 @@ export default function PerangkatClient({ initialData, saveAction, deleteAction 
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       <div className="flex items-center justify-end gap-2">
                         <button 
                           onClick={() => handleOpenEdit(item)}
@@ -177,7 +177,7 @@ export default function PerangkatClient({ initialData, saveAction, deleteAction 
               </button>
             </div>
             
-            <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-4">
+            <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 font-inter-500">
               <div>
                 <label htmlFor="name" className="block text-sm font-inter-600 text-gray-700 mb-2">Nama Lengkap <span className="text-red-500">*</span></label>
                 <input type="text" id="name" name="name" defaultValue={editingItem?.name} required className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43]" />
@@ -245,11 +245,11 @@ export default function PerangkatClient({ initialData, saveAction, deleteAction 
                 <textarea id="quote" name="quote" defaultValue={editingItem?.quote || ''} rows={3} className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#285A43] resize-y"></textarea>
               </div>
 
-              <div className="pt-4 flex justify-end gap-3 mt-6">
-                <button type="button" onClick={handleClose} disabled={isPending || isUploading} className="px-5 py-2.5 text-gray-600 font-inter-600 hover:bg-gray-100 rounded-xl transition">
+              <div className="pt-4 flex flex-col-reverse sm:flex-row justify-end gap-3 mt-6">
+                <button type="button" onClick={handleClose} disabled={isPending || isUploading} className="w-full sm:w-auto text-center px-5 py-2.5 text-gray-600 font-inter-600 hover:bg-gray-100 rounded-xl transition">
                   Batal
                 </button>
-                <button type="submit" disabled={isPending || isUploading} className="px-5 py-2.5 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition shadow-sm flex items-center gap-2">
+                <button type="submit" disabled={isPending || isUploading} className="w-full sm:w-auto text-center px-5 py-2.5 bg-[#0A2615] text-white font-inter-600 hover:bg-[#1C3F2D] rounded-xl transition shadow-sm flex items-center justify-center gap-2">
                   {isPending ? 'Menyimpan...' : (isUploading ? 'Tunggu Upload...' : 'Simpan')}
                 </button>
               </div>

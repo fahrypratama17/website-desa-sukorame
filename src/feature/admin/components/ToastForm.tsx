@@ -33,7 +33,7 @@ export default function ToastForm({
       
       {/* Toast Notification Popup */}
       {toast && (
-        <div className={`fixed bottom-8 right-8 px-6 py-4 rounded-xl shadow-2xl border flex items-center gap-3 z-[100] transition-all transform translate-y-0 ${
+        <div className={`fixed bottom-8 right-4 left-4 sm:left-auto sm:right-8 px-6 py-4 rounded-xl shadow-2xl border flex items-center gap-3 z-[100] transition-all transform translate-y-0 ${
           toast.type === 'success' ? 'bg-[#0A2615] border-[#1C3F2D] text-white' : 'bg-red-600 border-red-700 text-white'
         }`}>
           {toast.type === 'success' ? (

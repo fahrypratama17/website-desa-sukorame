@@ -170,7 +170,7 @@ export default function TambahBeritaPage() {
         
         {/* Kolom Kiri: Konten Utama */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-6 md:p-8">
             <h3 className="text-lg font-montserrat-700 text-[#1C3F2D] mb-6 border-b border-gray-100 pb-4">Konten Artikel</h3>
             <div className="space-y-6">
               <div>

@@ -10,7 +10,7 @@ export default function AdminHeader({
   const initial = userName.charAt(0).toUpperCase() || 'A';
 
   return (
-    <header className="bg-white border-b border-gray-200 p-4 md:p-6 flex justify-between items-center sticky top-0 z-10 shadow-sm">
+    <header className="bg-white border-b border-gray-200 p-4 md:p-6 flex justify-between items-center sticky top-0 z-20 shadow-sm">
       <div className="flex items-center gap-4">
         {/* Mobile Hamburger Button */}
         <button 

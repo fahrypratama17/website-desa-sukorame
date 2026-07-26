@@ -48,7 +48,7 @@ const NilaiUtamaSection = ({ nilaiItems }: NilaiUtamaSectionProps) => {
 
   return (
     <section className="mb-16">
-      <div className="bg-green-950 relative overflow-hidden rounded-[40px] px-10 py-16">
+      <div className="bg-green-950 relative overflow-hidden rounded-2xl md:rounded-[40px] px-6 py-10 md:px-10 md:py-16">
         {/* Top-Left Accent */}
         <FiStar className="absolute -top-10 -left-10 z-0 h-64 w-64 opacity-[0.05] text-[#1C3F2D]" />
 

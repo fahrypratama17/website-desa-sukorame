@@ -52,7 +52,7 @@ const VisiMisiPage = ({ settings, misiItems, nilaiItems }: VisiMisiPageProps) =>
 
           {/* Row 2: remaining cards centered */}
           {misiItems.length > 3 && (
-            <div className="mx-auto mt-6 grid max-w-[66.66%] grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="mx-auto mt-6 grid w-full md:max-w-[66.66%] grid-cols-1 md:grid-cols-2 gap-6">
               {misiItems.slice(3).map((item) => (
                 <MisiCard
                   key={item.id}
