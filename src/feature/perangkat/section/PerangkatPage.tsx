@@ -44,7 +44,7 @@ const MemberPhoto = ({
       alt={name}
       width={400}
       height={400}
-      className={`w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105 ${className}`}
+      className={`w-full h-80 md:h-60 object-cover object-[50%_20%] transition-transform duration-500 ${className}`}
       unoptimized
       priority={priority}
       onError={() => setImgError(true)}
@@ -112,7 +112,7 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
         <section className="w-full">
           <div className="bg-white rounded-3xl p-5 sm:p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8 shadow-md border border-green-850/10">
             {/* Foto Kepala Desa */}
-            <div className="w-full max-w-xs md:max-w-none md:w-[300px] h-[300px] sm:h-[340px] rounded-2xl overflow-hidden flex-shrink-0 mx-auto md:mx-0">
+            <div className="w-full max-w-[45%] md:max-w-[18%] rounded-2xl overflow-hidden flex-shrink-0 mx-auto md:mx-0">
               <MemberPhoto
                 src={kepalaDesa.image || ""}
                 name={kepalaDesa.name}
@@ -145,7 +145,7 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
                 <FiMail className="h-4 w-4 text-green-350" />
                 <a
                   href={`mailto:${kepalaDesa.email}`}
-                  className="font-inter-600 text-green-50 hover:text-green-350 text-sm transition-colors"
+                  className="font-inter-600 text-green-50 hover:text-green-350 text-sm transition-colors truncate"
                 >
                   {kepalaDesa.email}
                 </a>
@@ -245,19 +245,20 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
 
           {/* Grid Kartu Perangkat */}
           {filteredList.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
               {filteredList.map((member, index) => (
                 <div
                   key={index}
                   className="bg-white rounded-2xl overflow-hidden border border-green-850/15 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1"
                 >
                   {/* Foto Perangkat */}
-                  <div className="relative h-56 overflow-hidden flex-shrink-0">
+                  <div className="relative overflow-hidden flex-shrink-0">
                     <MemberPhoto
                       src={member.image || ""}
                       name={member.name}
                       initials={member.initials}
                       avatarColor={member.avatarColor}
+                      className="object-cover"
                     />
                   </div>
 
@@ -273,10 +274,10 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
                     {/* Email */}
                     <a
                       href={`mailto:${member.email}`}
-                      className="flex items-center gap-1.5 text-[11px] text-green-350 hover:text-green-250 transition-colors mt-auto pt-2 border-t border-green-850/10 break-all"
+                      className="flex items-center gap-1.5 text-[11px] text-green-350 hover:text-green-250 transition-colors mt-auto pt-2 border-t border-green-850/10 min-w-0"
                     >
                       <FiMail className="h-3 w-3 flex-shrink-0" />
-                      <span>{member.email}</span>
+                      <span className="truncate">{member.email}</span>
                     </a>
                   </div>
                 </div>

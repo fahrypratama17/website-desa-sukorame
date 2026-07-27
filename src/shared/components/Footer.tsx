@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import DynamicIcon from "./DynamicIcon";
+import { FiFacebook, FiInstagram, FiYoutube } from "react-icons/fi";
 
 export const shortcutData = [
   {
@@ -49,14 +50,17 @@ const Footer = ({ settings }: FooterProps) => {
     {
       icon: "FiMapPin",
       name: safeSettings.kontak_alamat || "Jl. Raya Sukorame No. 1",
+      href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(safeSettings.kontak_alamat || "Desa Sukorame")}`,
     },
     {
       icon: "FiMail",
       name: safeSettings.kontak_email || "info@sukorame.desa.id",
+      href: `mailto:${safeSettings.kontak_email || "info@sukorame.desa.id"}`,
     },
     {
       icon: "FiPhone",
       name: safeSettings.kontak_telepon || "(0355) 123456",
+      href: `https://wa.me/${(safeSettings.kontak_telepon || "(0355) 123456").replace(/\D/g, '').replace(/^0/, '62')}`,
     },
   ];
 
@@ -72,8 +76,29 @@ const Footer = ({ settings }: FooterProps) => {
               {safeSettings.footer_deskripsi || "Pusat informasi dan pelayanan publik Pemerintah Desa Sukorame untuk mewujudkan desa yang mandiri dan inovatif."}
             </p>
           </div>
-          <div className="mt-auto">
-            <p className="font-inter-600 text-[12px] text-white/80">
+          <div className="mt-auto flex flex-col gap-6">
+            {/* Social Media */}
+            {(safeSettings.sosmed_facebook || safeSettings.sosmed_instagram || safeSettings.sosmed_youtube) && (
+              <div className="flex items-center gap-4">
+                {safeSettings.sosmed_facebook && (
+                  <a href={safeSettings.sosmed_facebook} target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 p-2.5 rounded-full text-white transition-colors">
+                    <FiFacebook className="w-5 h-5" />
+                  </a>
+                )}
+                {safeSettings.sosmed_instagram && (
+                  <a href={safeSettings.sosmed_instagram} target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 p-2.5 rounded-full text-white transition-colors">
+                    <FiInstagram className="w-5 h-5" />
+                  </a>
+                )}
+                {safeSettings.sosmed_youtube && (
+                  <a href={safeSettings.sosmed_youtube} target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 p-2.5 rounded-full text-white transition-colors">
+                    <FiYoutube className="w-5 h-5" />
+                  </a>
+                )}
+              </div>
+            )}
+            
+            <p className="font-inter-600 text-[12px] text-white/80 hidden lg:block">
               &copy; {new Date().getFullYear()} Pemerintah {safeSettings.desa_nama || "Desa Sukorame"}. All Rights Reserved.
             </p>
           </div>
@@ -98,14 +123,27 @@ const Footer = ({ settings }: FooterProps) => {
             <h3 className="font-inter-700 text-white">Kontak Kami</h3>
 
             <div className="flex flex-col gap-4">
-              {dynamicContactData.map(({ icon, name }) => (
-                <div key={name} className="font-inter-600 flex w-fit cursor-pointer items-center gap-4 text-base text-[#FCF9F2CC] transition-transform duration-200 hover:scale-105">
-                  <DynamicIcon name={icon} className="h-4 w-4" />
-                  <p>{name}</p>
-                </div>
+              {dynamicContactData.map(({ icon, name, href }) => (
+                <a 
+                  key={name} 
+                  href={href}
+                  target={icon === "FiMapPin" || icon === "FiPhone" ? "_blank" : undefined}
+                  rel={icon === "FiMapPin" || icon === "FiPhone" ? "noopener noreferrer" : undefined}
+                  className="font-inter-600 flex w-fit items-center gap-4 text-base text-[#FCF9F2CC] transition-transform duration-200 hover:scale-105"
+                >
+                  <DynamicIcon name={icon} className="h-4 w-4 flex-shrink-0" />
+                  <span>{name}</span>
+                </a>
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Mobile Copyright (di paling bawah) */}
+        <div className="col-span-1 lg:hidden mt-4 pt-8 border-t border-white/10 w-full flex justify-center">
+          <p className="font-inter-600 text-[12px] text-white/80 text-center">
+            &copy; {new Date().getFullYear()} Pemerintah {safeSettings.desa_nama || "Desa Sukorame"}. All Rights Reserved.
+          </p>
         </div>
       </div>
     </footer>

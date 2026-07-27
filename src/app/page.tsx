@@ -11,6 +11,11 @@ export default async function Home() {
     orderBy: { createdAt: 'desc' },
     take: 3,
   });
+  const latestPotensi = await prisma.potensi.findMany({
+    where: { deletedAt: null },
+    orderBy: { createdAt: 'desc' },
+    take: 3,
+  });
 
-  return <HomeContainer settings={settings} latestBerita={latestBerita} />;
+  return <HomeContainer settings={settings} latestBerita={latestBerita} latestPotensi={latestPotensi} />;
 }

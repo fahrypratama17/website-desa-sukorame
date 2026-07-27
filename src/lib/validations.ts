@@ -60,3 +60,10 @@ export function extractFormData(formData: FormData, keys: string[]): Record<stri
   }
   return result;
 }
+
+// ─── Potensi ────────────────────────────────────────────
+export const PotensiSchema = z.object({
+  title: z.string().min(2, 'Judul minimal 2 karakter'),
+  description: z.string().min(10, 'Deskripsi minimal 10 karakter'),
+  image: z.string().optional().nullable(),
+});

@@ -1,7 +1,11 @@
-import { potensiData } from "../data/data";
 import { FiArrowRight } from "react-icons/fi";
+import { Potensi as PotensiType } from "@prisma/client";
 
-const Potensi = () => {
+interface PotensiProps {
+  potensiList: PotensiType[];
+}
+
+const Potensi = ({ potensiList }: PotensiProps) => {
   return (
     <section className="bg-white-250 flex items-center justify-center pb-20 md:pb-28">
       <div className="mx-auto flex w-[90%] flex-col items-start justify-center gap-2">
@@ -18,17 +22,17 @@ const Potensi = () => {
           </div>
         </div>
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 w-full">
-          {potensiData.map(({ id, src, title, desc }) => (
+          {potensiList.map(({ id, image, title, description }) => (
             <div
               className="bg-white-50 flex flex-col overflow-hidden rounded-xl shadow-2xl duration-300 hover:-translate-y-3"
               key={id}
             >
-              <img src={src} alt={title} className="w-full" />
+              <img src={image || '/assets/images/placeholder.jpg'} alt={title} className="w-full h-48 object-cover" />
               <div className="flex flex-col gap-1 md:gap-2 p-3 md:p-6">
                 <h3 className="font-montserrat-700 text-sm md:text-[20px] text-green-50">
                   {title}
                 </h3>
-                <p className="font-inter-400 text-xs md:text-[16px] line-clamp-3 md:line-clamp-none">{desc}</p>
+                <p className="font-inter-400 text-xs md:text-[16px] line-clamp-3 md:line-clamp-none">{description}</p>
               </div>
             </div>
           ))}

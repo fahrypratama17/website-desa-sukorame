@@ -35,6 +35,10 @@ export default function AdminSidebar({ isOpen, onClose }: { isOpen?: boolean; on
           <FiBriefcase className="w-5 h-5 text-gray-400 group-hover:text-white transition" />
           Kelola Program
         </Link>
+        <Link href="/admin/potensi" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition group">
+          <FiBox className="w-5 h-5 text-gray-400 group-hover:text-white transition" />
+          Kelola Potensi
+        </Link>
 
         <Link href="/admin/perangkat" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition group">
           <FiUsers className="w-5 h-5 text-gray-400 group-hover:text-white transition" />

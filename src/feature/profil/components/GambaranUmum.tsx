@@ -16,7 +16,7 @@ const GambaranUmum = ({ data }: GambaranUmumProps) => {
         {/* Foto Sawah */}
         <div className="w-full lg:w-1/2 min-h-[250px] sm:min-h-[350px] lg:min-h-[400px] relative">
           <Image
-            src="/assets/images/profile-placeholder.png"
+            src="https://uoibjwlbyieaqextbrky.supabase.co/storage/v1/object/public/desa-storage/profile/profile-image.webp"
             alt="Profil Desa Sukorame"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"

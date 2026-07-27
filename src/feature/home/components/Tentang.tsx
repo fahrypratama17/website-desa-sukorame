@@ -22,7 +22,7 @@ const Tentang = ({ settings }: TentangProps) => {
           </div>
         </div>
         <img
-          src="/assets/images/tentang-placeholder.png"
+          src="https://uoibjwlbyieaqextbrky.supabase.co/storage/v1/object/public/desa-storage/banner/tentang-banner.webp"
           alt="desa"
           className="rounded-2xl w-full lg:w-1/2 object-cover duration-200 hover:scale-105 shadow-lg"
         />

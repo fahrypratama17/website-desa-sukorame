@@ -2,19 +2,20 @@ import Hero from "../components/Hero";
 import Tentang from "../components/Tentang";
 import Potensi from "../components/Potensi";
 import BeritaTerbaru from "../components/BeritaTerbaru";
-import { Berita } from "@prisma/client";
+import { Berita, Potensi as PotensiType } from "@prisma/client";
 
 interface HomePageProps {
   settings: Record<string, string>;
   latestBerita: Berita[];
+  latestPotensi: PotensiType[];
 }
 
-const HomePage = ({ settings, latestBerita }: HomePageProps) => {
+const HomePage = ({ settings, latestBerita, latestPotensi }: HomePageProps) => {
   return (
     <>
       <Hero settings={settings} />
       <Tentang settings={settings} />
-      <Potensi />
+      <Potensi potensiList={latestPotensi} />
       <BeritaTerbaru beritaData={latestBerita} />
     </>
   );
