@@ -26,14 +26,6 @@ const ProgramHighlight = () => {
             {programHighlightData.description}
           </p>
 
-          {/* Button */}
-          <a
-            href={programHighlightData.buttonLink}
-            className="font-inter-600 flex w-fit items-center gap-2 rounded-lg bg-[#0A2615] px-6 py-3.5 text-sm text-white transition-colors hover:bg-[#1C3F2D]"
-          >
-            {programHighlightData.buttonText}
-            <FiArrowRight className="h-4 w-4 text-white" />
-          </a>
         </div>
 
         {/* Right Image */}

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Perangkat } from "@prisma/client";
 import Image from "next/image";
 import { FiMail, FiSearch } from "react-icons/fi";
+import ScrollReveal from "@/shared/components/ScrollReveal";
 
 const MemberPhoto = ({
   src,
@@ -98,67 +99,72 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
       <div className="mx-auto w-[92%] sm:w-[90%] flex flex-col gap-10 md:gap-16">
 
         {/* Header Section — lebar sama dengan jajaran perangkat (w-full di dalam 90%) */}
-        <section className="text-center w-full flex flex-col gap-4">
-          <h1 className="font-montserrat-700 text-green-50 text-3xl md:text-[40px] leading-tight">
-            Perangkat Desa Sukorame
-          </h1>
-          <p className="font-inter-400 text-green-350 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-            Mengenal lebih dekat struktur organisasi dan individu yang mengabdi untuk kemajuan dan
-            kesejahteraan masyarakat Desa Sukorame.
-          </p>
-        </section>
+        <ScrollReveal direction="none">
+          <section className="text-center w-full flex flex-col gap-4">
+            <h1 className="font-montserrat-700 text-green-50 text-3xl md:text-[40px] leading-tight">
+              Perangkat Desa Sukorame
+            </h1>
+            <p className="font-inter-400 text-green-350 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+              Mengenal lebih dekat struktur organisasi dan individu yang mengabdi untuk kemajuan dan
+              kesejahteraan masyarakat Desa Sukorame.
+            </p>
+          </section>
+        </ScrollReveal>
 
         {/* Highlight Kepala Desa — lebar penuh (w-full) */}
-        <section className="w-full">
-          <div className="bg-white rounded-3xl p-5 sm:p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8 shadow-md border border-green-850/10">
-            {/* Foto Kepala Desa */}
-            <div className="w-full max-w-[45%] md:max-w-[18%] rounded-2xl overflow-hidden flex-shrink-0 mx-auto md:mx-0">
-              <MemberPhoto
-                src={kepalaDesa.image || ""}
-                name={kepalaDesa.name}
-                initials={kepalaDesa.initials}
-                avatarColor={kepalaDesa.avatarColor}
-                priority={true}
-              />
+        <ScrollReveal>
+          <section className="w-full">
+            <div className="bg-white rounded-3xl p-5 sm:p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8 shadow-md border border-green-850/10">
+              {/* Foto Kepala Desa */}
+              <div className="w-full max-w-[45%] md:max-w-[18%] rounded-2xl overflow-hidden flex-shrink-0 mx-auto md:mx-0">
+                <MemberPhoto
+                  src={kepalaDesa.image || ""}
+                  name={kepalaDesa.name}
+                  initials={kepalaDesa.initials}
+                  avatarColor={kepalaDesa.avatarColor}
+                  priority={true}
+                />
+              </div>
+
+              {/* Info Kepala Desa */}
+              <div className="flex flex-col flex-grow gap-4 text-center md:text-left items-center md:items-start w-full">
+                <div>
+                  <span className="inline-block bg-[#DCFCE7] text-[#166534] font-inter-600 text-xs px-3 py-1 rounded-full mb-2 md:mb-3 uppercase tracking-wide">
+                    {kepalaDesa.role}
+                  </span>
+                  <h2 className="font-montserrat-700 text-green-50 text-2xl sm:text-3xl md:text-4xl">
+                    {kepalaDesa.name}
+                  </h2>
+                </div>
+
+                {/* Kutipan Komitmen */}
+                <div className="border-l-4 border-green-350 pl-4 py-1 text-left w-full">
+                  <p className="font-inter-400 text-green-350 text-sm sm:text-base leading-relaxed italic">
+                    "{kepalaDesa.quote}"
+                  </p>
+                </div>
+
+                {/* Kontak Email */}
+                <div className="flex items-center gap-2 mt-2 justify-center md:justify-start w-full">
+                  <FiMail className="h-4 w-4 text-green-350" />
+                  <a
+                    href={`mailto:${kepalaDesa.email}`}
+                    className="font-inter-600 text-green-50 hover:text-green-350 text-sm transition-colors truncate"
+                  >
+                    {kepalaDesa.email}
+                  </a>
+                </div>
+              </div>
             </div>
-
-            {/* Info Kepala Desa */}
-            <div className="flex flex-col flex-grow gap-4 text-center md:text-left items-center md:items-start w-full">
-              <div>
-                <span className="inline-block bg-[#DCFCE7] text-[#166534] font-inter-600 text-xs px-3 py-1 rounded-full mb-2 md:mb-3 uppercase tracking-wide">
-                  {kepalaDesa.role}
-                </span>
-                <h2 className="font-montserrat-700 text-green-50 text-2xl sm:text-3xl md:text-4xl">
-                  {kepalaDesa.name}
-                </h2>
-              </div>
-
-              {/* Kutipan Komitmen */}
-              <div className="border-l-4 border-green-350 pl-4 py-1 text-left w-full">
-                <p className="font-inter-400 text-green-350 text-sm sm:text-base leading-relaxed italic">
-                  "{kepalaDesa.quote}"
-                </p>
-              </div>
-
-              {/* Kontak Email */}
-              <div className="flex items-center gap-2 mt-2 justify-center md:justify-start w-full">
-                <FiMail className="h-4 w-4 text-green-350" />
-                <a
-                  href={`mailto:${kepalaDesa.email}`}
-                  className="font-inter-600 text-green-50 hover:text-green-350 text-sm transition-colors truncate"
-                >
-                  {kepalaDesa.email}
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
         {/* Struktur Organisasi (Bagan Pohon) — lebar penuh (w-full) */}
-        <section className="w-full flex flex-col gap-6 md:gap-8">
-          <h2 className="font-montserrat-700 text-green-50 text-2xl md:text-3xl text-center">
-            Struktur Organisasi
-          </h2>
+        <ScrollReveal>
+          <section className="w-full flex flex-col gap-6 md:gap-8">
+            <h2 className="font-montserrat-700 text-green-50 text-2xl md:text-3xl text-center">
+              Struktur Organisasi
+            </h2>
 
           <div className="w-full">
             {/* Hint Geser untuk Layar Kecil */}
@@ -170,127 +176,162 @@ const PerangkatPage = ({ perangkatData }: PerangkatPageProps) => {
               ref={scrollContainerRef}
               className="bg-white/60 backdrop-blur-sm p-4 sm:p-8 md:p-12 rounded-3xl border border-green-850/10 shadow-sm flex flex-col overflow-x-auto"
             >
-              <div className="min-w-[900px] flex flex-col items-center w-full">
+              <div className="min-w-[1000px] h-[520px] relative font-inter text-[11px] mx-auto w-full max-w-[1100px] mt-4">
+                
+                {/* --- LINES --- */}
+                {/* Main Vertical Stem */}
+                <div className="absolute bg-green-850/40 w-[2px] z-0" style={{ left: '50%', top: '40px', bottom: '60px' }}></div>
+                
+                {/* Kades to Sekdes Horizontal */}
+                <div className="absolute bg-green-850/40 h-[2px] z-0" style={{ left: '50%', top: '60px', width: '24.5%' }}></div>
+                {/* Sekdes Vertical Stem */}
+                <div className="absolute bg-green-850/40 w-[2px] z-0" style={{ left: '74.5%', top: '60px', height: '100px' }}></div>
+                
+                {/* Kasi Horizontal Line */}
+                <div className="absolute bg-green-850/40 h-[2px] z-0" style={{ left: '10%', top: '160px', width: '40%' }}></div>
+                {/* Kasi Vertical Drops */}
+                <div className="absolute bg-green-850/40 w-[2px] z-0" style={{ left: '10%', top: '160px', height: '20px' }}></div>
+                <div className="absolute bg-green-850/40 w-[2px] z-0" style={{ left: '25.5%', top: '160px', height: '20px' }}></div>
+                <div className="absolute bg-green-850/40 w-[2px] z-0" style={{ left: '41%', top: '160px', height: '20px' }}></div>
+                
+                {/* Kaur Horizontal Line */}
+                <div className="absolute bg-green-850/40 h-[2px] z-0" style={{ left: '59%', top: '160px', width: '31%' }}></div>
+                {/* Kaur Vertical Drops */}
+                <div className="absolute bg-green-850/40 w-[2px] z-0" style={{ left: '59%', top: '160px', height: '20px' }}></div>
+                {/* Sekdes vertical stem already covers 74.5% */}
+                <div className="absolute bg-green-850/40 w-[2px] z-0" style={{ left: '74.5%', top: '160px', height: '20px' }}></div>
+                <div className="absolute bg-green-850/40 w-[2px] z-0" style={{ left: '90%', top: '160px', height: '20px' }}></div>
 
-              {/* Level 1: Kepala Desa */}
-              <div className="bg-green-50 text-white font-inter-600 px-6 py-3 rounded-lg text-sm shadow-md transition-all duration-300 hover:scale-105 inline-block text-center w-52">
-                Kepala Desa
+                {/* Kasun Horizontal Line */}
+                <div className="absolute bg-green-850/40 h-[2px] z-0" style={{ left: '25.5%', top: '320px', width: '49%' }}></div>
+                {/* Kasun Vertical Drops */}
+                <div className="absolute bg-green-850/40 w-[2px] z-0" style={{ left: '25.5%', top: '320px', height: '20px' }}></div>
+                <div className="absolute bg-green-850/40 w-[2px] z-0" style={{ left: '74.5%', top: '320px', height: '20px' }}></div>
+
+                {/* --- NODES --- */}
+                {/* Kades */}
+                <div className="absolute -translate-x-1/2 w-44 bg-[#0A2615] border border-white/20 text-white shadow-lg flex items-center justify-center text-center rounded-lg py-3 px-3 font-inter-700 text-xs z-10 hover:scale-105 transition-transform" style={{ left: '50%', top: '0' }}>
+                  KEPALA DESA
+                </div>
+
+                {/* Sekdes */}
+                <div className="absolute -translate-x-1/2 w-40 bg-[#1A452F] border border-white/20 text-white shadow-md flex items-center justify-center text-center rounded-lg py-2.5 px-3 font-inter-600 text-[10px] z-10 hover:scale-105 transition-transform" style={{ left: '74.5%', top: '90px' }}>
+                  SEKRETARIS DESA
+                </div>
+
+                {/* Kasi Group */}
+                <div className="absolute -translate-x-1/2 w-36 bg-[#2B694D] border border-white/20 text-white shadow-sm flex flex-col items-center justify-center text-center rounded-lg py-2 px-2 font-inter-600 text-[9px] uppercase leading-tight h-[42px] z-10 hover:bg-[#1A452F] hover:scale-105 transition-all" style={{ left: '10%', top: '180px' }}>
+                  Kepala Seksi Pemerintahan
+                </div>
+                <div className="absolute -translate-x-1/2 w-36 bg-[#2B694D] border border-white/20 text-white shadow-sm flex flex-col items-center justify-center text-center rounded-lg py-2 px-2 font-inter-600 text-[9px] uppercase leading-tight h-[42px] z-10 hover:bg-[#1A452F] hover:scale-105 transition-all" style={{ left: '25.5%', top: '180px' }}>
+                  Kepala Seksi Kesejahteraan Masyarakat
+                </div>
+                <div className="absolute -translate-x-1/2 w-36 bg-[#2B694D] border border-white/20 text-white shadow-sm flex flex-col items-center justify-center text-center rounded-lg py-2 px-2 font-inter-600 text-[9px] uppercase leading-tight h-[42px] z-10 hover:bg-[#1A452F] hover:scale-105 transition-all" style={{ left: '41%', top: '180px' }}>
+                  Kepala Seksi Pelayanan
+                </div>
+
+                {/* Kaur Group */}
+                <div className="absolute -translate-x-1/2 w-36 bg-[#2B694D] border border-white/20 text-white shadow-sm flex flex-col items-center justify-center text-center rounded-lg py-2 px-2 font-inter-600 text-[9px] uppercase leading-tight h-[42px] z-10 hover:bg-[#1A452F] hover:scale-105 transition-all" style={{ left: '59%', top: '180px' }}>
+                  Kepala Urusan Perencanaan
+                </div>
+                <div className="absolute -translate-x-1/2 w-36 bg-[#2B694D] border border-white/20 text-white shadow-sm flex flex-col items-center justify-center text-center rounded-lg py-2 px-2 font-inter-600 text-[9px] uppercase leading-tight h-[42px] z-10 hover:bg-[#1A452F] hover:scale-105 transition-all" style={{ left: '74.5%', top: '180px' }}>
+                  Kepala Urusan Umum & TU
+                </div>
+                <div className="absolute -translate-x-1/2 w-36 bg-[#2B694D] border border-white/20 text-white shadow-sm flex flex-col items-center justify-center text-center rounded-lg py-2 px-2 font-inter-600 text-[9px] uppercase leading-tight h-[42px] z-10 hover:bg-[#1A452F] hover:scale-105 transition-all" style={{ left: '90%', top: '180px' }}>
+                  Kepala Urusan Keuangan
+                </div>
+
+                {/* Kasun Group */}
+                <div className="absolute -translate-x-1/2 w-40 bg-[#2B694D] border border-white/20 text-white shadow-sm flex flex-col items-center justify-center text-center rounded-lg py-2 px-2 font-inter-600 text-[10px] uppercase h-[42px] z-10 hover:bg-[#1A452F] hover:scale-105 transition-all" style={{ left: '25.5%', top: '340px' }}>
+                  Kepala Dusun Sukomulyo
+                </div>
+                <div className="absolute -translate-x-1/2 w-40 bg-[#2B694D] border border-white/20 text-white shadow-sm flex flex-col items-center justify-center text-center rounded-lg py-2 px-2 font-inter-600 text-[10px] uppercase h-[42px] z-10 hover:bg-[#1A452F] hover:scale-105 transition-all" style={{ left: '74.5%', top: '340px' }}>
+                  Kepala Dusun Sukodadi
+                </div>
+
+                {/* Staf Group */}
+                <div className="absolute -translate-x-1/2 w-44 bg-[#2B694D] border border-white/20 text-white shadow-sm flex flex-col items-center justify-center text-center rounded-lg py-2 px-2 font-inter-600 text-[10px] uppercase h-[42px] z-10 hover:bg-[#1A452F] hover:scale-105 transition-all" style={{ left: '50%', bottom: '0' }}>
+                  Staf Desa
+                </div>
+
               </div>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
 
-              {/* Line Level 1 to 2 */}
-              <div className="w-[2px] h-8 bg-[#2B694D]/35"></div>
+        {/* Jajaran Perangkat Desa & Pencarian */}
+        <ScrollReveal>
+          <section className="w-full flex flex-col gap-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-green-850/10 pb-4">
+              <h2 className="font-montserrat-700 text-green-50 text-2xl md:text-3xl">
+                Jajaran Perangkat Desa
+              </h2>
 
-              {/* Level 2: Sekretaris Desa */}
-              <div className="bg-[#2B694D] text-white font-inter-600 px-6 py-3 rounded-lg text-sm shadow-md transition-all duration-300 hover:scale-105 inline-block text-center w-52">
-                Sekretaris Desa
+              {/* Input Pencarian */}
+              <div className="relative w-full sm:w-80">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <FiSearch className="w-4 h-4 text-green-350" aria-hidden="true" />
+                </span>
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Cari nama atau jabatan..."
+                  className="w-full pl-10 pr-4 py-2 bg-white border border-green-850/20 rounded-full text-sm text-green-50 placeholder-green-350 focus:outline-none focus:border-green-250 focus:ring-1 focus:ring-green-250 transition-colors"
+                />
               </div>
+            </div>
 
-              {/* Line Level 2 ke branch horizontal */}
-              <div className="w-[2px] h-8 bg-[#2B694D]/35"></div>
+            {/* Grid Kartu Perangkat */}
+            {filteredList.length > 0 ? (
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+                {filteredList.map((member, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-2xl overflow-hidden border border-green-850/15 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1"
+                  >
+                    {/* Foto Perangkat */}
+                    <div className="relative overflow-hidden flex-shrink-0">
+                      <MemberPhoto
+                        src={member.image || ""}
+                        name={member.name}
+                        initials={member.initials}
+                        avatarColor={member.avatarColor}
+                        className="object-cover"
+                      />
+                    </div>
 
-              {/* Level 3: Kaur, Kasi, dan Kadus Branches */}
-              <div className="flex w-full max-w-[1200px] mt-0">
-                {[
-                  "Kasi Pemerintahan",
-                  "Kasi Kesra",
-                  "Kasi Pelayanan",
-                  "Kaur Perencanaan",
-                  "Kaur Umum & TU",
-                  "Kaur Keuangan",
-                  "Kasun Sukomulyo",
-                  "Kasun Sukodadi"
-                ].map((role, idx, arr) => (
-                  <div key={idx} className="relative flex flex-col items-center flex-1 px-1">
-                    {/* Horizontal Connection Bar Left */}
-                    {idx !== 0 && <div className="absolute top-0 left-0 w-1/2 h-[2px] bg-[#2B694D]/35"></div>}
-                    {/* Horizontal Connection Bar Right */}
-                    {idx !== arr.length - 1 && <div className="absolute top-0 right-0 w-1/2 h-[2px] bg-[#2B694D]/35"></div>}
-                    
-                    {/* Vertical Connection Line */}
-                    <div className="w-[2px] h-8 bg-[#2B694D]/35"></div>
-                    
-                    <div className="bg-white border border-[#2B694D]/20 text-green-50 font-inter-600 px-2 py-2.5 rounded-lg text-[11px] shadow-sm transition-all duration-300 hover:scale-105 text-center w-full min-h-[48px] flex items-center justify-center relative z-10">
-                      {role}
+                    {/* Keterangan */}
+                    <div className="p-4 flex flex-col flex-grow gap-2">
+                      <span className="inline-block bg-white-150 text-green-350 text-[10px] font-inter-600 px-2.5 py-1 rounded-full uppercase tracking-wider w-fit">
+                        {member.role}
+                      </span>
+                      <h3 className="font-inter-700 text-green-50 text-sm leading-snug">
+                        {member.name}
+                      </h3>
+
+                      {/* Email */}
+                      <a
+                        href={`mailto:${member.email}`}
+                        className="flex items-center gap-1.5 text-[11px] text-green-350 hover:text-green-250 transition-colors mt-auto pt-2 border-t border-green-850/10 min-w-0"
+                      >
+                        <FiMail className="h-3 w-3 flex-shrink-0" />
+                        <span className="truncate">{member.email}</span>
+                      </a>
                     </div>
                   </div>
                 ))}
               </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
-
-        {/* Jajaran Perangkat Desa & Pencarian */}
-        <section className="w-full flex flex-col gap-8">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-green-850/10 pb-4">
-            <h2 className="font-montserrat-700 text-green-50 text-2xl md:text-3xl">
-              Jajaran Perangkat Desa
-            </h2>
-
-            {/* Input Pencarian */}
-            <div className="relative w-full sm:w-80">
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <FiSearch className="w-4 h-4 text-green-350" aria-hidden="true" />
-              </span>
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Cari nama atau jabatan..."
-                className="w-full pl-10 pr-4 py-2 bg-white border border-green-850/20 rounded-full text-sm text-green-50 placeholder-green-350 focus:outline-none focus:border-green-250 focus:ring-1 focus:ring-green-250 transition-colors"
-              />
-            </div>
-          </div>
-
-          {/* Grid Kartu Perangkat */}
-          {filteredList.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
-              {filteredList.map((member, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl overflow-hidden border border-green-850/15 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1"
-                >
-                  {/* Foto Perangkat */}
-                  <div className="relative overflow-hidden flex-shrink-0">
-                    <MemberPhoto
-                      src={member.image || ""}
-                      name={member.name}
-                      initials={member.initials}
-                      avatarColor={member.avatarColor}
-                      className="object-cover"
-                    />
-                  </div>
-
-                  {/* Keterangan */}
-                  <div className="p-4 flex flex-col flex-grow gap-2">
-                    <span className="inline-block bg-white-150 text-green-350 text-[10px] font-inter-600 px-2.5 py-1 rounded-full uppercase tracking-wider w-fit">
-                      {member.role}
-                    </span>
-                    <h3 className="font-inter-700 text-green-50 text-sm leading-snug">
-                      {member.name}
-                    </h3>
-
-                    {/* Email */}
-                    <a
-                      href={`mailto:${member.email}`}
-                      className="flex items-center gap-1.5 text-[11px] text-green-350 hover:text-green-250 transition-colors mt-auto pt-2 border-t border-green-850/10 min-w-0"
-                    >
-                      <FiMail className="h-3 w-3 flex-shrink-0" />
-                      <span className="truncate">{member.email}</span>
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <p className="font-inter-500 text-green-350 text-base">
-                Tidak ditemukan perangkat desa dengan nama atau jabatan "{searchQuery}".
-              </p>
-            </div>
-          )}
-        </section>
+            ) : (
+              <div className="text-center py-12">
+                <p className="font-inter-500 text-green-350 text-base">
+                  Tidak ditemukan perangkat desa dengan nama atau jabatan "{searchQuery}".
+                </p>
+              </div>
+            )}
+          </section>
+        </ScrollReveal>
 
       </div>
     </div>

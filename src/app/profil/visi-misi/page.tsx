@@ -6,7 +6,7 @@ export const metadata = {
   title: "Visi & Misi | Desa Sukorame",
   description: "Arah pembangunan dan komitmen Pemerintah Desa Sukorame untuk mewujudkan kesejahteraan masyarakat.",
 };
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export default async function VisiMisi() {
   const settings = await getGlobalSettings();

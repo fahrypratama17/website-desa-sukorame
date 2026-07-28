@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export const revalidate = 3600;
+export const dynamic = 'force-dynamic';
 
 export default async function BeritaDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;

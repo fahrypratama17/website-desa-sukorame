@@ -11,8 +11,19 @@ export default function AdminSearch({ placeholder = 'Cari...' }: { placeholder?:
   
   const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '');
 
+  // Sync search term if URL changes from outside (e.g., back button)
+  useEffect(() => {
+    setSearchTerm(searchParams.get('q') || '');
+  }, [searchParams]);
+
   // Debounce search effect
   useEffect(() => {
+    // Only run if the search term is actually different from the URL
+    // This prevents the search effect from resetting the page when pagination updates searchParams
+    if (searchTerm === (searchParams.get('q') || '')) {
+      return;
+    }
+
     const handler = setTimeout(() => {
       const params = new URLSearchParams(searchParams);
       if (searchTerm) {

@@ -33,7 +33,7 @@ const BeritaDetailSection = ({ berita }: BeritaDetailSectionProps) => {
 
   return (
     <section className="bg-white min-h-screen pt-24 md:pt-32 pb-16 md:pb-24">
-      <div className="mx-auto w-[92%] sm:w-[90%] max-w-3xl md:max-w-4xl">
+      <div className="mx-auto w-[92%] sm:w-[90%]">
         
         {/* Header */}
         <div className="mb-6 md:mb-8">

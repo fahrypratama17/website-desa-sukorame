@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { handleSignOut } from '../../../app/admin/actions';
-import { FiGrid, FiFileText, FiBriefcase, FiUsers, FiBox, FiSettings, FiClipboard, FiLogOut, FiX } from 'react-icons/fi';
+import { FiGrid, FiFileText, FiBriefcase, FiUsers, FiBox, FiSettings, FiClipboard, FiLogOut, FiX, FiMapPin } from 'react-icons/fi';
 
 export default function AdminSidebar({ isOpen, onClose }: { isOpen?: boolean; onClose?: () => void }) {
   return (
@@ -38,6 +38,10 @@ export default function AdminSidebar({ isOpen, onClose }: { isOpen?: boolean; on
         <Link href="/admin/potensi" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition group">
           <FiBox className="w-5 h-5 text-gray-400 group-hover:text-white transition" />
           Kelola Potensi
+        </Link>
+        <Link href="/admin/lokasi" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition group">
+          <FiMapPin className="w-5 h-5 text-gray-400 group-hover:text-white transition" />
+          Kelola Lokasi
         </Link>
 
         <Link href="/admin/perangkat" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 transition group">

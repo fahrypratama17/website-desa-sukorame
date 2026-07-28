@@ -25,7 +25,7 @@ export default async function RootLayout({
   const settings = await getGlobalSettings();
 
   return (
-    <html lang="id">
+    <html lang="id" className="scroll-smooth" data-scroll-behavior="smooth">
       <body className="font-inter bg-[#FAF9F6] antialiased">
         <div className="relative flex flex-col min-h-screen">
           <PublicLayoutWrapper settings={settings}>

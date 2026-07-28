@@ -3,6 +3,7 @@ import MisiCard from "../components/MisiCard";
 import NilaiUtamaSection from "../components/NilaiUtama";
 import { visiMisiHeader } from "../data/data";
 import type { Misi, NilaiUtama } from "@prisma/client";
+import ScrollReveal from "@/shared/components/ScrollReveal";
 
 interface VisiMisiPageProps {
   settings: Record<string, string>;
@@ -20,40 +21,32 @@ const VisiMisiPage = ({ settings, misiItems, nilaiItems }: VisiMisiPageProps) =>
     <div className="min-h-screen">
       <div className="mx-auto w-[90%] pt-12">
         {/* Header */}
-        <section className="mb-12 text-center">
-          <h1 className="font-montserrat-700 text-green-50 mb-4 text-4xl">
-            {visiMisiHeader.title}
-          </h1>
-          <p className="font-inter-400 text-green-350 mx-auto max-w-2xl text-base leading-relaxed">
-            {visiMisiHeader.subtitle}
-          </p>
-        </section>
+        <ScrollReveal direction="none">
+          <section className="mb-12 text-center">
+            <h1 className="font-montserrat-700 text-green-50 mb-4 text-4xl">
+              {visiMisiHeader.title}
+            </h1>
+            <p className="font-inter-400 text-green-350 mx-auto max-w-2xl text-base leading-relaxed">
+              {visiMisiHeader.subtitle}
+            </p>
+          </section>
+        </ScrollReveal>
 
         {/* Visi */}
-        <VisiSection data={visiData} />
+        <ScrollReveal>
+          <VisiSection data={visiData} />
+        </ScrollReveal>
 
         {/* Misi Pembangunan Desa */}
-        <section className="mb-12">
-          <h2 className="font-montserrat-700 text-green-50 mb-8 text-xl">
-            Misi Pembangunan Desa
-          </h2>
+        <ScrollReveal>
+          <section className="mb-12">
+            <h2 className="font-montserrat-700 text-green-50 mb-8 text-xl">
+              Misi Pembangunan Desa
+            </h2>
 
-          {/* Row 1: 3 cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {misiItems.slice(0, 3).map((item) => (
-              <MisiCard
-                key={item.id}
-                icon={item.icon || "FiFeather"}
-                title={item.title}
-                description={item.description}
-              />
-            ))}
-          </div>
-
-          {/* Row 2: remaining cards centered */}
-          {misiItems.length > 3 && (
-            <div className="mx-auto mt-6 grid w-full md:max-w-[66.66%] grid-cols-1 md:grid-cols-2 gap-6">
-              {misiItems.slice(3).map((item) => (
+            {/* Row 1: 3 cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {misiItems.slice(0, 3).map((item) => (
                 <MisiCard
                   key={item.id}
                   icon={item.icon || "FiFeather"}
@@ -62,17 +55,33 @@ const VisiMisiPage = ({ settings, misiItems, nilaiItems }: VisiMisiPageProps) =>
                 />
               ))}
             </div>
-          )}
 
-          {misiItems.length === 0 && (
-            <div className="text-center py-12 text-gray-400 text-sm">
-              Belum ada data misi.
-            </div>
-          )}
-        </section>
+            {/* Row 2: remaining cards centered */}
+            {misiItems.length > 3 && (
+              <div className="mx-auto mt-6 grid w-full md:max-w-[66.66%] grid-cols-1 md:grid-cols-2 gap-6">
+                {misiItems.slice(3).map((item) => (
+                  <MisiCard
+                    key={item.id}
+                    icon={item.icon || "FiFeather"}
+                    title={item.title}
+                    description={item.description}
+                  />
+                ))}
+              </div>
+            )}
+
+            {misiItems.length === 0 && (
+              <div className="text-center py-12 text-gray-400 text-sm">
+                Belum ada data misi.
+              </div>
+            )}
+          </section>
+        </ScrollReveal>
 
         {/* Nilai-Nilai Utama */}
-        <NilaiUtamaSection nilaiItems={nilaiItems} />
+        <ScrollReveal>
+          <NilaiUtamaSection nilaiItems={nilaiItems} />
+        </ScrollReveal>
       </div>
     </div>
   );

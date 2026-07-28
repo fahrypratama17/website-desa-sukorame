@@ -1,6 +1,7 @@
 import Breadcrumb from "../components/Breadcrumb";
 import GambaranUmum from "../components/GambaranUmum";
 import { profilHero, gambaranUmum } from "../data/data";
+import ScrollReveal from "@/shared/components/ScrollReveal";
 
 interface ProfilPageProps {
   settings: Record<string, string>;
@@ -22,21 +23,25 @@ const ProfilPage = ({ settings }: ProfilPageProps) => {
   return (
     <div className="min-h-screen">
       <div className="mx-auto w-[90%] pt-12">
-        {/* Breadcrumb */}
-        <Breadcrumb items={profilHero.breadcrumb} />
+        <ScrollReveal direction="none">
+          {/* Breadcrumb */}
+          <Breadcrumb items={profilHero.breadcrumb} />
 
-        {/* Hero Section */}
-        <section className="mb-4">
-          <h1 className="font-montserrat-700 text-green-50 mb-4 text-4xl">
-            {title}
-          </h1>
-          <p className="font-inter-400 text-green-350 max-w-2xl text-base leading-relaxed">
-            {subtitle}
-          </p>
-        </section>
+          {/* Hero Section */}
+          <section className="mb-4">
+            <h1 className="font-montserrat-700 text-green-50 mb-4 text-4xl">
+              {title}
+            </h1>
+            <p className="font-inter-400 text-green-350 max-w-2xl text-base leading-relaxed">
+              {subtitle}
+            </p>
+          </section>
+        </ScrollReveal>
 
         {/* Gambaran Umum */}
-        <GambaranUmum data={dynamicGambaran} />
+        <ScrollReveal>
+          <GambaranUmum data={dynamicGambaran} />
+        </ScrollReveal>
       </div>
     </div>
   );

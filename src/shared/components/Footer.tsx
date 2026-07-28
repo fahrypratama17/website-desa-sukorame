@@ -65,7 +65,7 @@ const Footer = ({ settings }: FooterProps) => {
   ];
 
   return (
-    <footer className="bg-white-250">
+    <footer className="bg-white-250 relative z-50">
       <div className="mx-auto grid w-[90%] grid-cols-1 lg:grid-cols-2 items-center justify-between gap-12 lg:gap-0 rounded-tl-xl rounded-tr-xl bg-green-50 px-8 py-12 lg:px-16 lg:py-20">
         <div className="flex h-full flex-col gap-12">
           <div className="flex flex-col gap-4">

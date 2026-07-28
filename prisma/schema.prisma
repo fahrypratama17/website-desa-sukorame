@@ -218,3 +218,20 @@ model AuditLog {
 
   @@map("audit_logs")
 }
+
+// ─── 10. Lokasi / Peta Desa ───────────────────────────────
+
+model Location {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String    @db.Text
+  latitude    Float
+  longitude   Float
+  icon        String?   // e.g. "FaBuilding", "FaTree", etc.
+  color       String?   // Hex color code
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  @@map("locations")
+}
